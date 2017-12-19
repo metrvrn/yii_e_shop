@@ -14,6 +14,9 @@ class m171215_123516_create_store_table extends Migration
     {
         $this->createTable('store', [
             'id' => $this->primaryKey(),
+            'quantity' => $this->float(),
+            'element_id' => $this->integer(),
+            'store_type_id' => $this->integer()
         ]);
     }
 

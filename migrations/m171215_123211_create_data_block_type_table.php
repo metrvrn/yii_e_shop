@@ -13,7 +13,8 @@ class m171215_123211_create_data_block_type_table extends Migration
     public function up()
     {
         $this->createTable('data_block_type', [
-            'id' => $this->primaryKey()
+            'id' => $this->primaryKey(),
+            'name' => $this->string()
         ]);
     }
 

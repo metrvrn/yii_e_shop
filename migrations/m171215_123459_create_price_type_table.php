@@ -14,6 +14,7 @@ class m171215_123459_create_price_type_table extends Migration
     {
         $this->createTable('price_type', [
             'id' => $this->primaryKey(),
+            'name' => $this->string()
         ]);
     }
 

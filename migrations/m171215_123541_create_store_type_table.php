@@ -14,6 +14,7 @@ class m171215_123541_create_store_type_table extends Migration
     {
         $this->createTable('store_type', [
             'id' => $this->primaryKey(),
+            'name' => $this->string()
         ]);
     }
 

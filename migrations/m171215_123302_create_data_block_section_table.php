@@ -14,6 +14,7 @@ class m171215_123302_create_data_block_section_table extends Migration
     {
         $this->createTable('data_block_section', [
             'id' => $this->primaryKey(),
+            'parent_id' => $this->integer()
         ]);
     }
 
