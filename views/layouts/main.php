@@ -1,81 +1,84 @@
 <?php
-
-/* @var $this \yii\web\View */
-/* @var $content string */
-
-use app\widgets\Alert;
 use yii\helpers\Html;
-use yii\bootstrap\Nav;
-use yii\bootstrap\NavBar;
-use yii\widgets\Breadcrumbs;
-use app\assets\AppAsset;
-
-AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
-<!DOCTYPE html>
-<html lang="<?= Yii::$app->language ?>">
-<head>
-    <meta charset="<?= Yii::$app->charset ?>">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <?= Html::csrfMetaTags() ?>
-    <title><?= Html::encode($this->title) ?></title>
-    <?php $this->head() ?>
-</head>
-<body>
-<?php $this->beginBody() ?>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <?= Html::csrfMetaTags() ?>
+        <title><?= Html::encode($this->title) ?></title>
+        <link rel="stylesheet" href="assets/abd25faa/css/bootstrap.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300i,400,700&amp;subset=cyrillic" rel="stylesheet">
+        <?php $this->head() ?>
+    </head>
+    <body>
+    <?php $this->beginBody() ?>
+    <header>
+        <div class="header-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-4">
+                        <a href="?r=main/delivery" class="header-top__link">Доставка и оплата</a>
+                        <span class="header-top__separator">|</span>
+                        <a href="?r=main/about" class="header-top__link">О компании</a>
+                    </div>
+                    <div class="col-xs-3 col-xs-offset-5">
+                        <a href="?r=user/login" class="header-top__link">Войти</a>
+                        <span class="header-top__separator">/</span>
+                        <a href="?r=user/registration" class="header-top__link">Регистрация</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-middle">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <div class="header-middle__logo-text">Магазин</div>
+                        <div class="header-middle__logo-description">Канцелярских товаров</div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="header-top__contacts">
+                            <div class="header-top__contacts-phone">7 777 777 77 77</div>
+                            <div class="header-top__contacts-address">Пушкина-колотушкина 25а</div>
+                        </div>
+                        <div class="header-top__search">
+                            <form action="" class="header-top__search-form">
+                                <input type="text" class="header-search__input">
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-xs-3">
+                        <div class="header-top__basket">
+                            Корзина
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-3"><a href="" class="header-bottom__link header-bottom__link--catalog">Каталог</a></div>
+                    <div class="col-xs-3"><a href="" class="header-bottom__link">Новинки</a></div>
+                    <div class="col-xs-3"><a href="" class="header-bottom__link">Лучшие</a></div>
+                    <div class="col-xs-3"><a href="" class="header-bottom__link">Скидки</a></div>
+                </div>
+            </div>
+        </div>
 
-<div class="wrap">
-    <?php
-    NavBar::begin([
-        'brandLabel' => Yii::$app->name,
-        'brandUrl' => Yii::$app->homeUrl,
-        'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
-        ],
-    ]);
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => [
-            ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'About', 'url' => ['/site/about']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
-            Yii::$app->user->isGuest ? (
-                ['label' => 'Login', 'url' => ['/site/login']]
-            ) : (
-                '<li>'
-                . Html::beginForm(['/site/logout'], 'post')
-                . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->name . ')',
-                    ['class' => 'btn btn-link logout']
-                )
-                . Html::endForm()
-                . '</li>'
-            )
-        ],
-    ]);
-    NavBar::end();
-    ?>
+    </header>
+
 
     <div class="container">
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
-        <?= Alert::widget() ?>
-        <?= $content ?>
+        <div class="rom main">
+            <?= $content ?>
+        </div>
     </div>
-</div>
-
-<footer class="footer">
-    <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
-
-        <p class="pull-right"><?= Yii::powered() ?></p>
-    </div>
-</footer>
-
-<?php $this->endBody() ?>
-</body>
-</html>
+    <footer>&copy; 2014 by My Company</footer>
+    <?php $this->endBody() ?>
+    </body>
+    </html>
 <?php $this->endPage() ?>
