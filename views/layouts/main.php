@@ -9,8 +9,9 @@ use yii\helpers\Html;
         <?= Html::csrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?></title>
         <link rel="stylesheet" href="assets/abd25faa/css/bootstrap.css">
-        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="fonts/font-awesome-4.7.0/css/font-awesome.css">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300i,400,700&amp;subset=cyrillic" rel="stylesheet">
+        <link rel="stylesheet" href="css/main.css">
         <?php $this->head() ?>
     </head>
     <body>
@@ -40,20 +41,42 @@ use yii\helpers\Html;
                         <div class="header-middle__logo-description">Канцелярских товаров</div>
                     </div>
                     <div class="col-xs-6">
-                        <div class="header-top__contacts">
-                            <div class="header-top__contacts-phone">7 777 777 77 77</div>
-                            <div class="header-top__contacts-address">Пушкина-колотушкина 25а</div>
+                        <div class="header-middle__contacts clearfix">
+                            <div class="header-middle__contacts-phone">
+                                <i class="header-middle__contacts-phone-icon fa fa-phone" aria-hidden="true"></i>
+                                <span class="header-middle__contacts-phone-value">7 777 777 77 77</span>
+                            </div>
+                            <div class="header-middle__contacts-address">
+                                <a href="" class="header-middle__contacts-address-link">
+                                    <i class="header-middle__contacts-address-icon fa fa-map-marker" aria-hidden="true"></i>
+                                    <span class="header-middle__contacts-address-value">Пушкина-колотушкина 25а</span>
+                                </a>
+                                </div>
                         </div>
-                        <div class="header-top__search">
-                            <form action="" class="header-top__search-form">
-                                <input type="text" class="header-search__input">
+                        <div class="header-middle__search">
+                            <form action="" class="header-middle__search-form">
+                                <input type="text" class="header-middle__search-input">
                             </form>
                         </div>
                     </div>
                     <div class="col-xs-3">
-                        <div class="header-top__basket">
-                            Корзина
-                        </div>
+                        <a href="?r=sale/basket" class="header-middle__basket-link">
+                            <div class="header-middle__basket clearfix">
+                                <div class="header-middle__basket-icon-wrap">
+                                    <i class="header-middle__basket-icon fa fa-shopping-basket" aria-hidden="true"></i>
+                                </div>
+                                <div class="header-middle__basket-info">
+                                    <div class="header-middle__basket-quantity-wrap">
+                                        <span class="header-middle__basket-quantity-text">Товаров: </span>
+                                        <span id="header_basket_quantity_val" class="header-middle__basket-quantity-value">25</span>
+                                    </div>
+                                    <div class="header-middle__basket-price-wrap">
+                                        <span class="header-middle__basket-price-text">На сумму:</span>
+                                        <span id="header_basket_price_val" class="header-middle__basket-price-value">247.54</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -73,7 +96,7 @@ use yii\helpers\Html;
 
 
     <div class="container">
-        <div class="rom main">
+        <div class="row main">
             <?= $content ?>
         </div>
     </div>

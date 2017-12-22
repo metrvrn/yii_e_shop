@@ -7,6 +7,11 @@ body{
     padding: 0;
     font-family: 'Open Sans', sans-serif;
 }
+.clearfix:after{
+    display: block;
+    content: "";
+    clear: both;
+}
 /*HEADER*/
 
 /*HEADER-TOP*/
@@ -28,7 +33,60 @@ body{
     text-decoration: none;
     transition: 0.2s ease color;
 }
-
+/*HEADER-MIDDLE*/
+.header-middle{
+    padding-top: 24px;
+    padding-bottom: 24px;
+}
+.header-middle__logo-text{
+    font-size: 2em;
+}
+.header-middle__contacts{
+    margin-bottom: 18px;
+}
+.header-middle__contacts-phone{
+    float: left;
+}
+.header-middle__contacts-address{
+    float: right;
+}
+.header-middle__search-form{
+    display: block;
+    width: 100%;
+}
+.header-middle__search-input{
+    display: block;
+    width: 100%;
+    border: 2px solid #ddd;
+    border-radius: 2px;
+    padding: 8px;
+}
+.header-middle__basket-link{
+    display: block;
+    color: rgb(83, 85, 90);
+    transition: 0.2s ease all;
+    background-color: #f9f9f9;
+}
+.header-middle__basket-link:hover{
+    color: #30bbef;
+    transition: 0.2s ease all;
+}
+.header-middle__basket{
+    padding: 16px;
+    /*border: 1px solid #aaa;*/
+    border-radius: 2px;
+}
+.header-middle__basket-icon-wrap{
+    float: left;
+    margin-right: 24px;
+}
+.header-middle__basket-icon{
+    display: block;
+    font-size: 3em;
+}
+.header-middle__basket-info{
+    float: left;
+}
 /*HEADER-BOTTOM*/
 .header-bottom{
     background-color: #018dc2;
