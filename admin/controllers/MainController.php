@@ -1,11 +1,12 @@
 <?php
 
-namespace app\controllers;
+namespace app\admin\controllers;
+
 use yii\web\Controller;
 
 class MainController extends Controller
 {
-    public $layout = 'test';
+    public $layout = 'main.php';
     public function actionIndex()
     {
         return $this->render('index');
