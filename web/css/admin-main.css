@@ -1,5 +1,81 @@
-.header__tabs{
-    width: calc(100% - 240px);
-    margin-left: 240px;
-    height: auto;
+body{
+    font-family: 'Roboto', sans-serif;
+}
+.nopadding{
+    padding: 0;
+}
+.main-header{
+    min-height: 50px;
+    background-color: #3c8dbc;
+    line-height: 50px;
+    color: #fff;
+}
+.main-header a{
+    color: inherit;
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.2s ease;
+}
+.main-header a:hover{
+    background-color: rgba(0, 0, 0, 0.1);
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+.main-header__link{
+    background-color: rgba(156, 225, 186, 0.5);
+}
+.main-header__link:hover{
+    background-color: rgba(156, 225, 186, 0.84) !important;
+}
+.admin-sidebar{
+    background-color: #222d32;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    min-height: calc(100% - 50px);
+}
+.admin-sidebar__list{
+    padding-top: 8px;
+}
+.admin-sidebar__list-item{
+    position: relative;
+}
+.admin-sidebar__list-item:after{
+    display: block;
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background-color: #aaa;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+.admin-sidebar__list-item:hover:after{
+    opacity: 1;
+    transition: opacity 0.2s ease;
+}
+.admin-sidebar__list-item--active:after{
+    background-color: #3c8dbc;
+    opacity: 1;
+}
+.admin-sidebar__list-link{
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 8px;
+    padding-left: 15px;
+    color: #fff;
+    font-size: 1.2em;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+.admin-sidebar__list-link:hover{
+    background-color: rgba(0, 0, 0, 0.3);
+    text-decoration: none;
+    color: #fff;
+    transition: all 0.2s ease;
 }
