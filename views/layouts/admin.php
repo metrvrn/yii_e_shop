@@ -56,13 +56,14 @@ use yii\helpers\Html;
                 </aside>
             </div>
             <div class="col-xs-10 col-xs-offset-2">
-                <?= $content ?>
+                <div class="admin-content-container">
+                    <?= $content ?>
+                </div>
             </div>
         </div>
     </main>
 
     <footer>&copy; 2014 by My Company</footer>
-    <script src="js/yii.js"></script>
     <script src="js/jquery-3.2.1.js"></script>
     <script src="bootstrap-3.3.7-dist/js/bootstrap.js"></script>
     <?php $this->endBody() ?>

@@ -79,3 +79,6 @@ body{
     color: #fff;
     transition: all 0.2s ease;
 }
+.admin-content-container{
+    padding-top: 15px;
+}

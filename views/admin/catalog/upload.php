@@ -12,11 +12,10 @@ $this->registerJsFile('@web/js/admin/catalog/upload.js');
                 <button class="btn btn-primary" id="catalog_upload_btn">
                     Обновить сейчас
                 </button>
-                <div class="progress" id="catalog_progress_container">
-                    <div class="progress-bar progress-bar-info" id="catalog_progress_bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
-                        <span class="sr-only">20% Complete</span>
-                    </div>
+                <div class="progress" id="catalog_progress_container" style="display: none">
+                    <div class="progress-bar progress-bar-info" id="catalog_progress_bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 70%"></div>
                 </div>
+                <p id="catalog_error_msg" style="display: none" class="bg-danger"></p>
             </div>
         </div>
     </div>
