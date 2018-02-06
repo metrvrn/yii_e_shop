@@ -8,9 +8,11 @@ use yii\helpers\Html;
         <meta charset="UTF-8"/>
         <?= Html::csrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?></title>
-        <link rel="stylesheet" href="assets/abd25faa/css/bootstrap.css">
-        <link rel="stylesheet" href="fonts/font-awesome-4.7.0/css/font-awesome.css">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/bootstrap.css">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300i,400,700&amp;subset=cyrillic" rel="stylesheet">
+        <link rel="stylesheet" href="fonts/fontawesome/web-fonts-with-css/css/fontawesome-all.css">
         <link rel="stylesheet" href="css/main.css">
         <?php $this->head() ?>
     </head>
@@ -37,8 +39,10 @@ use yii\helpers\Html;
             <div class="container">
                 <div class="row">
                     <div class="col-xs-3">
-                        <div class="header-middle__logo-text">Магазин</div>
-                        <div class="header-middle__logo-description">Канцелярских товаров</div>
+                        <a class="header-middle__logo-link" href="?r=main/index">
+                            <div class="header-middle__logo-text">Магазин</div>
+                            <div class="header-middle__logo-description">Канцелярских товаров</div>
+                        </a>
                     </div>
                     <div class="col-xs-6">
                         <div class="header-middle__contacts clearfix">
@@ -84,7 +88,53 @@ use yii\helpers\Html;
         <div class="header-bottom">
             <div class="container">
                 <div class="row">
-                    <div class="col-xs-3"><a href="" class="header-bottom__link header-bottom__link--catalog">Каталог</a></div>
+                    <div class="col-xs-3 catalog-dropdown__container no-padding">
+                        <a href="" class="header-bottom__link header-bottom__link--catalog">Каталог</a>
+                        <ul class="catalog-dropdown">
+                            <li class="catalog-dropdown__elem">
+                                <a href="#" class="catalog-dropdown__link clearfix">
+                                    <span class="catalog-dropdown__category-name">Category 1</span>
+                                    <i class="fas fa-arrow-right catalog-dropdown__category-icon"></i>
+                                </a>
+                                <ul class="catalog-dropdown__submenu">
+                                    <li class="catalog-dropdown__submenu-elem"><a href="#" class="catalog-dropdown__submenu-link">Submenu 1</a></li>
+                                    <li class="catalog-dropdown__submenu-elem"><a href="#" class="catalog-dropdown__submenu-link">Submenu 2</a></li>
+                                    <li class="catalog-dropdown__submenu-elem"><a href="#" class="catalog-dropdown__submenu-link">Submenu 3</a></li>
+                                    <li class="catalog-dropdown__submenu-elem"><a href="#" class="catalog-dropdown__submenu-link">Submenu 4</a></li>
+                                </ul>
+                            </li>
+                            <li class="catalog-dropdown__elem">
+                                <a href="#" class="catalog-dropdown__link clearfix">
+                                    <span class="catalog-dropdown__category-name">Category 1</span>
+                                    <i class="fas fa-arrow-right catalog-dropdown__category-icon"></i>
+                                </a>
+                            </li> 
+                            <li class="catalog-dropdown__elem">
+                                <a href="#" class="catalog-dropdown__link clearfix">
+                                    <span class="catalog-dropdown__category-name">Category 1</span>
+                                    <i class="fas fa-arrow-right catalog-dropdown__category-icon"></i>
+                                </a>
+                            </li> 
+                            <li class="catalog-dropdown__elem">
+                                <a href="#" class="catalog-dropdown__link clearfix">
+                                    <span class="catalog-dropdown__category-name">Category 1</span>
+                                    <i class="fas fa-arrow-right catalog-dropdown__category-icon"></i>
+                                </a>
+                            </li> 
+                            <li class="catalog-dropdown__elem">
+                                <a href="#" class="catalog-dropdown__link clearfix">
+                                    <span class="catalog-dropdown__category-name">Category 1</span>
+                                    <i class="fas fa-arrow-right catalog-dropdown__category-icon"></i>
+                                </a>
+                            </li> 
+                            <li class="catalog-dropdown__elem">
+                                <a href="#" class="catalog-dropdown__link clearfix">
+                                    <span class="catalog-dropdown__category-name">Category 1</span>
+                                    <i class="fas fa-arrow-right catalog-dropdown__category-icon"></i>
+                                </a>
+                            </li> 
+                        </ul>
+                    </div>
                     <div class="col-xs-3"><a href="" class="header-bottom__link">Новинки</a></div>
                     <div class="col-xs-3"><a href="" class="header-bottom__link">Лучшие</a></div>
                     <div class="col-xs-3"><a href="" class="header-bottom__link">Скидки</a></div>
@@ -93,8 +143,6 @@ use yii\helpers\Html;
         </div>
 
     </header>
-
-
     <div class="container">
         <div class="row main">
             <?= $content ?>

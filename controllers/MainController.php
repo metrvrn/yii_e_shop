@@ -10,4 +10,16 @@ class MainController extends Controller
     {
         return $this->render('index');
     }
+
+    public function actionDelivery()
+    {
+        return $this->render('delivery');
+    }
+
+    public function actionAbout()
+    {
+        return $this->render('about');
+    }
+
+    
 }
