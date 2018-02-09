@@ -2,6 +2,6 @@
 
 ?>
 
-<?php
-
-print_r($data);
+<pre>
+    <?php var_dump($data); ?>
+</pre>

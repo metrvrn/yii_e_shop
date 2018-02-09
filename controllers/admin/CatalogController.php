@@ -14,26 +14,16 @@ class CatalogController extends Controller
         return $this->render('index');
     }
 
-    public function actionTestUpload()
-    {
-        $uploader = new CatalogUploader();
-        $data = $uploader->getPage();
-        return $this->renderPartial('testUpload', ['data' => $data]);
-    }
-
     public function actionUpload()
     {
         return $this->render('upload');
     }
 
-    public function actionCatalogUploadAjax($step)
+    public function actionCatalogUploadAjax()
     {
-        sleep(1);
-        $response = [
-            'currentStep' => (int) $step,
-            'totalStep' => 10
-        ];
-        return $this->asJson($response);
+        $uploader = new CatalogUploader();
+        $res = $uploader->uploadCatalog();
+        return $this->render('testUpload', ['data' => $res]);
     }
 
     public function actionPriceUploadAjax()

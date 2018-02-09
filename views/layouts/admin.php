@@ -8,8 +8,8 @@ use yii\helpers\Html;
         <meta charset="UTF-8"/>
         <?= Html::csrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?></title>
-        <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.css">
-        <link rel="stylesheet" href="fonts/font-awesome-4.7.0/css/font-awesome.css">
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/fontawesome-all.min.css">
         <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&amp;subset=cyrillic" rel="stylesheet">
         <link rel="stylesheet" href="css/admin-main.css">
         <?php $this->head() ?>

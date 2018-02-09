@@ -6,5 +6,5 @@ use yii\db\ActiveRecord;
 
 class Catalog extends ActiveRecord
 {
-
+    
 }
