@@ -149,6 +149,9 @@ body{
     padding: 0;
     background-color: #f4f4f4;
 }
+.catalog-dropdown--close{
+    display: none;
+}
 .catalog-dropdown__elem{
     position: relative;
     transition: all 0.2s ease;

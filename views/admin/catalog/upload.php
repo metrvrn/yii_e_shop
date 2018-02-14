@@ -1,7 +1,5 @@
 <?php
-use yii\widgets\Pjax;
-
-$this->registerJsFile('@web/js/admin/catalog/upload.js');
+use yii\helpers\Url;
 ?>
 
 <div class="row">
@@ -9,13 +7,12 @@ $this->registerJsFile('@web/js/admin/catalog/upload.js');
         <div class="panel panel-default">
             <div class="panel-heading">Каталог</div>
             <div class="panel-body">
-                <button class="btn btn-primary" id="catalog_upload_btn">
+                <a href=<?= Url::toRoute('upload-catalog'); ?> class="btn btn-primary" id="catalog_upload_btn">
                     Обновить сейчас
-                </button>
-                <div class="progress" id="catalog_progress_container" style="display: none">
-                    <div class="progress-bar progress-bar-info" id="catalog_progress_bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 70%"></div>
-                </div>
-                <p id="catalog_error_msg" style="display: none" class="bg-danger"></p>
+                </a>
+                <p id="catalog_error_msg" style="display: <?= $catalogMsg ? 'block' : 'none';?>" class="bg-danger">
+                    <?=$catalogMsg;?>
+                </p>
             </div>
         </div>
     </div>

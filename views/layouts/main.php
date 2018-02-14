@@ -1,5 +1,11 @@
 <?php
 use yii\helpers\Html;
+use yii\helpers\Url;
+
+$homepagePaths = ['/', '/index.php', '/index.php?r=main/index', '/?r=main/index'];
+$curPath = array(Yii::$app->getRequest()->getUrl());
+$isHomepage = (bool) array_intersect($homepagePaths, $curPath);
+
 ?>
 <?php $this->beginPage() ?>
     <!DOCTYPE html>
@@ -89,8 +95,8 @@ use yii\helpers\Html;
             <div class="container">
                 <div class="row">
                     <div class="col-xs-3 catalog-dropdown__container no-padding">
-                        <a href="" class="header-bottom__link header-bottom__link--catalog">Каталог</a>
-                        <ul class="catalog-dropdown">
+                        <a id="catalog_link" href="<?=Url::toRoute('catalog/index');?>" class="header-bottom__link header-bottom__link--catalog">Каталог</a>
+                        <ul id="catalog_dropdown" class="catalog-dropdown <?= $isHomepage ? '' : 'catalog-dropdown--close'?>">
                             <li class="catalog-dropdown__elem">
                                 <a href="#" class="catalog-dropdown__link clearfix">
                                     <span class="catalog-dropdown__category-name">Category 1</span>
@@ -149,6 +155,7 @@ use yii\helpers\Html;
         </div>
     </div>
     <footer>&copy; 2014 by My Company</footer>
+    <?php $this->registerJsFile("@web/js/main.js");?>
     <?php $this->endBody() ?>
     </body>
     </html>

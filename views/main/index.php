@@ -1,3 +1,7 @@
+<?php
+use yii\helpers\Url;
+?>
+
 <div class="row">
     <div class="col-xs-8 col-xs-offset-3">
         <div class="row">

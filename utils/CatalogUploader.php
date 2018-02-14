@@ -7,16 +7,18 @@ use Yii;
 
 class CatalogUploader
 {
-    private $catalogUploadUrl = 'http://bitrix.local/upload/products.csv';
-    private $propertiesUploadUrl = 'http://bitrix.local/upload/properties.csv';
-    private $pricesUploadUrl = 'http://bitrix.local/upload/prices.csv';
-    private $quantityUploadUrl = 'http://bitrix.local/upload/quantity.csv';
-    private $propertyesTypeUploadUrl = 'http://bitrix.local/upload/propertyes_type.csv';
-    private $pricesTypeUploadUrl = 'http://bitrix.local/upload/prices_type.csv';
-    private $storeTypeUploadUrl = 'http://bitrix.local/upload/store_type.csv';
 
-    private $catalogFieldsMap =
-    [
+    private $baseUrl;
+    private $catalogUploadUrl;
+    private $propertiesUploadUrl;
+    private $pricesUploadUrl;
+    private $quantityUploadUrl;
+    private $propertyesTypeUploadUrl;
+    private $pricesTypeUploadUrl;
+    private $storeTypeUploadUrl;
+    private $catalogSectionsUploadUrl;
+
+    private $catalogFieldsMap = [
         'product_id',
         'name',
         'section_id',
@@ -25,7 +27,7 @@ class CatalogUploader
         'xml_id'
     ];
 
-    private $propertyFieldsMap =[
+    private $propertiesFieldsMap = [
         'product_id',
         'property_id',
         'value'
@@ -43,9 +45,9 @@ class CatalogUploader
         'store_id'
     ];
 
-    private $propertyesTypeFieldsMap = [
+    private $propertiesTypeFieldsMap = [
         'name',
-        'xml_id'
+        'property_type_id'
     ];
 
     private $pricesTypeFieldsMap = [
@@ -58,21 +60,70 @@ class CatalogUploader
         'name'
     ];
 
+    private $catalogSectionsFieldsMap = [
+        'section_id',
+        'parent_id',
+        'name',
+        'xml_id',
+        'depth_level'
+    ];
+
+    public function __construct()
+    {
+        $this->baseUrl = 'http://bitrix.local/upload/';
+        $this->catalogUploadUrl = $this->baseUrl . 'products.csv';
+        $this->propertiesUploadUrl = $this->baseUrl . 'properties.csv';
+        $this->pricesUploadUrl = $this->baseUrl . 'prices.csv';
+        $this->quantityUploadUrl = $this->baseUrl . 'quantity.csv';
+        $this->propertyesTypeUploadUrl = $this->baseUrl . 'properties_type.csv';
+        $this->pricesTypeUploadUrl = $this->baseUrl . 'prices_type.csv';
+        $this->storeTypeUploadUrl = $this->baseUrl . 'store_type.csv';
+        $this->catalogSectionsUploadUrl = $this->baseUrl . 'sections.csv';
+    }
+
+    public function uploadAllCatalog()
+    {
+        $this->uploadCatalog();
+        $this->uploadProperties();
+        $this->uploadPropertiesType();
+    }
+
     public function uploadCatalog()
-    {   
-        if($arrProducts = $this->upload($this->catalogUploadUrl)){
-            Yii::$app->db->createCommand()
-                ->batchInsert('catalog', $this->catalogFieldsMap, $arrProducts)
-                ->execute();
-            return true;  
-        }
-        return false;
+    {
+        $arrProducts = $this->upload($this->catalogUploadUrl);
+        Yii::$app->db->createCommand()
+            ->batchInsert('catalog', $this->catalogFieldsMap, $arrProducts)
+            ->execute();
+    }
+
+    public function uploadProperties()
+    {
+        $arrProperties = $this->upload($this->propertiesUploadUrl);
+        Yii::$app->db->createCommand()
+        ->batchInsert('catalog_property', $this->propertiesFieldsMap, $arrProperties)
+        ->execute();
+    }
+
+    public function uploadPropertiesType()
+    {
+        $arrPropertiesType = $this->upload($this->propertyesTypeUploadUrl);
+        Yii::$app->db->createCommand()
+        ->batchInsert('catalog_property_type', $this->propertiesTypeFieldsMap, $arrPropertiesType)
+        ->execute();
+    }
+
+    public function uploadCatalogSections()
+    {
+        $arrSections = $this->upload($this->catalogSectionsUploadUrl);
+        Yii::$app->db->createCommand()
+            ->batchInsert('catalog_sections', $this->catalogSectionsFieldsMap, $arrSections)
+            ->execute();
     }
 
     public function uploadPrices()
-    {   
-        if($arrPrices = $this->upload($this->pricesUploadUrl)
-        and $arrPriceType = $this->upload($this->pricesTypeUploadUrl)){
+    {
+        if ($arrPrices = $this->upload($this->pricesUploadUrl)
+            and $arrPriceType = $this->upload($this->pricesTypeUploadUrl)) {
             Yii::$app->db->createCommand()
                 ->batchInsert('');
             return true;
@@ -81,9 +132,9 @@ class CatalogUploader
     }
 
     public function uploadQuantity()
-    {   
-        if($csvProducts = $this->upload($this->quantityUploadUrl)){
-            
+    {
+        if ($csvProducts = $this->upload($this->quantityUploadUrl)) {
+
         }
         return false;
     }
@@ -95,20 +146,19 @@ class CatalogUploader
             ->setMethod('get')
             ->setUrl($url)
             ->send();
-        if($response->isOk){
-            return $this->csvToArr($response->content);
+        if ($response->isOk) {
+            return $this->csvToArray($response->content);
         }
-        return false;
+        throw new Exception("Unable to load $url", $response->getStatusCode());
     }
 
     private function csvToArray($csvStr)
     {
         $result = [];
+
         $rowArr = explode(PHP_EOL, $csvStr);
-        foreach($rowArr as $row){
-            $arrRow = explode('@', $row);
-            if(count($arrRow) !== 6) continue;
-            $result[] = $arrRow;
+        foreach ($rowArr as $row) {
+            $result[] = explode("\t", $row);
         }
         return $result;
     }

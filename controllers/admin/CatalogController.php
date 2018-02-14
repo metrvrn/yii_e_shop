@@ -4,6 +4,7 @@ namespace app\controllers\admin;
 
 use app\utils\CatalogUploader;
 use yii\web\Controller;
+use yii\web\NotFoundHttpException;
 
 class CatalogController extends Controller
 {
@@ -16,24 +17,32 @@ class CatalogController extends Controller
 
     public function actionUpload()
     {
-        return $this->render('upload');
+        return $this->render('upload', ['catalogMsg' => '']);
     }
 
-    public function actionCatalogUploadAjax()
+    public function actionUploadCatalog()
     {
-        $uploader = new CatalogUploader();
-        $res = $uploader->uploadCatalog();
-        return $this->render('testUpload', ['data' => $res]);
+        $catalogMsg = 'Succes';
+        $catalogUploader = new CatalogUploader();
+        try{
+            $catalogUploader->uploadCatalog();
+        }catch(Exception $e){
+            $catalogMsg = $e->getMessage() . " " . $e->getCode();
+        }
+        $this->redirect(['upload' ,['catalogMsg' => $catalogMsg]]);
     }
 
-    public function actionPriceUploadAjax()
+    public function actionUploadByAction($action = null)
     {
-        return $this->asJson(['step' => 35]);
-    }
-
-    public function actionQuantityUploadAjax()
-    {
-        return $this->asJson(['number' => 42]);
+        $catalogUploader = new CatalogUploader();
+        switch($action){
+            case 'sections':
+                $catalogUploader->uploadCatalogSections();
+                break;
+            default:
+                throw new NotFoundHttpException("Action $action not found");
+                break;
+        }
     }
 }
 

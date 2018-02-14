@@ -14,8 +14,8 @@ class m180213_062749_create_catalog_property_type_table extends Migration
     {
         $this->createTable('catalog_property_type', [
             'id' => $this->primaryKey(),
-            'name' => $this->string()->notNull(),
-            'xml_id' => $this->string()
+            'property_type_id' => $this->integer()->notNull(),
+            'name' => $this->string()->notNull()
         ]);
     }
 
