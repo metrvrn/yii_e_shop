@@ -1,5 +1,6 @@
 <?php
 use yii\helpers\Html;
+use yii\helpers\Url;
 ?>
 <?php $this->beginPage() ?>
     <!DOCTYPE html>
@@ -52,6 +53,17 @@ use yii\helpers\Html;
                     </div>
                     <div href="?r=admin/system/index" class="admin-sidebar__list-item">
                         <a href="?r=admin/system/index" class="admin-sidebar__list-link">Система</a>
+                        <ul class="admin-sidebar-dropdown">
+                            <li class="admin-sidebar-dropdow__element">
+                                <a href="<?=Url::toRoute('admin/system/files');?>" class="admin-sidebar-dropdown__link">Файлы</a>
+                            </li>
+                            <li class="admin-sidebar-dropdow__element">
+                                <a href="" class="admin-sidebar-dropdown__link">Настройки</a>
+                            </li>
+                            <li class="admin-sidebar-dropdow__element">
+                                <a href="" class="admin-sidebar-dropdown__link">Еще чет</a>
+                            </li>
+                        </ul>
                     </div>
                 </aside>
             </div>

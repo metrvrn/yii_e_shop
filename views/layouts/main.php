@@ -1,11 +1,13 @@
 <?php
 use yii\helpers\Html;
 use yii\helpers\Url;
+use app\models\catalog\Sections;
 
 $homepagePaths = ['/', '/index.php', '/index.php?r=main/index', '/?r=main/index'];
 $curPath = array(Yii::$app->getRequest()->getUrl());
 $isHomepage = (bool) array_intersect($homepagePaths, $curPath);
 
+$catalogSections = Sections::find()->where(['depth_level' => 1])->orderBy('name')->all();
 ?>
 <?php $this->beginPage() ?>
     <!DOCTYPE html>
@@ -96,50 +98,24 @@ $isHomepage = (bool) array_intersect($homepagePaths, $curPath);
                 <div class="row">
                     <div class="col-xs-3 catalog-dropdown__container no-padding">
                         <a id="catalog_link" href="<?=Url::toRoute('catalog/index');?>" class="header-bottom__link header-bottom__link--catalog">Каталог</a>
-                        <ul id="catalog_dropdown" class="catalog-dropdown <?= $isHomepage ? '' : 'catalog-dropdown--close'?>">
-                            <li class="catalog-dropdown__elem">
-                                <a href="#" class="catalog-dropdown__link clearfix">
-                                    <span class="catalog-dropdown__category-name">Category 1</span>
-                                    <i class="fas fa-arrow-right catalog-dropdown__category-icon"></i>
-                                </a>
-                                <ul class="catalog-dropdown__submenu">
-                                    <li class="catalog-dropdown__submenu-elem"><a href="#" class="catalog-dropdown__submenu-link">Submenu 1</a></li>
-                                    <li class="catalog-dropdown__submenu-elem"><a href="#" class="catalog-dropdown__submenu-link">Submenu 2</a></li>
-                                    <li class="catalog-dropdown__submenu-elem"><a href="#" class="catalog-dropdown__submenu-link">Submenu 3</a></li>
-                                    <li class="catalog-dropdown__submenu-elem"><a href="#" class="catalog-dropdown__submenu-link">Submenu 4</a></li>
-                                </ul>
-                            </li>
-                            <li class="catalog-dropdown__elem">
-                                <a href="#" class="catalog-dropdown__link clearfix">
-                                    <span class="catalog-dropdown__category-name">Category 1</span>
-                                    <i class="fas fa-arrow-right catalog-dropdown__category-icon"></i>
-                                </a>
-                            </li> 
-                            <li class="catalog-dropdown__elem">
-                                <a href="#" class="catalog-dropdown__link clearfix">
-                                    <span class="catalog-dropdown__category-name">Category 1</span>
-                                    <i class="fas fa-arrow-right catalog-dropdown__category-icon"></i>
-                                </a>
-                            </li> 
-                            <li class="catalog-dropdown__elem">
-                                <a href="#" class="catalog-dropdown__link clearfix">
-                                    <span class="catalog-dropdown__category-name">Category 1</span>
-                                    <i class="fas fa-arrow-right catalog-dropdown__category-icon"></i>
-                                </a>
-                            </li> 
-                            <li class="catalog-dropdown__elem">
-                                <a href="#" class="catalog-dropdown__link clearfix">
-                                    <span class="catalog-dropdown__category-name">Category 1</span>
-                                    <i class="fas fa-arrow-right catalog-dropdown__category-icon"></i>
-                                </a>
-                            </li> 
-                            <li class="catalog-dropdown__elem">
-                                <a href="#" class="catalog-dropdown__link clearfix">
-                                    <span class="catalog-dropdown__category-name">Category 1</span>
-                                    <i class="fas fa-arrow-right catalog-dropdown__category-icon"></i>
-                                </a>
-                            </li> 
-                        </ul>
+                        <?php if(!empty($catalogSections)) :?>
+                            <ul id="catalog_dropdown" class="catalog-dropdown <?= $isHomepage ? '' : 'catalog-dropdown--close'?>">
+                                <?php foreach($catalogSections as $section): ?>
+                                    <li class="catalog-dropdown__elem">
+                                    <a href="<?=Url::toRoute(['catalog/main', 'section' => $section['section_id']])?>" class="catalog-dropdown__link clearfix">
+                                        <span class="catalog-dropdown__category-name"><?=$section['name'];?></span>
+                                        <i class="fas fa-arrow-right catalog-dropdown__category-icon"></i>
+                                    </a>
+                                    <!-- <ul class="catalog-dropdown__submenu">
+                                        <li class="catalog-dropdown__submenu-elem"><a href="#" class="catalog-dropdown__submenu-link">Submenu 1</a></li>
+                                        <li class="catalog-dropdown__submenu-elem"><a href="#" class="catalog-dropdown__submenu-link">Submenu 2</a></li>
+                                        <li class="catalog-dropdown__submenu-elem"><a href="#" class="catalog-dropdown__submenu-link">Submenu 3</a></li>
+                                        <li class="catalog-dropdown__submenu-elem"><a href="#" class="catalog-dropdown__submenu-link">Submenu 4</a></li>
+                                    </ul> -->
+                                    </li>
+                                <?php endforeach;?>
+                            </ul>
+                        <?php endif; ?>
                     </div>
                     <div class="col-xs-3"><a href="" class="header-bottom__link">Новинки</a></div>
                     <div class="col-xs-3"><a href="" class="header-bottom__link">Лучшие</a></div>

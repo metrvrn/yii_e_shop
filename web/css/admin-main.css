@@ -79,6 +79,57 @@ body{
     color: #fff;
     transition: all 0.2s ease;
 }
+.admin-sidebar-dropdown{
+    display: none;
+    position: absolute;
+    left: 100%;
+    top: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    background-color: #222d32d6;
+}
+.admin-sidebar__list-item:hover .admin-sidebar-dropdown{
+    display: block;
+}
+.admin-sidebar-dropdow__element{
+    position: relative;
+}
+.admin-sidebar-dropdow__element:after{
+    display: block;
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 4px;
+    background-color: #aaa;
+    opacity: 0;
+    transition: all 0.2s ease;
+}
+.admin-sidebar-dropdow__element:hover:after{
+    transition: all 0.2s ease;
+    opacity: 1;
+}
+.admin-sidebar-dropdown__link{
+    display: block;
+    padding: 8px;
+    padding-left: 24px;
+    padding-right: 24px;
+    font-size: 1.2em;
+    color: #fff;
+    transition: all 0.2s ease;
+}
+.admin-sidebar-dropdown__link:hover{
+    color: #fff;
+    text-decoration: none;
+    background-color: rgba(0, 0, 0, 0.3);
+    transition: all 0.2s ease;
+}
 .admin-content-container{
     padding-top: 15px;
+}
+/* FILES PAGE */
+.admin-files-top-row{
+    margin-bottom: 24px;
 }

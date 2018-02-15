@@ -1,0 +1,1 @@
+<h3>Admin index page</h3>

@@ -1,3 +1,6 @@
+*{
+    box-sizing: border-box;
+}
 html,
 body{
     height: 100%;
@@ -10,7 +13,10 @@ body{
 .main{
     padding-top: 24px;
 }
-
+a:focus{
+    outline: none;
+    text-decoration: none;
+}
 /* HELPERS */
 .clearfix:after{
     display: block;
@@ -20,7 +26,6 @@ body{
 .no-padding{
     padding: 0;
 }
-
 /* FONTS */
 
 
@@ -228,4 +233,94 @@ body{
     height: 232px;
     width: 232px;
     background-size: cover;
+}
+/* CATALOG INDEX */
+.catalog-index-section{
+    border: 1px solid #f1f1f1;
+    margin-bottom: 30px;
+}
+/* CATALOG MAIN */
+.catalog-sections-list{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border: 1px solid #f0f0f0;
+}
+.catalog-sections-list__elem{
+
+}
+.catalog-sections-list__link{
+    display: block;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 12px;
+    padding-right: 12px;
+    color: #53555a;
+    transition: all 0.2s ease;
+}
+.catalog-sections-list__link:hover{
+    background-color: #f0f0f0;
+    color: #30bbef;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+/* PRODUCT CARD */
+.product-cart{
+    position: relative;
+    height: 400px;
+    margin-bottom: 12px;
+    border: 1px solid #eee;
+}
+.product-cart__image-container{
+    height: 220px;
+}
+.product-cart__info{
+    border-top: 1px solid #eee;
+}
+.product-cart__controls-wrap{
+    position: absolute;
+    bottom: 4px;
+    padding-top: 7px;
+    height: 44px;
+    border-top: 1px solid #eee;
+}
+.product-cart__quantity-wrap{
+    width: 80%;
+    margin: 0 auto;
+    border: 1px solid #eee;
+    border-radius: 5px;
+
+}
+.product-cart__quantity-input{
+    display: block;
+    width: 68%;
+    height: 32px;
+    float: left;
+    border: none;
+    border-left: 1px solid #eee;
+    border-right: 1px solid #eee;
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.5em;
+}
+.product-cart__quantity-input:focus{
+    outline: none;
+}
+.product-cart__btn{
+    display: block;
+    float: left;
+    width: 16%;
+    height: 32px;
+    background-color: transparent;
+    font-size: 12px;
+    text-align: center;
+    border: none;
+    transition: all 0.2s ease;
+}
+.product-cart__btn:hover{
+    background-color: #eee;
+    transition: all 0.2s ease;
+}
+.product-cart__btn:focus{
+    outline: none;
 }
