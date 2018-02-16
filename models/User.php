@@ -12,6 +12,11 @@ class User extends ActiveRecord implements IdentityInterface
     const SCENARIO_REGISTRATION = 'registration';
     const SCENARIO_LOGIN = 'login';
 
+    public static function tableName()
+    {
+        return 'user';
+    }
+
     public function scenarios()
     {
         return [
@@ -19,12 +24,13 @@ class User extends ActiveRecord implements IdentityInterface
                 'email',
                 'password',
                 'name',
-                'first_name',
+                'surname',
+                'patronymic',
                 'phone',
                 'work_phone',
                 'city',
                 'street',
-                'home_number',
+                'house_number',
                 'office_number'],
             self::SCENARIO_LOGIN => ['email', 'password']
         ];

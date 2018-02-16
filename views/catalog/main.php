@@ -33,15 +33,8 @@ use yii\helpers\Url;
                         </a> 
                         <div class="product-cart__controls-wrap">
                             <div class="product-cart__controls">
-                                <div class="product-cart__quantity-wrap clearfix">
-                                    <button data-role="control" data-id="<?=$product['product_id']?>" id="minus_btn" class="product-cart__minus-btn product-cart__btn">
-                                        <i class="fas fa-minus"></i>
-                                    </button>
-                                    <input data-role="control" id="quantity_input" type="text" class="product-cart__quantity-input" value="0">
-                                    <button data-role="control" id="plus_btn_<?=$product['product_id']?>" class="product-cart__plus-btn product-cart__btn">
-                                        <i class="fas fa-plus"></i>
-                                    </button>
-                                </div>
+                                <input type="text" class="product-cart__quantity-input">
+                                <bnt class="product-cart__basket-btn">В корзину</bnt>
                             </div>
                         </div>   
                     </div>

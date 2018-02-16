@@ -9,6 +9,7 @@ class Sections extends ActiveRecord
     public static function tableName()
     {
         return 'catalog_sections';
+        
     }
 
     public static function getAllChildren($section_id)
@@ -36,4 +37,16 @@ class Sections extends ActiveRecord
         }
         return $result;
     }
+
+    // public static function getThree()
+    // {
+    //     $result;
+    //     $sections = static::find()->all();
+    //     array_walk_recursive($sections, function($section) use (&$result){
+    //         if(array_search($section['section_id'], $result)){
+    //             $result
+    //         }
+    //     });
+    //     return $result;
+    // }
 }

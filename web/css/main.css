@@ -279,9 +279,10 @@ a:focus{
 }
 .product-cart__controls-wrap{
     position: absolute;
-    bottom: 4px;
+    bottom: 0px;
     padding-top: 7px;
-    height: 44px;
+    padding-bottom: 7px;
+    background-color: rgba(240, 240, 240, 0.5);
     border-top: 1px solid #eee;
 }
 .product-cart__quantity-wrap{
@@ -289,7 +290,6 @@ a:focus{
     margin: 0 auto;
     border: 1px solid #eee;
     border-radius: 5px;
-
 }
 .product-cart__quantity-input{
     display: block;
@@ -311,7 +311,7 @@ a:focus{
     float: left;
     width: 16%;
     height: 32px;
-    background-color: transparent;
+    background-color: #fff;
     font-size: 12px;
     text-align: center;
     border: none;

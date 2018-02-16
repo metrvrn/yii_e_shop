@@ -6,6 +6,7 @@ use yii\web\Controller;
 use app\models\catalog\Sections;
 use app\models\catalog\Catalog;
 
+
 class CatalogController extends Controller
 {
     public function actionMain($section = null)

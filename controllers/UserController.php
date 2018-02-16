@@ -29,4 +29,19 @@ class UserController extends Controller
         }
         return $this->render('login', ['loginForm' => $loginForm]);
     }
+
+    public function actionLogout()
+    {
+        Yii::$app->user->logout();
+        return $this->goHome();
+    }
+
+    public function actionProfile()
+    {
+        if(Yii::$app->user->isGuest){
+            return $this->redirect('user/login');
+        }
+        $user = Yii::$app->user->identity;
+        return $this->render('profile', ['user' => $user]);
+    }
 }

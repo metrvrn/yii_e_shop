@@ -12,7 +12,8 @@ use yii\helpers\Html;
         <?= $form->field($user, 'email'); ?>
         <?= $form->field($user, 'password'); ?>
         <?= $form->field($user, 'name'); ?>
-        <?= $form->field($user, 'last_name'); ?>
+        <?= $form->field($user, 'surname'); ?>
+        <?= $form->field($user, 'patronymic');?>
         <?= $form->field($user, 'phone'); ?>
         <?= $form->field($user, 'work_phone'); ?>
         <?= $form->field($user, 'city'); ?>
