@@ -18,10 +18,10 @@ $catalogSections = Sections::find()->where(['depth_level' => 1])->orderBy('name'
         <title><?= Html::encode($this->title) ?></title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="/css/bootstrap.css">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300i,400,700&amp;subset=cyrillic" rel="stylesheet">
-        <link rel="stylesheet" href="fonts/fontawesome/web-fonts-with-css/css/fontawesome-all.css">
-        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="/fonts/fontawesome/web-fonts-with-css/css/fontawesome-all.css">
+        <link rel="stylesheet" href="/css/main.css">
         <?php $this->head() ?>
     </head>
     <body>
