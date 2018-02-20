@@ -1,3 +1,3 @@
 <pre>
-    <?php print_r($sections); ?>
+    <?php print_r($sectionsThree); ?>
 </pre>

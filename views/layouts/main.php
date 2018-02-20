@@ -1,13 +1,12 @@
 <?php
 use yii\helpers\Html;
 use yii\helpers\Url;
-use app\models\catalog\Sections;
+use app\models\catalog\CatalogSections;
 
 $homepagePaths = ['/', '/index.php', '/index.php?r=main/index', '/?r=main/index'];
 $curPath = array(Yii::$app->getRequest()->getUrl());
 $isHomepage = (bool) array_intersect($homepagePaths, $curPath);
-
-$catalogSections = Sections::find()->where(['depth_level' => 1])->orderBy('name')->all();
+$catalogTree = CatalogSections::getTree();
 ?>
 <?php $this->beginPage() ?>
     <!DOCTYPE html>
@@ -53,7 +52,7 @@ $catalogSections = Sections::find()->where(['depth_level' => 1])->orderBy('name'
             <div class="container">
                 <div class="row">
                     <div class="col-xs-3">
-                        <a class="header-middle__logo-link" href="?r=main/index">
+                        <a class="header-middle__logo-link" href="<?=Url::toRoute('main/index');?>">
                             <div class="header-middle__logo-text">Магазин</div>
                             <div class="header-middle__logo-description">Канцелярских товаров</div>
                         </a>
@@ -104,20 +103,23 @@ $catalogSections = Sections::find()->where(['depth_level' => 1])->orderBy('name'
                 <div class="row">
                     <div class="col-xs-3 catalog-dropdown__container no-padding">
                         <a id="catalog_link" href="<?=Url::toRoute('catalog/index');?>" class="header-bottom__link header-bottom__link--catalog">Каталог</a>
-                        <?php if(!empty($catalogSections)) :?>
-                            <ul id="catalog_dropdown" class="catalog-dropdown <?= $isHomepage ? '' : 'catalog-dropdown--close'?>">
-                                <?php foreach($catalogSections as $section): ?>
+                        <?php if(!empty($catalogTree)) :?>
+                            <ul id="catalog_dropdown" class="catalog-dropdown <?= $isHomepage ? '' : ''?>">
+                                <?php foreach($catalogTree as $section): ?>
                                     <li class="catalog-dropdown__elem">
                                     <a href="<?=Url::toRoute(['catalog/main', 'section' => $section['section_id']])?>" class="catalog-dropdown__link clearfix">
                                         <span class="catalog-dropdown__category-name"><?=$section['name'];?></span>
                                         <i class="fas fa-arrow-right catalog-dropdown__category-icon"></i>
                                     </a>
-                                    <!-- <ul class="catalog-dropdown__submenu">
-                                        <li class="catalog-dropdown__submenu-elem"><a href="#" class="catalog-dropdown__submenu-link">Submenu 1</a></li>
-                                        <li class="catalog-dropdown__submenu-elem"><a href="#" class="catalog-dropdown__submenu-link">Submenu 2</a></li>
-                                        <li class="catalog-dropdown__submenu-elem"><a href="#" class="catalog-dropdown__submenu-link">Submenu 3</a></li>
-                                        <li class="catalog-dropdown__submenu-elem"><a href="#" class="catalog-dropdown__submenu-link">Submenu 4</a></li>
-                                    </ul> -->
+                                    <?php if(isset($section['childs']) && is_array($section['childs'])) : ?>
+                                        <ul class="catalog-dropdown__submenu">
+                                            <?php foreach($section['childs'] as $subsection) : ?>
+                                            <li class="catalog-dropdown__submenu-elem">
+                                                <a href="<?=Url::toRoute(['catalog/main', 'section' => $subsection['section_id']]);?>" class="catalog-dropdown__submenu-link"><?=$subsection['name']?></a>
+                                            </li>
+                                            <?php endforeach; ?>
+                                        </ul>
+                                    <?php endif; ?>
                                     </li>
                                 <?php endforeach;?>
                             </ul>

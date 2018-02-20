@@ -2,7 +2,7 @@
 
 namespace app\controllers;
 use yii\web\Controller;
-use app\models\catalog\Sections;
+use app\models\catalog\CatalogSections;
 
 class MainController extends Controller
 {
@@ -24,7 +24,12 @@ class MainController extends Controller
 
     public function actionTest()
     {
-        $sections = Sections::getThree();
-        return $this->render('test', ['sections' => $sections]);
-    }   
+       $sectionsThree = CatalogSections::getTree();
+       return $this->render('test', ['sectionsThree' => $sectionsThree]);
+    }
+    
+    public function actionError()
+    {
+        
+    }
 }
