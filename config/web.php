@@ -10,7 +10,7 @@ $config = [
     'defaultRoute' => 'main/index',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
-        '@npm'   => '@vendor/npm-asset',
+        '@npm'   => '@vendor/npm-asset'
     ],
     'components' => [
         'request' => [
@@ -49,6 +49,14 @@ $config = [
             'enableStrictParsing' => false,
             // 'rules' => [
             // ],
+        ],
+        'metrExchange' => [
+            'class' => 'app\utils\exchange\MetrCatalogUploader',
+            'ftpUser' => 'yii',
+            'ftpPass' => '3232',
+            'ftpHost' => '127.0.0.1',
+            'catalogBaseUrl' => '/upload/',
+            'uploadDir' => '/runtime/catalogFiles/'
         ],
         'db' => $db,
         /*

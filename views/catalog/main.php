@@ -17,7 +17,7 @@ use yii\helpers\Url;
     <div class="row">
         <?php if(!empty($products)): ?>
             <?php foreach($products as $product): ?>
-                <div class="col-xs-4">
+                <div class="col-lg-4 col-sm-6 col-xs-12">
                     <div class="product-cart">
                         <a href="<?=Url::toRoute(['catalog/detail', 'id' => $product['product_id']])?>" class="product-cart__link">
                             <div class="product-cart__image-container">
