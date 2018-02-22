@@ -4,13 +4,17 @@ use yii\helpers\Url;
 
 <?php if(!empty($sections)): ?>
     <?php foreach($sections as $section): ?>
-        <div class="col-xs-3">
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
             <div class="catalog-index-section">
                 <a href="<?=Url::toRoute(['catalog/main', 'section' => $section['section_id']]);?>" class="catalog-index-section__link">
                     <div class="catalog-index-section__image">
-                        <img src="" alt="">
+                        <img class="img-reponse" src="" alt="">
                     </div>
-                    <h4><?=$section['name']?></h4>
+                    <div class="catalog-index-section__name">
+                        <span class="catalog-index-section__name-text">
+                            <?=$section['name'];?>
+                        </span>
+                    </div>
                 </a>
             </div>
         </div>

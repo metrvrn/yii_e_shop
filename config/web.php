@@ -50,14 +50,6 @@ $config = [
             // 'rules' => [
             // ],
         ],
-        'metrExchange' => [
-            'class' => 'app\utils\exchange\MetrCatalogUploader',
-            'ftpUser' => 'yii',
-            'ftpPass' => '3232',
-            'ftpHost' => '127.0.0.1',
-            'catalogBaseUrl' => '/upload/',
-            'uploadDir' => '/runtime/catalogFiles/'
-        ],
         'db' => $db,
         /*
         'urlManager' => [

@@ -2,9 +2,9 @@
 
 namespace app\utils\dataConvertor;
 
-class MetrCsvConvertor implements DataConvertorInterface
+class MetrCsvConvertor
 {
-    public function toArray(string $data)
+    public static function toArray(string $data)
     {
         $resultArr = [];
         $dataRowsArr = explode(PHP_EOL, $data);
@@ -13,4 +13,10 @@ class MetrCsvConvertor implements DataConvertorInterface
         }
         return $resultArr;
     }
+
+    public static function toArrayFromFile(string $path)
+    {
+        return static::toArray(file_get_contents($path));
+    }
+    
 }

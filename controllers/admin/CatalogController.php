@@ -22,27 +22,17 @@ class CatalogController extends Controller
 
     public function actionUploadCatalog()
     {
-        $catalogMsg = 'Succes';
-        $catalogUploader = new CatalogUploader();
-        try{
-            $catalogUploader->uploadCatalog();
-        }catch(Exception $e){
-            $catalogMsg = $e->getMessage() . " " . $e->getCode();
-        }
-        $this->redirect(['upload' ,['catalogMsg' => $catalogMsg]]);
+
     }
 
-    public function actionUploadByAction($action = null)
+    public function actionUploadPrices()
     {
-        $catalogUploader = new CatalogUploader();
-        switch($action){
-            case 'sections':
-                $catalogUploader->uploadCatalogSections();
-                break;
-            default:
-                throw new NotFoundHttpException("Action $action not found");
-                break;
-        }
+
+    }
+
+    public function actionUploadQuantity()
+    {
+
     }
 }
 
