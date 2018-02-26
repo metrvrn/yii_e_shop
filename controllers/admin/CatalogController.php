@@ -2,9 +2,9 @@
 
 namespace app\controllers\admin;
 
-use app\utils\CatalogUploader;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use app\utils\metrCatalogUpdate\MetrCatalogUpdater;
 
 class CatalogController extends Controller
 {
@@ -22,17 +22,20 @@ class CatalogController extends Controller
 
     public function actionUploadCatalog()
     {
-
+        $catalogUpdater = new MetrCatalogUpdater();
+        $catalogUpdater->updateCatalog();
     }
 
     public function actionUploadPrices()
     {
-
+        $catalogUploader = new MetrCatalogUpdater();
+        $catalogUploader->updatePrices();
     }
 
     public function actionUploadQuantity()
     {
-
+        $catalogUploader = new MetrCatalogUpdater();
+        $catalogUploader->updateQuantity();
     }
 }
 

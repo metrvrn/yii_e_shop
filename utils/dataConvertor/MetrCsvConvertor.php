@@ -7,7 +7,7 @@ class MetrCsvConvertor
     public static function toArray(string $data)
     {
         $resultArr = [];
-        $dataRowsArr = explode(PHP_EOL, $data);
+        $dataRowsArr = explode("\n", $data);
         foreach ($dataRowsArr as $row) {
             $resultArr[] = explode("\t", $row);
         }

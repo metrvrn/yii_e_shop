@@ -9,10 +9,10 @@ use yii\helpers\Url;
         <meta charset="UTF-8"/>
         <?= Html::csrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?></title>
-        <link rel="stylesheet" href="css/bootstrap.css">
-        <link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="/css/bootstrap.css">
+        <link rel="stylesheet" href="/css/fontawesome-all.min.css">
         <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&amp;subset=cyrillic" rel="stylesheet">
-        <link rel="stylesheet" href="css/admin-main.css">
+        <link rel="stylesheet" href="/css/admin-main.css">
         <?php $this->head() ?>
     </head>
     <body>
@@ -49,7 +49,7 @@ use yii\helpers\Url;
                         <a href="?r=admin/user/index" class="admin-sidebar__list-link">Пользователи</a>
                     </div>
                     <div href="?r=admin/catalog/index" class="admin-sidebar__list-item">
-                        <a href="?r=admin/catalog/upload" class="admin-sidebar__list-link">Каталог</a>
+                        <a href="<?=Url::toRoute(['admin/catalog/upload'])?>" class="admin-sidebar__list-link">Каталог</a>
                     </div>
                     <div href="?r=admin/system/index" class="admin-sidebar__list-item">
                         <a href="?r=admin/system/index" class="admin-sidebar__list-link">Система</a>

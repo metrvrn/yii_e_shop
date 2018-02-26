@@ -5,9 +5,9 @@ return [
     'ftpClient' => [
         'configs' => [
             'default' => [
-                'user' => '',
-                'pass' => '',
-                'host' => 'metropt.ru'
+                'user' => 'h612012230_upload',
+                'pass' => '786QWaszx',
+                'host' => 'ftp.h612012230.nichost.ru'
             ],
             'dev' => [
                 'user' => 'yii',
@@ -15,7 +15,7 @@ return [
                 'host' => '127.0.0.1'
             ],
         ],
-        'usedConfig' => 'dev'
+        'usedConfig' => 'default'
     ],
     'metrCatalogGetter' => [
         'downloadUrl' => '/catalog_unload/',

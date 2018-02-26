@@ -40,7 +40,8 @@ class FtpClient
         ftp_set_option($conn ,FTP_TIMEOUT_SEC, 10);
         if(!ftp_login($conn, $user, $pass)){
             throw new \Exception("Ftp authentication error");
-        }   
+        }
+        ftp_pasv($conn, true);
         return $conn;
     }
 
