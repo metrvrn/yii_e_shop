@@ -373,6 +373,9 @@ a:focus{
     background-color: #fff;
     transition: all 0.2s ease;
 }
+.product-cart__quantity-btn:disabled{
+    background-color: #444;
+}
 .product-cart__quantity-btn:focus{
     outline: none;
 }

@@ -28,4 +28,14 @@ class CatalogController extends Controller
         $sections  = CatalogSections::find()->where(['depth_level' => 1])->orderBy('name')->all();
         return $this->render('index', ['sections' => $sections]);
     }
+
+    public function actionBasketAddAjax()
+    {
+        $userId = Yii::$app->user->getId();
+        $request = Yii::$app->request;
+        $productId = $request->post('productId');
+        $quantity = $request->post('quantity');
+
+        return $this->asJson(['result' => 'success']);
+    }
 }
