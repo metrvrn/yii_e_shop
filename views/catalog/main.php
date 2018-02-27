@@ -37,15 +37,15 @@ use yii\helpers\Url;
                                 <span class="product-cart__price-ruble">&#8381;</span>
                             </div>
                             <div class="product-cart__controls-wrap">
-                                <div class="product-cart__controls clearfix">
-                                    <button class="product-cart__quantity-btn product-cart__btn--minus">
+                                <div class="product-cart__controls clearfix" id="<?=$product['product_id']?>">
+                                    <button data-action="minus_btn"  class="product-cart__quantity-btn product-cart__btn--minus">
                                         <i class="fas fa-minus"></i>
                                     </button>
-                                    <input type="text" class="product-cart__quantity-input" value="1">
-                                    <button class="product-cart__quantity-btn product-cart__btn--plus">
+                                    <input data-action="quantity_input" type="text" class="product-cart__quantity-input" value="1">
+                                    <button data-action="plus_btn" class="product-cart__quantity-btn product-cart__btn--plus">
                                         <i class="fas fa-plus"></i>
                                     </button>
-                                    <button class="product-cart__basket-btn">
+                                    <button data-action="add_btn" class="product-cart__basket-btn">
                                         <i class="fas fa-cart-plus"></i>
                                     </button>
                                 </div>
