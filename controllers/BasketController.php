@@ -7,31 +7,70 @@ use yii\web\Controller;
 use yii\base\Security;
 use app\models\Basket;
 use app\models\BasketUser;
+use app\models\catalog\Catalog;
 
 
 class BasketController extends Controller
 {
     public function actionIndex()
     {
-        $this->render('index');
+        $basketItems = null;
+        $basketSum = 0;
+        $basketItemsCount = 0;
+        $basketUserID = Yii::$app->session['b_user'];
+        if(!empty($basketUserID)){
+            $basketItems = Basket::findAll(['b_user_id' => $basketUserID]);
+            foreach($basketItems as $item){
+                $basketSum += $item['price'] * $item['quantity'];
+                $basketItemsCount++;
+            }
+        }
+        return $this->render('index', [
+            'basketItems' => $basketItems,
+            'basketSum' => $basketSum,
+            'basketItemsCount' => $basketItemsCount
+            ]);
     }
 
     public function actionAddAjax()
     {
         $session = Yii::$app->session;
-        $basketUser = $session['b_user'];
-        if(!$basketUser){
+        $basketUserID = $session['b_user'];
+        if(!$basketUserID){
             $security = new Security();
-            $basketUser = $security->generateRandomString();
-            $session['b_user'] = $basketUser;
+            $basketUserID = $security->generateRandomString();
+            $session['b_user'] = $basketUserID;
         }
 
         $request = Yii::$app->request;
-        $productId = $request->post('productId');
-        $quantity = $request->post('quantity');
+        $productID = $request->get('productId');
+        $quantity = $request->get('quantity');
 
-        $basket = Basket::find()->where(['b_user' => $basketUser, 'product_id' => $productId]);
+        if($basket = Basket::findOne(['b_user_id' => $basketUserID, 'product_id' => $productID])){
+            $basket->quantity = $basket->quantity + $quantity;
+            $basket->save();
+            return $this->asJson([
+                'product_id' => $productID,
+                'quantity' => $basket->quantity
+            ]);
+        }
 
-        return $this->asJson(['result' => $basketUser]);
+        $product = Catalog::findOne(['product_id' => $productID]);
+
+        $basket = new Basket();
+        $basket->b_user_id = $basketUserID;
+        $basket->product_id = $productID;
+        $basket->price = 148.50;
+        $basket->name = $product['name'];
+        $basket->quantity = $quantity;
+        if($basket->validate()){
+            $basket->save();
+            return $this->asJson([
+                'product_id' => $productID,
+                'quantity' => $basket->quantity,
+                'model' => $basket->toArray()
+            ]);
+        }
+        return $this->asJson(['error' => $basket->errors]);
     }
 }

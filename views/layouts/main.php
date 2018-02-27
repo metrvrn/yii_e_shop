@@ -77,7 +77,7 @@ $catalogTree = CatalogSections::getTree();
                         </div>
                     </div>
                     <div class="col-xs-3">
-                        <a href="?r=sale/basket" class="header-middle__basket-link">
+                        <a href="<?=Url::toRoute(['basket/index']);?>" class="header-middle__basket-link">
                             <div class="header-middle__basket clearfix">
                                 <div class="header-middle__basket-icon-wrap">
                                     <i class="header-middle__basket-icon fa fa-shopping-basket" aria-hidden="true"></i>

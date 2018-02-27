@@ -3,20 +3,22 @@
 use yii\db\Migration;
 
 /**
- * Handles the creation of table `basket_users`.
+ * Handles the creation of table `basket`.
  */
-class m180226_141323_create_basket_users_table extends Migration
+class m180227_063658_create_basket_table extends Migration
 {
     /**
      * @inheritdoc
      */
     public function up()
     {
-        $this->createTable('basket_users', [
+        $this->createTable('basket', [
             'id' => $this->primaryKey(),
             'b_user_id' => $this->integer(),
             'order_id' => $this->integer(),
             'product_id' => $this->integer(),
+            'name' => $this->string(),
+            'price' => $this->float(),
             'quantity' => $this->integer(),
             'date_insert' => $this->timestamp()->defaultExpression('CURRENT_TIMESTAMP'),
             'date_update' => $this->timestamp()->defaultExpression('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
@@ -28,6 +30,6 @@ class m180226_141323_create_basket_users_table extends Migration
      */
     public function down()
     {
-        $this->dropTable('basket_users');
+        $this->dropTable('basket');
     }
 }

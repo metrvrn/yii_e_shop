@@ -78,16 +78,16 @@
         var requestParams = "?productId="+productID+"&quantity="+quantity;
         var requestUrl = encodeURI(addToBasketUrl+requestParams);
         var xhr = new XMLHttpRequest();
-        xhr.open('POST', requestUrl, true);
+        xhr.open('GET', requestUrl, true);
         xhr.setRequestHeader('X-CSRF-Token', csrfToken);
         xhr.onload = function(e){
             var response = e.target;
             if(response.status === 200){
                 console.log(response.response);
-                //btnElem.removeAttribute('disabled');
+                btnElem.removeAttribute('disabled');
             }else{
                 throw new Exception('Error');
-                //btnElem.removeAttribute('disabled');
+                btnElem.removeAttribute('disabled');
             }
         }
         xhr.send();
