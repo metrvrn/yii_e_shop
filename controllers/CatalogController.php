@@ -29,6 +29,12 @@ class CatalogController extends Controller
         return $this->render('index', ['sections' => $sections]);
     }
 
+    public function actionDetail($id)
+    {
+        $product = Catalog::findOne(['product_id' => $id]);
+        return $this->render('detail', ['product' => $product]);
+    }
+
     public function actionBasketAddAjax()
     {
         $userId = Yii::$app->user->getId();
@@ -38,4 +44,6 @@ class CatalogController extends Controller
 
         return $this->asJson(['result' => 'success']);
     }
+
+
 }

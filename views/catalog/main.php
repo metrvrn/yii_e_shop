@@ -21,7 +21,7 @@ use yii\helpers\Url;
                     <div class="product-cart">
                         <a href="<?=Url::toRoute(['catalog/detail', 'id' => $product['product_id']])?>" class="product-cart__link">
                             <div class="product-cart__image-container">
-                                <img src="\image\product_image.jpg" alt="Картинка товара" class="product-cart_image img-responsive">
+                                <img src="<?=$product->image['url'];?>" alt="Картинка товара" class="product-cart_image img-responsive">
                             </div>
                             <div class="product-cart__info">
                                 <div class="product-cart__title-wrap">

@@ -37,5 +37,11 @@ class CatalogController extends Controller
         $catalogUploader = new MetrCatalogUpdater();
         $catalogUploader->updateQuantity();
     }
+
+    public function actionUploadFiles()
+    {
+        $catalogUploader = new MetrCatalogUpdater();
+        $catalogUploader->uploadFiles();
+    }
 }
 

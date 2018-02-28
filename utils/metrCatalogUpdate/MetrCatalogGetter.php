@@ -16,6 +16,7 @@ class MetrCatalogGetter
     const STORE_TYPES = 'store_types.csv';
     const PRICES_TYPES = 'prices_types.csv';
     const SECTIONS = 'sections.csv';
+    const FILES = 'files.csv';
 
     private $ftpClient = null;
 
