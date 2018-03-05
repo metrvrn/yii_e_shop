@@ -9,6 +9,6 @@ class Quantity extends ActiveRecord
 {
     public static function tableName()
     {
-        return 'quantity';
+        return 'catalog_quantity';
     }
 }

@@ -10,5 +10,5 @@ class Price extends ActiveRecord
     public static function tableName()
     {
         return 'catalog_prices';
-    };
+    }
 }

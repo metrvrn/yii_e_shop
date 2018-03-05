@@ -5,9 +5,10 @@
     
     window.document.addEventListener('scroll', function(e){
         var top = basketSidebar.getBoundingClientRect().top;
-        // if(basketSidebar.offsetTop == 0){
-        //     console.log()
-        // }
+        console.log(basketSidebar.offsetTop - window.pageYOffset);
+        if(window.pageYOffset > (basketSidebar.offsetTop - 24)){
+            basketSidebar.style.top = Math.abs(basketSidebar.offsetTop - window.pageYOffset) + 'px';
+        }
     });
 
 })();

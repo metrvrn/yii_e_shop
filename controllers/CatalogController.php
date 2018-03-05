@@ -16,7 +16,14 @@ class CatalogController extends Controller
         }
         $sections = CatalogSections::find()->where(['parent_id' => $section])->all();
         $childrenSections = CatalogSections::getAllChildren($section);
-        $products = Catalog::find()->where(['section_id' => $childrenSections])->orderBy('name')->limit(30)->all();
+        $products = Catalog::find()
+            ->select('catalog.*')
+            ->where(['catalog.section_id' => $childrenSections])
+            ->joinWith(['quantity'], true, 'LEFT JOIN')
+            ->onCondition(['>', '`catalog_quantity`.`value`', 0])
+            ->with(['quantity', 'price', 'properties'])
+            ->limit(30)
+            ->all();
         return $this->render('main', [
             'sections' => $sections,
             'products' => $products,

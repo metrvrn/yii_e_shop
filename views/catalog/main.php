@@ -33,7 +33,9 @@ use yii\helpers\Url;
                         </a>
                         <div class="product-cart__bottom">
                             <div class="product-cart__price-wrap">
-                                <span id="product_cart_price" class="product-cart__price">1245.76</span>    
+                                <span id="product_cart_price" class="product-cart__price">
+                                    <?=$product->price['value'];?>
+                                </span>    
                                 <span class="product-cart__price-ruble">&#8381;</span>
                             </div>
                             <div class="product-cart__controls-wrap">
