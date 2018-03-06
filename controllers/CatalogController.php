@@ -5,6 +5,7 @@ namespace app\controllers;
 use yii\web\Controller;
 use app\models\catalog\CatalogSections;
 use app\models\catalog\Catalog;
+use yii\data\Pagination;
 
 
 class CatalogController extends Controller
@@ -16,17 +17,26 @@ class CatalogController extends Controller
         }
         $sections = CatalogSections::find()->where(['parent_id' => $section])->all();
         $childrenSections = CatalogSections::getAllChildren($section);
-        $products = Catalog::find()
+        $productsQuery = Catalog::find()
             ->select('catalog.*')
             ->where(['catalog.section_id' => $childrenSections])
             ->joinWith(['quantity'], true, 'LEFT JOIN')
             ->onCondition(['>', '`catalog_quantity`.`value`', 0])
-            ->with(['quantity', 'price', 'properties'])
-            ->limit(30)
+            ->with(['quantity', 'price', 'properties']);
+        
+        $pagination = new Pagination([
+            'totalCount' => $productsQuery->count(),
+            'pageSize' => 30,
+        ]);
+
+        $products = $productsQuery->offset($pagination->offset)
+            ->limit($pagination->limit)
             ->all();
+        
         return $this->render('main', [
             'sections' => $sections,
             'products' => $products,
+            'pagination' => $pagination
             ]);
     }
 

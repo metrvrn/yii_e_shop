@@ -1,5 +1,6 @@
 <?php
 use yii\helpers\Url;
+use yii\widgets\LinkPager;
 ?>
 
 <div class="col-xs-3 no-padding">
@@ -64,5 +65,10 @@ use yii\helpers\Url;
             <?php endforeach; ?>
         <?php endif; ?>
     </div>
+    <?php
+         echo LinkPager::widget([
+            'pagination' => $pagination
+        ]); 
+    ?>
 </div>
 <?php $this->registerJsFile('@web/js/catalog/main.js'); ?>
