@@ -23,20 +23,26 @@ use yii\helpers\Url;
                             <div class="product-cart__image-container">
                                 <img src="<?=$product->image['url'];?>" alt="Картинка товара" class="product-cart_image img-responsive">
                             </div>
-                            <div class="product-cart__info">
-                                <div class="product-cart__title-wrap">
-                                    <span class="product-cart__title">
-                                        <?=$product['name']?>
-                                    </span>
-                                </div>
+                            <div class="product-cart__info-wrap">
+                                <span class="poduct-cart__info">
+                                    <?=$product['name'];?>
+                                </span>
                             </div>
                         </a>
                         <div class="product-cart__bottom">
-                            <div class="product-cart__price-wrap">
-                                <span id="product_cart_price" class="product-cart__price">
-                                    <?=$product->price['value'];?>
-                                </span>    
-                                <span class="product-cart__price-ruble">&#8381;</span>
+                            <div class="product-cart__bottom-info clearfix">
+                                <div class="product-cart__price-wrap">
+                                    <span class="product-cart__price">
+                                        <?=$product->price['value'];?>
+                                    </span>
+                                    <span class="product-cart__price-ruble">&#8381;</span>
+                                </div>
+                                <div class="product-cart__quantity-wrap">
+                                    <span class="product-cart__quantity-text">Остатки:</span>
+                                    <span class="product-cart__quantity">
+                                        <?=$product->quantity['value'];?>
+                                    </span>
+                                </div>
                             </div>
                             <div class="product-cart__controls-wrap">
                                 <div class="product-cart__controls clearfix" id="<?=$product['product_id']?>">
