@@ -45,7 +45,7 @@ class FtpClient
         return $conn;
     }
 
-    public function get(string $remoteFile, string $localFile)
+    public function get($remoteFile, $localFile)
     {
         $fd = fopen($localFile, 'w+');
         if(!ftp_fget($this->ftpConn, $fd, $remoteFile, FTP_BINARY)){

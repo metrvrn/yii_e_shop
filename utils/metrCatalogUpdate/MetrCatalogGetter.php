@@ -25,7 +25,7 @@ class MetrCatalogGetter
         $this->ftpClient = FtpClient::getInscance();
     }
 
-    public function get(string $entity)
+    public function get($entity)
     {
         $localFile = Yii::$app->params['metrCatalogGetter']['tmpFolder'].$entity;
         $remoteFile = Yii::$app->params['metrCatalogGetter']['downloadUrl'].$entity;
