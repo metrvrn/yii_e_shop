@@ -16,7 +16,7 @@
     </div>
     <div class="detail-product__property-wrap">
         <table class="detail-product__property-table">
-            <?php 
+            <?php ?>
             
         </table>
     </div>
