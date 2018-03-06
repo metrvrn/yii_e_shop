@@ -2,11 +2,15 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use app\models\catalog\CatalogSections;
+use app\models\Basket;
 
 $homePagePaths = ['/', '/main/index'];
 $curPath = Yii::$app->getRequest()->getUrl();
 $isHomepage =  (bool) array_intersect([$curPath], $homePagePaths);
 $catalogTree = CatalogSections::getTree();
+
+$basketQuantity = Basket::getQuantity();
+$basketSum = Basket::getSum();
 ?>
 <?php $this->beginPage() ?>
     <!DOCTYPE html>
@@ -85,11 +89,11 @@ $catalogTree = CatalogSections::getTree();
                                 <div class="header-middle__basket-info">
                                     <div class="header-middle__basket-quantity-wrap">
                                         <span class="header-middle__basket-quantity-text">Товаров: </span>
-                                        <span id="header_basket_quantity_val" class="header-middle__basket-quantity-value">25</span>
+                                        <span id="header_basket_quantity_val" class="header-middle__basket-quantity-value"><?=$basketQuantity;?></span>
                                     </div>
                                     <div class="header-middle__basket-price-wrap">
                                         <span class="header-middle__basket-price-text">На сумму:</span>
-                                        <span id="header_basket_price_val" class="header-middle__basket-price-value">247.54</span>
+                                        <span id="header_basket_price_val" class="header-middle__basket-price-value"><?=$basketSum;?></span>
                                     </div>
                                 </div>
                             </div>

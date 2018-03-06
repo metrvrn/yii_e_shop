@@ -1,5 +1,6 @@
 <?php
 use yii\helpers\Url;
+use yii\widgets\LinkPager;
 ?>
 
 <?php if(!empty($basketItems)) : ?>
@@ -52,6 +53,11 @@ use yii\helpers\Url;
                 Оформить заказ
             </a>
         </div>
+        <?php
+            echo LinkPager::widget([
+                'pagination' => $pagination
+            ]);
+        ?>
     </div>
 <?php else : ?>
     

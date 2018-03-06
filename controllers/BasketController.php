@@ -8,27 +8,34 @@ use yii\base\Security;
 use app\models\Basket;
 use app\models\BasketUser;
 use app\models\catalog\Catalog;
+use yii\data\Pagination;
 
 
 class BasketController extends Controller
 {
     public function actionIndex()
     {
-        $basketItems = null;
-        $basketSum = 0;
-        $basketItemsCount = 0;
         $basketUserID = Yii::$app->session['b_user'];
-        if(!empty($basketUserID)){
-            $basketItems = Basket::findAll(['b_user_id' => $basketUserID]);
-            foreach($basketItems as $item){
-                $basketSum += $item['price'] * $item['quantity'];
-                $basketItemsCount++;
-            }
+        if(empty($basketUserID)){
+            $basketItems = null;
+        }else{
+            $basketQuery = Basket::find()->where([
+                'b_user_id' => $basketUserID,
+                'order_id' => null
+            ]);
+            $pagination = new Pagination([
+                'totalCount' => $basketQuery->count(),
+                'pageSize' => 30
+            ]);
+            $basketItems = $basketQuery->offset($pagination->offset)
+                ->limit($pagination->limit)
+                ->all();
         }
         return $this->render('index', [
             'basketItems' => $basketItems,
-            'basketSum' => $basketSum,
-            'basketItemsCount' => $basketItemsCount
+            'basketSum' => Basket::getSum(),
+            'basketItemsCount' => Basket::getQuantity(),
+            'pagination' => $pagination
             ]);
     }
 
