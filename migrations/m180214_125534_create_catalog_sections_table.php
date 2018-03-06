@@ -18,7 +18,8 @@ class m180214_125534_create_catalog_sections_table extends Migration
             'parent_id' => $this->integer(),
             'name' => $this->string()->notNull(),
             'xml_id' => $this->string(),
-            'depth_level' => $this->integer()
+            'depth_level' => $this->integer(),
+            'image_id' => $this->integer()
         ]);
     }
 
