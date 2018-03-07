@@ -15,7 +15,9 @@ class BasketController extends Controller
 {
     public function actionIndex()
     {
-        $basketUserID = Yii::$app->session['b_user'];
+        $basketItems = null;
+        $pagination = null;
+        $basketUserID = Yii::$app->session->get('b_user');
         if(empty($basketUserID)){
             $basketItems = null;
         }else{
@@ -42,12 +44,15 @@ class BasketController extends Controller
     public function actionAddAjax()
     {
         $session = Yii::$app->session;
-        $basketUserID = $session['b_user'];
+        $basketUserID = $session->get('b_user');
         if(!$basketUserID){
             $security = new Security();
             $basketUserID = $security->generateRandomString();
-            $session['b_user'] = $basketUserID;
+            $session->set('b_user', $basketUserID);
+            $session['b_user.lifetemi'] = 60;
         }
+
+        $session['b_user.lifetemi'] = 60;
 
         $request = Yii::$app->request;
         $productID = $request->get('productId');
@@ -55,10 +60,12 @@ class BasketController extends Controller
 
         if($basket = Basket::findOne(['b_user_id' => $basketUserID, 'product_id' => $productID])){
             $basket->quantity = $basket->quantity + $quantity;
-            $basket->save();
+            $basket->update();
             return $this->asJson([
                 'product_id' => $productID,
-                'quantity' => $basket->quantity
+                'quantity' => $basket->quantity,
+                'basketQuantity' => Basket::getQuantity(),
+                'basketSum' => Basket::getSum(),
             ]);
         }
 
@@ -75,7 +82,8 @@ class BasketController extends Controller
             return $this->asJson([
                 'product_id' => $productID,
                 'quantity' => $basket->quantity,
-                'model' => $basket->toArray()
+                'basketQuantity' => Basket::getQuantity(),
+                'basketSum' => Basket::getSum(),
             ]);
         }
         return $this->asJson(['error' => $basket->errors]);

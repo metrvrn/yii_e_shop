@@ -5,7 +5,7 @@ use yii\db\Migration;
 /**
  * Handles the creation of table `basket`.
  */
-class m180227_102451_create_basket_table extends Migration
+class m180307_074438_create_basket_table extends Migration
 {
     /**
      * @inheritdoc
@@ -14,7 +14,7 @@ class m180227_102451_create_basket_table extends Migration
     {
         $this->createTable('basket', [
             'id' => $this->primaryKey(),
-            'b_user_id' => $this->integer(),
+            'b_user_id' => $this->string(),
             'order_id' => $this->integer(),
             'product_id' => $this->integer(),
             'name' => $this->string(),

@@ -1,3 +1,5 @@
+
+
 <pre>
-    <?php print_r($products);?>
+    <?php var_dump(Yii::$app->session);?>
 </pre>

@@ -40,9 +40,9 @@ $basketSum = Basket::getSum();
                     </div>
                     <div class="col-xs-3 col-xs-offset-5">
                         <?php if(Yii::$app->user->isGuest) : ?>
-                            <a href="?r=user/login" class="header-top__link">Войти</a>
+                            <a href="<?=Url::toRoute('user/login');?>" class="header-top__link">Войти</a>
                             <span class="header-top__separator">|</span>
-                            <a href="?r=user/registration" class="header-top__link">Регистрация</a>
+                            <a href="<?=Url::toRoute('user/registration');?>" class="header-top__link">Регистрация</a>
                         <?php else: ?>
                             <a href="<?=Url::toRoute('user/profile');?>" class="header-top__link"><?=Yii::$app->user->identity->name;?></a>
                             <span class="header-top__separator">|</span>

@@ -4,6 +4,9 @@
     var csrfToken = document.querySelector('meta[name="csrf-token"]').content;
     var csrfParam = document.querySelector('meta[name="csrf-param"]').content;
 
+    var headerBasketQuantity = document.getElementById('header_basket_quantity_val');
+    var headerBasketSum = document.getElementById('header_basket_price_val');
+
     var quantityInputElems = document.querySelectorAll('input[data-action="quantity_input"]');
 
     quantityInputElems.forEach(function(elem){
@@ -83,8 +86,11 @@
         xhr.onload = function(e){
             var response = e.target;
             if(response.status === 200){
-                console.log(response.response);
                 btnElem.removeAttribute('disabled');
+                var responseData = JSON.parse(response.responseText);
+                headerBasketQuantity.innerText = responseData.basketQuantity;
+                headerBasketSum.innerText = responseData.basketSum;
+                console.dir(responseData);
             }else{
                 throw new Exception('Error');
                 btnElem.removeAttribute('disabled');
