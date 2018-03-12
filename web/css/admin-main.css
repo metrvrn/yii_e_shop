@@ -1,6 +1,11 @@
 body{
     font-family: 'Roboto', sans-serif;
 }
+.clearfix:after{
+    content: "";
+    display: table;
+    clear: both;
+}
 .nopadding{
     padding: 0;
 }
@@ -88,6 +93,10 @@ body{
     padding: 0;
     list-style: none;
     background-color: #222d32d6;
+    z-index: 700;
+}
+.admin-sidebar-dropdown:hover{
+    display: block;
 }
 .admin-sidebar__list-item:hover .admin-sidebar-dropdown{
     display: block;
@@ -132,4 +141,13 @@ body{
 /* FILES PAGE */
 .admin-files-top-row{
     margin-bottom: 24px;
+}
+.delivery-panel-form{
+    display: none;
+    padding: 24px;
+    padding-bottom: 0;
+    border-bottom: 1px solid #eee;
+}
+.delivery-panel-form--open{
+    display: block;
 }
