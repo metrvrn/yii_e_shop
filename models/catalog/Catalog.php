@@ -27,7 +27,8 @@ class Catalog extends ActiveRecord
 
     public function getPrice()
     {
-        return $this->hasOne(Price::className(), ['product_id' => 'product_id']);
+        return $this->hasOne(Price::className(), ['product_id' => 'product_id'])
+            ->where('type_id = :type_id', [':type_id' => 18]);
     }
 
     public function getQuantity()

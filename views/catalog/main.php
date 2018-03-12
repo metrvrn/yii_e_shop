@@ -34,7 +34,7 @@ use yii\widgets\LinkPager;
                             <div class="product-cart__bottom-info clearfix">
                                 <div class="product-cart__price-wrap">
                                     <span class="product-cart__price">
-                                        <?=$product->price['value'];?>
+                                        <?=$product->price->value;?>
                                     </span>
                                     <span class="product-cart__price-ruble">&#8381;</span>
                                 </div>

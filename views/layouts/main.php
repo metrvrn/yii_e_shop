@@ -34,9 +34,9 @@ $basketSum = Basket::getSum();
             <div class="container">
                 <div class="row">
                     <div class="col-xs-4">
-                        <a href="?r=main/delivery" class="header-top__link">Доставка и оплата</a>
+                        <a href="<?=Url::toRoute('main/delivery')?>" class="header-top__link">Доставка и оплата</a>
                         <span class="header-top__separator">|</span>
-                        <a href="?r=main/about" class="header-top__link">О компании</a>
+                        <a href="<?=Url::toRoute('main/about');?>" class="header-top__link">О компании</a>
                     </div>
                     <div class="col-xs-3 col-xs-offset-5">
                         <?php if(Yii::$app->user->isGuest) : ?>

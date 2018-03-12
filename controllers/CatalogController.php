@@ -48,7 +48,12 @@ class CatalogController extends Controller
 
     public function actionDetail($id)
     {
-        $product = Catalog::findOne(['product_id' => $id]);
+        $product = Catalog::find()
+        ->where(['product_id' => $id])
+        ->with('price', 'quantity', 'properties', 'properties.type', 'image')
+        ->limit(1)
+        ->one();
+
         return $this->render('detail', ['product' => $product]);
     }
 

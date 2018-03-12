@@ -32,7 +32,7 @@ class Basket extends ActiveRecord
 
     public static function getQuantity()
     {
-        $basketUser = Yii::$app->session['b_user'];
+        $basketUser = Yii::$app->session->get('b_user');
         if(!$basketUser){
             return 0;
         }
@@ -44,7 +44,7 @@ class Basket extends ActiveRecord
 
     public static function getSum()
     {
-        $basketUser = Yii::$app->session['b_user'];
+        $basketUser = Yii::$app->session->get('b_user');
         if(!$basketUser){
             return 0;
         }

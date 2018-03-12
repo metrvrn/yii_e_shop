@@ -391,15 +391,6 @@ a:focus{
     background-color: #fff;
     transition: all 0.2s ease;
 }
-.product-cart__quantity-btn:disabled{
-    background-color: #444;
-}
-.product-cart__quantity-btn[disabled="true"]{
-    background-color: #444;
-}
-.product-cart__quantity-btn['disabled="true"']{
-    background-color: #444;
-}
 .product-cart__quantity-btn:focus{
     outline: none;
 }
@@ -437,14 +428,15 @@ a:focus{
     border: none;
     background-color: #fff;
     transition: all 0.4s ease;
+    outline: none;
 }
 .product-cart__basket-btn:hover{
     background-color: #30bbef;
     color: #fff;
     transition: all 0.4s ease;
 }
-.product-cart__basket-btn{
-    outline: none;
+.product-cart__basket-btn:disabled{
+    background-color: #eee;
 }
 /* BASKET */
 .basket-table td{

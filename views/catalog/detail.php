@@ -14,10 +14,18 @@
     <div class="detail-product__description-wrap">
         <span class="detail-product__description"><?=$product['description'];?></span>
     </div>
-    <div class="detail-product__property-wrap">
-        <table class="detail-product__property-table">
-            <?php ?>
-            
-        </table>
-    </div>
+    <?php if(isset($product->properties)) : ?>
+        <div class="detail-product__property-wrap">
+            <table class="detail-product__property-table table-bordered">
+                <tbody>
+                    <?php foreach($product->properties as $property) : ?>
+                        <tr>
+                            <td><?=$property->type->name;?></td>
+                            <td><?=$property->value;?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    <?php endif; ?>
 </div>
