@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models;
+namespace app\models\sale;
 
 use yii\db\ActiveRecord;
 use yii\behaviors\TimestampBehavior;

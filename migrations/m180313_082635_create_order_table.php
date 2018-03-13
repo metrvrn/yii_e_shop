@@ -5,7 +5,7 @@ use yii\db\Migration;
 /**
  * Handles the creation of table `order`.
  */
-class m180312_082444_create_order_table extends Migration
+class m180313_082635_create_order_table extends Migration
 {
     /**
      * @inheritdoc
@@ -22,14 +22,16 @@ class m180312_082444_create_order_table extends Migration
             'user_phone' => $this->string(),
             'user_workphone' => $this->string(),
             'user_email' => $this->string(),
-            'delivery_id' => $this->integer(),
+            'delivery_name' => $this->string(),
+            'delivery_description' => $this->text(),
             'delivery_city' => $this->string(),
             'delivery_street' => $this->string(),
             'delivery_house_number' => $this->string(),
             'delivery_office_number' => $this->string(),
-            'payment_id' => $this->integer(),
-            'created_at' => $this->timestamp(),
-            'updated_at' => $this->timestamp()
+            'payment_name' => $this->string(),
+            'payment_description' => $this->text(),
+            'created_at' => $this->integer(),
+            'updated_at' => $this->integer()
         ]);
     }
 

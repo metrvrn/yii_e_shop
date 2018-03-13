@@ -5,7 +5,7 @@ use yii\db\Migration;
 /**
  * Handles the creation of table `payment`.
  */
-class m180312_090322_create_payment_table extends Migration
+class m180313_075446_create_payment_table extends Migration
 {
     /**
      * @inheritdoc
@@ -16,8 +16,8 @@ class m180312_090322_create_payment_table extends Migration
             'id' => $this->primaryKey(),
             'name' => $this->string(),
             'description' => $this->text(),
-            'created_at' => $this->timestamp(),
-            'updated_at' => $this->timestamp(),
+            'created_at' => $this->integer(),
+            'updated_at' => $this->integer(),
         ]);
     }
 

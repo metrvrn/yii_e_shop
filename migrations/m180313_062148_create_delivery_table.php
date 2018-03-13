@@ -5,7 +5,7 @@ use yii\db\Migration;
 /**
  * Handles the creation of table `delivery`.
  */
-class m180312_131842_create_delivery_table extends Migration
+class m180313_062148_create_delivery_table extends Migration
 {
     /**
      * @inheritdoc

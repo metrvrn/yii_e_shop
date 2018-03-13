@@ -2,7 +2,7 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use app\models\catalog\CatalogSections;
-use app\models\Basket;
+use app\models\sale\Basket;
 
 $homePagePaths = ['/', '/main/index'];
 $curPath = Yii::$app->getRequest()->getUrl();

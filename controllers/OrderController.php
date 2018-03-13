@@ -4,7 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use yii\web\Controller;
-use app\models\Basket;
+use app\models\sale\Basket;
 use app\models\Order;
 
 class OrderController extends Controller

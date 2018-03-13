@@ -1,10 +1,10 @@
 <?php
 
-namespace app\models;
+namespace app\models\sale;
 
 use yii\db\ActiveRecord;
 use Yii;
-
+use app\models\sale\BasketUser;
 
 class Basket extends ActiveRecord
 {
@@ -32,24 +32,17 @@ class Basket extends ActiveRecord
 
     public static function getQuantity()
     {
-        $basketUser = Yii::$app->session->get('b_user');
-        if(!$basketUser){
-            return 0;
-        }
+
         return static::find()->where([
-            'b_user_id' => $basketUser,
+            'b_user_id' => BasketUser::getBasketKey(),
             'order_id' => null
         ])->count();
     }
 
     public static function getSum()
     {
-        $basketUser = Yii::$app->session->get('b_user');
-        if(!$basketUser){
-            return 0;
-        }
         $basketItems = static::find()->where([
-            'b_user_id' => $basketUser,
+            'b_user_id' => BasketUser::getBasketKey(),
             'order_id' => null
         ])->all();
         $sum = 0;

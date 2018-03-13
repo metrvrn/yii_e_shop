@@ -32,21 +32,26 @@ class DeliveryController extends Controller
 
     public function actionUpdate()
     {
-        if($delivery = Delivery::findOne(Yii::$app->request->get('id'))){
-            if(Yii::$app->request->getIsPost()){
-                $post = Yii::$app->request->post();
-                $delivery->name = $post->name;
-                $delivery->description = $post->description;
-                if($delivery->update()){
-                    return $this->render('index');
-                }
-            }    
-            return $this->render('update', [
-                'delivery' => $delivery,
-                'errors' => $delivery->getErrors()
-            ]);
-        };
-        return $this->redirect('index');
+        
+        $delivery = Delivery::findOne(Yii::$app->request->get('id'));
+
+        if(!$delivery){
+            return $this->redirect('index');
+        }
+
+        if(Yii::$app->request->getIsPost()){
+            $post = Yii::$app->request->post();
+            $delivery->name = $post['name'];
+            $delivery->description = $post['description'];
+            if($delivery->save()){
+                return $this->redirect('index');
+            }
+        }
+
+        return $this->render('update', [
+            'delivery' => $delivery,
+            'errors' => $delivery->getErrors()
+        ]);
     }
 
     public function actionRemove($id)

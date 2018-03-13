@@ -15,13 +15,13 @@ use yii\helpers\Url;
     <h3 class="panel-title">Редактирование доставки</h3>
   </div>
   <div class="panel-body">
-    <form action="<?= Url::toRoute(['admin/delivery/update', 'id' => $delivery->id]); ?>" method="POST">
+    <form action="<?= Url::toRoute(['admin/payment/update', 'id' => $payment->id]); ?>" method="POST">
         <div class="clearfix">
             <div class="form-group">
-                <input value="<?=$delivery->name;?>" name="name" class="form-control" type="text" placeholder="Название" autocomplete="off">
+                <input value="<?=$payment->name;?>" name="name" class="form-control" type="text" placeholder="Название" autocomplete="off">
             </div>
             <div class="form-group">
-                <textarea name="description" class="form-control" type="textarea" placeholder="Описание" ><?=$delivery->description;?></textarea>
+                <textarea name="description" class="form-control" type="textarea" placeholder="Описание" ><?=$payment->description;?></textarea>
             </div>
             <input type="hidden" name="_csrf" value="<?= Yii::$app->request->getCsrfToken() ?>">
             <div class="form-group clearfix">

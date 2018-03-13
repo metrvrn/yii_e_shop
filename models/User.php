@@ -5,12 +5,19 @@ namespace app\models;
 use Yii;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
+use app\models\sale\BasketUser;
 
 class User extends ActiveRecord implements IdentityInterface
 {
 
     const SCENARIO_REGISTRATION = 'registration';
     const SCENARIO_LOGIN = 'login';
+
+    public function init(){
+        $this->on('EVENT_AFTER_LOGIN', function(){
+            BasketUser::attachUserToBasket();
+        });
+    }
 
     public static function tableName()
     {

@@ -4,14 +4,14 @@ use yii\helpers\Url;
 
 <div class="panel panel-default">
     <div class="panel-heading clearfix">
-        <h4 class="pull-left">Типы доставок</h4>
-        <a href="<?= Url::toRoute('admin/delivery/add')?>" class="btn btn-success pull-right">
+        <h4 class="pull-left">Типы оплат</h4>
+        <a href="<?= Url::toRoute('admin/payment/add')?>" class="btn btn-success pull-right">
             <span>Добавить</span>
             <i class="fas fa-plus"></i>
         </a>
     </div>
     <div class="panel-body">
-        <?php if(!empty($deliveries)) : ?>
+        <?php if(!empty($payments)) : ?>
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -22,18 +22,18 @@ use yii\helpers\Url;
                         <td class="delivery-table__small-cell">Удалить</td>
                     </tr>
                 </thead>
-                <?php foreach($deliveries as $delivery) : ?>
+                <?php foreach($payments as $payment) : ?>
                     <tr>
-                        <td><?=$delivery->id;?></td>
-                        <td><?=$delivery->name;?></td>
-                        <td><?=$delivery->description;?></td>
+                        <td><?=$payment->id;?></td>
+                        <td><?=$payment->name;?></td>
+                        <td><?=$payment->description;?></td>
                         <td>
-                            <a href="<?=Url::toRoute(['admin/delivery/update', 'id' => $delivery->id]);?>">
+                            <a href="<?=Url::toRoute(['admin/payment/update', 'id' => $payment->id]);?>">
                                 <i class="far fa-edit"></i>
                             </a>
                         </td>
                         <td>
-                            <a href="<?=Url::toRoute(['admin/delivery/remove', 'id'=>$delivery->id]);?>">
+                            <a href="<?=Url::toRoute(['admin/payment/remove', 'id'=>$payment->id]);?>">
                                 <i class="far fa-trash-alt"></i>
                             </a>
                         </td>
@@ -41,7 +41,7 @@ use yii\helpers\Url;
                 <?php endforeach;?>
             </table>
         <?php else : ?>
-            <div class="well">Доставок нет</div>
+            <div class="well">Оплат нет</div>
         <?php endif; ?>
     </div>
 </div>
