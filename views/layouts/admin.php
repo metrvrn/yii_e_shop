@@ -43,7 +43,7 @@ use yii\helpers\Url;
                         <a href="<?=Url::toRoute('admin/sale/index')?>" class="admin-sidebar__list-link">Магазин</a>
                         <ul class="admin-sidebar-dropdown">
                             <li class="admin-sidebar-dropdow__element">
-                                <a href="<?=Url::toRoute('admin/sale/delivery');?>" class="admin-sidebar-dropdown__link">Доставки</a>
+                                <a href="<?=Url::toRoute('admin/delivery/index');?>" class="admin-sidebar-dropdown__link">Доставки</a>
                             </li>
                             <li class="admin-sidebar-dropdow__element">
                                 <a href="<?=Url::toRoute('admin/sale/payment');?>" class="admin-sidebar-dropdown__link">Оплаты</a>

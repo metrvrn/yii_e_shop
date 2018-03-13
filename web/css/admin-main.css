@@ -142,12 +142,6 @@ body{
 .admin-files-top-row{
     margin-bottom: 24px;
 }
-.delivery-panel-form{
-    display: none;
-    padding: 24px;
-    padding-bottom: 0;
-    border-bottom: 1px solid #eee;
-}
-.delivery-panel-form--open{
-    display: block;
+.delivery-table__small-cell{
+    width: 24px;
 }
