@@ -52,6 +52,9 @@ use yii\widgets\LinkPager;
             <a href="<?=Url::toRoute(['order/checkout']);?>" class="basket-sidepanel__order-link">
                 Оформить заказ
             </a>
+            <a href="<?=Url::toRoute(['basket/remove']);?>" class="basket-sidepanel__order-link">
+                Очистить корзину
+            </a>
         </div>
         <?php
             echo LinkPager::widget([

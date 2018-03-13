@@ -74,4 +74,11 @@ class BasketController extends Controller
         }
         return $this->asJson(['error' => $basket->errors]);
     }
+
+    public function actionRemove()
+    {
+        $basketKey = BasketUser::getBasketKey();
+        Basket::deleteAll(['b_user_id' => $basketKey]);
+        return $this->redirect('index');
+    }
 }

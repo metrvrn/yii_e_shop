@@ -41,7 +41,7 @@ class BasketUser extends ActiveRecord
             }
             return $basketKey;
         }else{
-            return Yii::$app->request->cookies->get('b_key');
+            return Yii::$app->request->cookies->get('b_key')->value;
         }
     }
 
