@@ -12,17 +12,20 @@ class UserController extends Controller
 
     public function actionRegistration()
     {
-        $user = new User();
-        $user->scenario = User::SCENARIO_REGISTRATION;
-        if($user->load(Yii::$app->request->post())){
-            $user->save();
-            return $this->goHome();
+        if(Yii::$app->request->isGet){
+            return $this->render('registration');
+        }else{
+            $user = new User();
+            $user->loas(Yii::$app->request->post());
+            return $this->render('registration', [
+                'user' => $user
+            ]);
         }
-        return $this->render('registration', ['user' => $user]);
     }
 
     public function actionLogin()
     {
+        if(Yii::$app->isGet){}
         $loginForm = new LoginForm();
         if($loginForm->load(Yii::$app->request->post()) && $loginForm->login()){
             return $this->goBack();

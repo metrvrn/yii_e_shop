@@ -150,7 +150,23 @@ $basketSum = Basket::getSum();
             <?= $content ?>
         </div>
     </div>
-    <footer>&copy; 2014 by My Company</footer>
+    <footer class="main-footer">
+        <div class="main-footer__delimeter"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-4">
+                    <div class="main-footer__info">
+                        <div class="main-footer__title">
+                            <h4>Магазин</h4>
+                        </div>
+                        <div class="main-footer__desctiprion">
+                            <span>Канцелярских товаров</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
     <?php $this->registerJsFile("@web/js/main.js");?>
     <?php $this->endBody() ?>
     </body>

@@ -13,12 +13,6 @@ class User extends ActiveRecord implements IdentityInterface
     const SCENARIO_REGISTRATION = 'registration';
     const SCENARIO_LOGIN = 'login';
 
-    public function init(){
-        $this->on('EVENT_AFTER_LOGIN', function(){
-            BasketUser::attachUserToBasket();
-        });
-    }
-
     public static function tableName()
     {
         return 'user';
@@ -27,19 +21,17 @@ class User extends ActiveRecord implements IdentityInterface
     public function scenarios()
     {
         return [
-            self::SCENARIO_REGISTRATION => [
-                'email',
-                'password',
-                'name',
-                'surname',
-                'patronymic',
-                'phone',
-                'work_phone',
-                'city',
-                'street',
-                'house_number',
-                'office_number'],
-            self::SCENARIO_LOGIN => ['email', 'password']
+            self::SCENARIO_REGISTRATION => 'registration',
+            self::SCENARIO_LOGIN => 'login'
+        ];
+    }
+
+    public function rules()
+    {
+        return[
+            [[['emain', 'password', 'name', 'phone'], 'required'],
+            [['email', 'password', 'confirm_password', 'name', 'surname', 'patronymic', 'conpany', 'phone', 'work_phone', 'city', 'street', 'house_number', 'office_number'], 'string'],
+            [['email'], 'email'], 'on' => self::SCENARIO_REGISTRATION],
         ];
     }
 

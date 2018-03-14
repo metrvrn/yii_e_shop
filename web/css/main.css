@@ -12,6 +12,7 @@ body{
 }
 .main{
     padding-top: 24px;
+    padding-bottom: 32px;
 }
 a:focus{
     outline: none;
@@ -487,4 +488,22 @@ a:focus{
     color: #fff;
     transition: all 0.2s ease;
 }
+.registration__title-wrapper{
+    padding-bottom: 12px;
+    margin-top: -12px;
+}
 /* ORDER CHECKOUT */
+
+/* FOOTER */
+.main-footer{
+    width: 100%;
+    background-color: #eee;
+}
+.main-footer__delimeter{
+    height: 24px;
+    background-color: #2a2f37;
+}
+.main-footer__info{
+    padding-top: 18px;
+    padding-bottom: 24px;
+}
