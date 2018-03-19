@@ -15,12 +15,18 @@ abstract class BaseUploader
      * определенного в классе потомке, в методе getFilename()
      */
 
-    protected  function getData()
+    protected  function getData($offset = null, $limit = 10000)
     {
         $filename = $this->getFilename();
         $localFile = self::tmpDir . $filename;
-        FtpClient::get($filename, $localFile);
-        return CsvToArrayConvertor::toArrayFromFile($localFile);
+        if(!file_exists($localFile)){
+            FtpClient::get($filename, $localFile);
+        }
+        $dataArr = CsvToArrayConvertor::toArrayFromFile($localFile);
+        if(is_numeric($offset) and $offset < count($dataArr)){
+            return $array_slice($dataArr, $offset, $limit);
+        }
+        return $dataArr;
     }
 
 

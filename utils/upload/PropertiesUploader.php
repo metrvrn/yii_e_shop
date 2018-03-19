@@ -22,9 +22,10 @@ class PropertiesUploader extends BaseUploader
         return ['property_id', 'product_id', 'value'];
     }
 
-    public function upload()
+    public function upload($offset)
     {
-        $properties = $this->getData();
+
+        $properties = $this->getData($offset);
         $products = Product::find()->select(['id', 'xml_id'])
             ->asArray()->indexBy('xml_id')->all();
         $propertiesTypes = PropertiesTypes::find()->select(['id', 'xml_code'])

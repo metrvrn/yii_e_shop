@@ -28,7 +28,7 @@ class MainController extends Controller
 
     public function actionTest()
     {
-        $data = (new PropertiesUploader)->upload();
+        $data = (new PropertiesUploader)->upload(0);
         return $this->render('test', [
             'data' => $data
         ]);
