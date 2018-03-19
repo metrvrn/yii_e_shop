@@ -1,0 +1,14 @@
+<?php
+
+namespace app\models;
+
+use yii\db\ActiveRecord;
+
+
+class PropertiesTypes extends ActiveRecord
+{
+    public static function tableName()
+    {
+        return '{{properties_types}}';
+    }
+}

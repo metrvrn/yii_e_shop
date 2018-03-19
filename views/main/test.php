@@ -1,7 +1,6 @@
 
-<?php
-use app\models\sale\BasketUser;
-?>
+<?php ?>
+
 <pre>
-<?php echo BasketUser::getBasketKey(); ?>
+    <?php print_r($data); ?>
 </pre>

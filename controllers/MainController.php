@@ -4,6 +4,9 @@ namespace app\controllers;
 use yii\web\Controller;
 use app\models\catalog\CatalogSections;
 use app\models\catalog\Catalog;
+use app\utils\upload\ProductsUploader;
+use app\utils\upload\PropertiesTypesUploader;
+use app\utils\upload\PropertiesUploader;
 
 class MainController extends Controller
 {
@@ -25,18 +28,10 @@ class MainController extends Controller
 
     public function actionTest()
     {
-
-        $priceTypeId = 17;
-
-        $childrenSections = CatalogSections::getAllChildren(612);
-
-        $products = Catalog::find()
-            ->limit(1)
-            ->with('price', 'quantity', 'properties', 'properties.type', 'image')
-            ->all();
-
-        return $this->render('test', ['products' => $products]);
-        
+        $data = (new PropertiesUploader)->upload();
+        return $this->render('test', [
+            'data' => $data
+        ]);
     }
     
     public function actionError()

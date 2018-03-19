@@ -5,8 +5,8 @@ return [
     'ftpClient' => [
         'configs' => [
             'default' => [
-                'user' => 'h612012230_upload',
-                'pass' => '786QWaszx',
+                'user' => 'h612012230_clnt',
+                'pass' => '786Qaz!@',
                 'host' => 'ftp.h612012230.nichost.ru'
             ],
             'dev' => [
@@ -17,7 +17,7 @@ return [
         ],
         'usedConfig' => 'default'
     ],
-    'metrCatalogGetter' => [
+    'catalogUploader' => [
         'downloadUrl' => '/catalog_unload/',
         'tmpFolder' => '../runtime/catalogFiles/'
     ]

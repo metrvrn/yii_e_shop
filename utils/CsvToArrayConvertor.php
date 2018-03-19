@@ -1,8 +1,8 @@
 <?php
 
-namespace app\utils\dataConvertor;
+namespace app\utils;
 
-class MetrCsvConvertor
+class CsvToArrayConvertor
 {
     public static function toArray($data)
     {

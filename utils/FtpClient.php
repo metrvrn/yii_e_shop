@@ -6,27 +6,8 @@ use Yii;
 
 class FtpClient
 {
-    private static $instance;
 
-    private $ftpConn;
-
-    public static function getInscance()
-    {
-        if(gettype(static::$instance) !== static::class){
-            static::$instance = new static();    
-        }
-        return static::$instance;
-    }
-    
-    private function __construct()
-    {
-        $this->ftpConn = static::getConnection();
-    }
-
-    public function resetConnection()
-    {
-        $this->ftpConnection = static::getConnection();
-    }
+    private static $ftpConn = null;
 
     private static function getConnection()
     {   
@@ -42,13 +23,16 @@ class FtpClient
             throw new \Exception("Ftp authentication error");
         }
         ftp_pasv($conn, true);
-        return $conn;
+        static::$ftpConn = $conn;
     }
 
-    public function get($remoteFile, $localFile)
+    public static function get($remoteFile, $localFile)
     {
+        if(is_null(static::$ftpConn)){
+            static::getConnection();
+        }
         $fd = fopen($localFile, 'w+');
-        if(!ftp_fget($this->ftpConn, $fd, $remoteFile, FTP_BINARY)){
+        if(!ftp_fget(static::$ftpConn, $fd, $remoteFile, FTP_BINARY)){
             throw new \Exception("Error while load file $remoteFile");
         }
         return $localFile;

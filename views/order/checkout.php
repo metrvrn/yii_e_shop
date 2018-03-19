@@ -20,7 +20,7 @@ use yii\helpers\Url;
                     <input name="patronymic" type="text" class="form-control" placeholder="Отчество" value="<?=$user['patronymic'] ? $user['patronymic'] : '';?>">
                 </div>
                 <div class="form-group">
-                    <input name="user_company" type="text" class="form-control" placeholder="Организация value="<?=$user['name'] ? $user['name'] : '';?>"">
+                    <input name="user_company" type="text" class="form-control" placeholder="Организация" value="<?=$user['company'] ? $user['company'] : '';?>"">
                 </div>
                 <div class="form-group">
                     <input name="user_phone" type="text" class="form-control" placeholder="Телефон" value="<?=$user['phone'] ? $user['phone'] : '';?>">
@@ -38,7 +38,7 @@ use yii\helpers\Url;
                         <span class="order-panel__title">Доставка</span>
                     </div>
                     <div class="form-group">
-                        <select name="delivery">
+                        <select name="delivery" class="form-control">
                             <?php foreach($deliveries as $delivery) : ?>
                                 <option value="<?=$delivery->id?>">
                                     <b><?=$delivery->name;?></b>
@@ -70,7 +70,7 @@ use yii\helpers\Url;
                         <span class="order-panel__title">Оплата</span>
                     </div>
                     <div class="form-group">
-                        <select name="payment">
+                        <select name="payment" class="form-control">
                         <?php foreach($payments as $payment) : ?>
                             <option value="<?=$payment->id?>">
                                 <b><?=$payment->name?></b>

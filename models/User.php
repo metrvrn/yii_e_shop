@@ -18,20 +18,12 @@ class User extends ActiveRecord implements IdentityInterface
         return 'user';
     }
 
-    public function scenarios()
-    {
-        return [
-            self::SCENARIO_REGISTRATION => 'registration',
-            self::SCENARIO_LOGIN => 'login'
-        ];
-    }
-
     public function rules()
     {
         return[
-            [[['emain', 'password', 'name', 'phone'], 'required'],
-            [['email', 'password', 'confirm_password', 'name', 'surname', 'patronymic', 'conpany', 'phone', 'work_phone', 'city', 'street', 'house_number', 'office_number'], 'string'],
-            [['email'], 'email'], 'on' => self::SCENARIO_REGISTRATION],
+            [['email', 'password', 'name', 'phone'], 'required', 'on' => self::SCENARIO_REGISTRATION],
+            [['email'], 'email', 'on' => self::SCENARIO_REGISTRATION],
+            [['email', 'password', 'surname', 'patronymic', 'company', 'phone', 'work_phone', 'city', 'street', 'house_number', 'office_number'], 'string', 'on' => self::SCENARIO_REGISTRATION]
         ];
     }
 
