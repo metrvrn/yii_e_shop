@@ -20,9 +20,9 @@ class ProductsUploader extends BaseUploader
         return ['name', 'section_id', 'xml_id', 'preview_text', 'detail_text', 'picture_id', 'last_update'];
     }
 
-    public function upload()
+    public function upload($offset)
     {
-        $data =  $this->getData();
-        $this->saveData($data);
+        $products = $this->getData($offset);
+        $this->saveData($products);
     }
 }

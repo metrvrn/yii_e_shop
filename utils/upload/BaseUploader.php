@@ -10,6 +10,9 @@ abstract class BaseUploader
     //директория для загруженных файлов
     const tmpDir = '../runtime/catalogFiles/';
 
+    public $totalCount;
+    public $handled;
+
     /**
      * Скачивает, парсит и возвращает массив данных файла,
      * определенного в классе потомке, в методе getFilename()
@@ -23,8 +26,10 @@ abstract class BaseUploader
             FtpClient::get($filename, $localFile);
         }
         $dataArr = CsvToArrayConvertor::toArrayFromFile($localFile);
+        $this->totalCount = count($dataArr);
+        $this->handled = $offset + $limit;
         if(is_numeric($offset) and $offset < count($dataArr)){
-            return $array_slice($dataArr, $offset, $limit);
+            return array_slice($dataArr, $offset, $limit);
         }
         return $dataArr;
     }
@@ -35,17 +40,17 @@ abstract class BaseUploader
      */
     protected function saveData($data)
     {
-        Yii::$app->db->createCommand()->truncateTable($this->getTableName())->execute();
         Yii::$app->db->createCommand()
             ->batchInsert($this->getTableName(), $this->getFieldsMap(), $data)
             ->execute();
     }
 
+
     /**
      * Реализует логику обработки данных, получая их меодом getData(),
      * и сохраняя методом saveData().
      */
-    protected abstract function upload();
+    public abstract function upload($offset);
 
     /**
      * Возвращает название файля для скачивания

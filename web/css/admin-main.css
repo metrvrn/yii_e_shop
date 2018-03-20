@@ -145,3 +145,8 @@ body{
 .delivery-table__small-cell{
     width: 24px;
 }
+/* UPLOAD */
+.upload-status-panel{
+    padding: 12px;
+    margin-top: 12px;
+}

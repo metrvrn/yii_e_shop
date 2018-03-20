@@ -19,13 +19,12 @@ class PropertiesUploader extends BaseUploader
 
     protected function getFieldsMap()
     {
-        return ['property_id', 'product_id', 'value'];
+        return ['value', 'product_id', 'property_id'];
     }
 
     public function upload($offset)
     {
-
-        $properties = $this->getData($offset);
+        if(!$properties = $this->getData($offset)) return false;
         $products = Product::find()->select(['id', 'xml_id'])
             ->asArray()->indexBy('xml_id')->all();
         $propertiesTypes = PropertiesTypes::find()->select(['id', 'xml_code'])
@@ -35,7 +34,7 @@ class PropertiesUploader extends BaseUploader
             $property[1] = $products[$property[1]]['id'];
             $property[2] = $propertiesTypes[$property[2]]['id'];
         }
-        return $properties;
+        $this->saveData($properties);
     }
 
     

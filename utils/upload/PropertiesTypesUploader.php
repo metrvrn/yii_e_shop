@@ -19,9 +19,9 @@ class PropertiesTypesUploader extends BaseUploader
         return ['name', 'xml_code', 'last_update'];
     }
 
-    public function upload()
+    public function upload($offset)
     {
-        $data = $this->getData();
+        $data = $this->getData($offset);
         $this->saveData($data);
     }
 }
