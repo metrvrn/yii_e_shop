@@ -3,20 +3,21 @@
 use yii\db\Migration;
 
 /**
- * Handles the creation of table `catalog_prices`.
+ * Handles the creation of table `price`.
  */
-class m180223_140047_create_catalog_prices_table extends Migration
+class m180320_130113_create_price_table extends Migration
 {
     /**
      * @inheritdoc
      */
     public function up()
     {
-        $this->createTable('catalog_prices', [
+        $this->createTable('price', [
             'id' => $this->primaryKey(),
             'product_id' => $this->integer(),
             'type_id' => $this->integer(),
-            'value' => $this->float()
+            'value' => $this->float(),
+            'last_update' => $this->integer()
         ]);
     }
 
@@ -25,6 +26,6 @@ class m180223_140047_create_catalog_prices_table extends Migration
      */
     public function down()
     {
-        $this->dropTable('catalog_prices');
+        $this->dropTable('price');
     }
 }

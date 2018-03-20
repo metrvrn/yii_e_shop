@@ -31,8 +31,8 @@ class PropertiesUploader extends BaseUploader
             ->asArray()->indexBy('xml_code')->all();
         foreach($properties as &$property)
         {
-            $property[1] = $products[$property[1]]['id'];
-            $property[2] = $propertiesTypes[$property[2]]['id'];
+            $property[1] = isset($products[$property[1]]['id']) ? $products[$property[1]]['id'] : null;
+            $property[2] = isset($propertiesTypes[$property[2]]['id']) ? $propertiesTypes[$property[2]]['id'] : null;
         }
         $this->saveData($properties);
     }
