@@ -2,8 +2,8 @@
 
 namespace app\utils\upload;
 
-use app\models\Product;
-use app\models\PropertiesTypes;
+use app\models\catalog\Product;
+use app\models\catalog\PropertiesTypes;
 
 class PropertiesUploader extends BaseUploader
 {

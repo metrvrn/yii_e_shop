@@ -72,5 +72,48 @@ use yii\helpers\Url;
         </div>
     </div>
 </div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Склады</h3>
+            </div>
+            <div class="panel-body">
+                <button id="uploadBtn" data-panel="statusWarehouse" class="btn btn-success" data-url="<?=Url::toRoute(['admin/upload/upload-warehouse']);?>">Загрузить</button>
+                <a class="btn btn-danger" href="<?=Url::toRoute('admin/upload/truncate-warehouse');?>">Очистить таблицу</a>
+                <p class="bg-danger upload-status-panel" style="display: none" id="statusWarehouse"></p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Остатки</h3>
+            </div>
+            <div class="panel-body">
+                <button id="uploadBtn" data-panel="statusQuantity" class="btn btn-success" data-url="<?=Url::toRoute(['admin/upload/upload-quantity']);?>">Загрузить</button>
+                <a class="btn btn-danger" href="<?=Url::toRoute('admin/upload/truncate-quantity');?>">Очистить таблицу</a>
+                <p class="bg-danger upload-status-panel" style="display: none" id="statusQuantity"></p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Разделы каталога</h3>
+            </div>
+            <div class="panel-body">
+                <button id="uploadBtn" data-panel="statusSections" class="btn btn-success" data-url="<?=Url::toRoute(['admin/upload/upload-sections']);?>">Загрузить</button>
+                <a class="btn btn-danger" href="<?=Url::toRoute('admin/upload/truncate-sections');?>">Очистить таблицу</a>
+                <p class="bg-danger upload-status-panel" style="display: none" id="statusSections"></p>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <?php $this->registerJsFile("@web/js/admin/upload/index.js"); ?>

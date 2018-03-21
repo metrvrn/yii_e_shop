@@ -10,6 +10,9 @@ use app\utils\upload\ProductsUploader;
 use app\utils\upload\PropertiesTypesUploader;
 use app\utils\upload\PricesTypesUploader;
 use app\utils\upload\PriceUploader;
+use app\utils\upload\WarehousesUploader;
+use app\utils\upload\QuantityUploader;
+use app\utils\upload\SectionsUploader;
 
 
 class UploadController extends Controller
@@ -71,6 +74,36 @@ class UploadController extends Controller
         ]);
     }
 
+    public function actionUploadWarehouse($offset)
+    {
+        $warehouseUploader = new WarehousesUploader();
+        $warehouseUploader->upload($offset);
+        return $this->asJson([
+            'handled' => $warehouseUploader->handled,
+            'total' => $warehouseUploader->totalCount
+        ]);
+    }
+
+    public function actionUploadQuantity($offset)
+    {
+        $quantityUploader = new QuantityUploader();
+        $quantityUploader->upload($offset);
+        return $this->asJson([
+            'handled' => $quantityUploader->handled,
+            'total' => $quantityUploader->totalCount
+        ]);
+    }
+
+    public function actionUploadSections($offset)
+    {
+        $sectionsUploader = new SectionsUploader();
+        $sectionsUploader->upload($offset);
+        return $this->asJson([
+            'handled' => $sectionsUploader->handled,
+            'total' => $sectionsUploader->totalCount
+        ]);
+    }
+
     public function actionTruncateProducts()
     {
         Yii::$app->db->createCommand()->truncateTable('products')->execute();
@@ -95,9 +128,27 @@ class UploadController extends Controller
         return $this->redirect(Url::toRoute('admin/upload/index'));
     }
 
-    public function actionTruncatePrice()
+    public function actionTruncatePrices()
     {
         Yii::$app->db->createCommand()->truncateTable('price')->execute();
+        return $this->redirect(Url::toRoute('admin/upload/index'));
+    }
+
+    public function actionTruncateWarehouse()
+    {
+        Yii::$app->db->createCommand()->truncateTable('warehouse')->execute();
+        return $this->redirect(Url::toRoute('admin/upload/index'));
+    }
+
+    public function actionTruncateQuantity()
+    {
+        Yii::$app->db->createCommand()->truncateTable('quantity')->execute();
+        return $this->redirect(Url::toRoute('admin/upload/index'));
+    }
+
+    public function actionTruncateSections()
+    {
+        Yii::$app->db->createCommand()->truncateTable('catalog_sections')->execute();
         return $this->redirect(Url::toRoute('admin/upload/index'));
     }
 

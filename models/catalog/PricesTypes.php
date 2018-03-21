@@ -5,10 +5,10 @@ namespace app\models\catalog;
 use yii\db\ActiveRecord;
 
 
-class Quantity extends ActiveRecord
+class PricesTypes extends ActiveRecord
 {
     public static function tableName()
     {
-        return 'catalog_quantity';
+        return '{{prices_types}}';
     }
 }

@@ -28,6 +28,9 @@ abstract class BaseUploader
         $dataArr = CsvToArrayConvertor::toArrayFromFile($localFile);
         $this->totalCount = count($dataArr);
         $this->handled = $offset + $limit;
+        if($this->handled > $this->totalCount){
+            unlink($localFile);
+        }
         if(is_numeric($offset) and $offset < count($dataArr)){
             return array_slice($dataArr, $offset, $limit);
         }

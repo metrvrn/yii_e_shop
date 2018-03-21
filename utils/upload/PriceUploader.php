@@ -2,8 +2,8 @@
 
 namespace app\utils\upload;
 
-use app\models\Product;
-use app\models\PricesTypes;
+use app\models\catalog\Product;
+use app\models\catalog\PricesTypes;
 
 class PriceUploader extends BaseUploader
 {
