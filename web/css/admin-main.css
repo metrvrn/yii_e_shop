@@ -136,6 +136,8 @@ body{
     transition: all 0.2s ease;
 }
 .admin-content-container{
+    max-height: calc(100% - 50px);
+    overflow: scroll;
     padding-top: 15px;
 }
 /* FILES PAGE */

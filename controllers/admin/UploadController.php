@@ -13,6 +13,7 @@ use app\utils\upload\PriceUploader;
 use app\utils\upload\WarehousesUploader;
 use app\utils\upload\QuantityUploader;
 use app\utils\upload\SectionsUploader;
+use app\utils\upload\ImagesUploader;
 
 
 class UploadController extends Controller
@@ -104,6 +105,16 @@ class UploadController extends Controller
         ]);
     }
 
+    public function actionUploadImages($offset)
+    {
+        $imagesUploader = new ImagesUploader();
+        $imagesUploader->upload($offset);
+        return $this->asJson([
+            'handled' => $imagesUploader->handled,
+            'total' => $imagesUploader->totalCount
+        ]);
+    }
+
     public function actionTruncateProducts()
     {
         Yii::$app->db->createCommand()->truncateTable('products')->execute();
@@ -149,6 +160,12 @@ class UploadController extends Controller
     public function actionTruncateSections()
     {
         Yii::$app->db->createCommand()->truncateTable('catalog_sections')->execute();
+        return $this->redirect(Url::toRoute('admin/upload/index'));
+    }
+
+    public function actionTruncateImages()
+    {
+        Yii::$app->db->createCommand()->truncateTable('catalog_images')->execute();
         return $this->redirect(Url::toRoute('admin/upload/index'));
     }
 

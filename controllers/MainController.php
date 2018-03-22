@@ -7,6 +7,8 @@ use app\models\catalog\Catalog;
 use app\utils\upload\ProductsUploader;
 use app\utils\upload\PropertiesTypesUploader;
 use app\utils\upload\PropertiesUploader;
+use app\models\catalog\Sections;
+use app\utils\upload\ImagesUploader;
 
 class MainController extends Controller
 {
@@ -28,7 +30,7 @@ class MainController extends Controller
 
     public function actionTest()
     {
-        $data = (new PropertiesUploader)->upload(0);
+        $data = Sections::getTree();
         return $this->render('test', [
             'data' => $data
         ]);

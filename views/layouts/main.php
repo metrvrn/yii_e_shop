@@ -1,13 +1,11 @@
 <?php
 use yii\helpers\Html;
 use yii\helpers\Url;
-use app\models\catalog\CatalogSections;
 use app\models\sale\Basket;
 
 $homePagePaths = ['/', '/main/index'];
 $curPath = Yii::$app->getRequest()->getUrl();
 $isHomepage =  (bool) array_intersect([$curPath], $homePagePaths);
-$catalogTree = CatalogSections::getTree();
 
 $basketQuantity = Basket::getQuantity();
 $basketSum = Basket::getSum();
