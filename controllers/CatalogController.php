@@ -3,8 +3,8 @@
 namespace app\controllers;
 
 use yii\web\Controller;
-use app\models\catalog\CatalogSections;
-use app\models\catalog\Catalog;
+use app\models\catalog\Sections;
+use app\models\catalog\Product;
 use yii\data\Pagination;
 
 
@@ -15,14 +15,10 @@ class CatalogController extends Controller
         if($section === null and !is_numeric($section)){
             $this->redirect('catalog/index');
         }
-        $sections = CatalogSections::find()->where(['parent_id' => $section])->all();
-        $childrenSections = CatalogSections::getAllChildren($section);
-        $productsQuery = Catalog::find()
-            ->select('catalog.*')
-            ->where(['catalog.section_id' => $childrenSections])
-            ->joinWith(['quantity'], true, 'LEFT JOIN')
-            ->onCondition(['>', '`catalog_quantity`.`value`', 0])
-            ->with(['quantity', 'price', 'properties']);
+        $sections = Sections::find()->where(['parent_id' => $section])->all();
+        $childrenSections = Sections::getChildrenId($section);
+        $productsQuery = Product::find()
+            ->where(['section_id' => $childrenSections]);
         
         $pagination = new Pagination([
             'totalCount' => $productsQuery->count(),
@@ -63,7 +59,6 @@ class CatalogController extends Controller
         $request = Yii::$app->request;
         $productId = $request->post('productId');
         $quantity = $request->post('quantity');
-
         return $this->asJson(['result' => 'success']);
     }
 

@@ -2,10 +2,13 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use app\models\sale\Basket;
+use app\models\catalog\Sections;
 
 $homePagePaths = ['/', '/main/index'];
 $curPath = Yii::$app->getRequest()->getUrl();
 $isHomepage =  (bool) array_intersect([$curPath], $homePagePaths);
+
+$catalogSections = Sections::getTree();
 
 $basketQuantity = Basket::getQuantity();
 $basketSum = Basket::getSum();
@@ -109,20 +112,20 @@ $basketSum = Basket::getSum();
                         <?php else : ?>
                             <button id="catalog_dropdown_btn" class="header-bottom__link header-bottom__link--catalog header-bottom__link--catalog_btn">Каталог</button>
                         <?php endif; ?>
-                        <?php if(!empty($catalogTree)) :?>
+                        <?php if(!empty($catalogSections)) :?>
                             <ul id="catalog_dropdown_menu" class="catalog-dropdown <?= $isHomepage ? '' : 'catalog-dropdown--close'?>">
-                                <?php foreach($catalogTree as $section): ?>
+                                <?php foreach($catalogSections as $section): ?>
                                     <li class="catalog-dropdown__elem">
-                                    <a href="<?=Url::toRoute(['catalog/main', 'section' => $section['section_id']])?>" class="catalog-dropdown__link">
+                                    <a href="<?=Url::toRoute(['catalog/main', 'section' => $section['id']])?>" class="catalog-dropdown__link">
                                         <span class="catalog-dropdown__category-name"><?=$section['name'];?></span>
                                         <i class="fas fa-arrow-right catalog-dropdown__category-icon"></i>
                                     </a>
-                                    <?php if(isset($section['childs']) && is_array($section['childs'])) : ?>
+                                    <?php if(isset($section['children']) && is_array($section['children'])) : ?>
                                         <div class="catalog-dropdown__submenu" style="width: 300%;">
                                             <div class="row">
-                                                <?php foreach($section['childs'] as $subsection) : ?>
+                                                <?php foreach($section['children'] as $subsection) : ?>
                                                     <div class="col-xs-3">
-                                                        <a class="catalog-dropdown__submenu-link" href="<?=Url::toRoute(['catalog/main', 'section' => $subsection['section_id']]);?>" class="catalog-dropdown__submenu-link">
+                                                        <a class="catalog-dropdown__submenu-link" href="<?=Url::toRoute(['catalog/main', 'section' => $subsection['id']]);?>" class="catalog-dropdown__submenu-link">
                                                             <span><?=$subsection['name']?></span>
                                                         </a>
                                                     </div>

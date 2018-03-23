@@ -8,7 +8,7 @@ use yii\widgets\LinkPager;
         <ul class="catalog-sections-list">
             <?php foreach($sections as $section): ?>
                 <li class="catalog-sections-list__elem">
-                    <a href="<?=Url::toRoute(['catalog/main', 'section' => $section['section_id']]);?>" class="catalog-sections-list__link"><?=$section['name'];?></a>
+                    <a href="<?=Url::toRoute(['catalog/main', 'section' => $section['id']]);?>" class="catalog-sections-list__link"><?=$section['name'];?></a>
                 </li>
             <?php endforeach; ?>
         </ul>

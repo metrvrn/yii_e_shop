@@ -9,6 +9,7 @@ use app\utils\upload\PropertiesTypesUploader;
 use app\utils\upload\PropertiesUploader;
 use app\models\catalog\Sections;
 use app\utils\upload\ImagesUploader;
+use app\models\catalog\Product;
 
 class MainController extends Controller
 {
@@ -30,7 +31,7 @@ class MainController extends Controller
 
     public function actionTest()
     {
-        $data = Sections::getTree();
+        $data =
         return $this->render('test', [
             'data' => $data
         ]);
