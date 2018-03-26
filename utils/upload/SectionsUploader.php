@@ -19,7 +19,7 @@ class SectionsUploader extends BaseUploader
 
     protected function getFieldsMap()
     {
-        return ['name', 'xml_id', 'parent_xml_id', 'depth_level', 'last_update'];
+        return ['name', 'xml_id', 'parent_xml_id', 'depth_level', 'last_update', 'active', 'global_active'];
     }
 
     public function upload($offset){
@@ -33,12 +33,22 @@ class SectionsUploader extends BaseUploader
         unset($offset);
         $sections = Sections::find()->select(['id', 'xml_id'])
             ->asArray()->all();
+        //update parent_id of sections by xml_id
         foreach($sections as $section){
             $xml_id = $section['xml_id'];
             $id = $section['id'];
             Yii::$app->db->createCommand()
             ->update($this->getTableName(), ['parent_id' => $id], ['parent_xml_id' => $xml_id])
             ->execute();
+        }
+        unset($section);
+        //update product sections id
+        foreach($sections as $section){
+            $xml_id = $section['xml_id'];
+            $id = $section['id'];
+            Yii::$app->db->createCommand()
+                ->update('products', ['section_id' => $id], ['section_xml_id' => $xml_id])
+                ->execute();
         }
     }
 }

@@ -3,11 +3,10 @@
 namespace app\controllers\admin;
 
 use Yii;
-use yii\web\Controller;
 use app\models\sale\Payment;
 
 
-class PaymentController extends Controller
+class PaymentController extends AdminController
 {
     public $layout = 'admin';
 

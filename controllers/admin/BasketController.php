@@ -2,9 +2,7 @@
 
 namespace app\controllers\admin;
 
-use yii\web\Controller;
-
-class BasketController extends Controller
+class BasketController extends AdminController
 {
     public $layout = 'admin';
 

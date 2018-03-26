@@ -5,7 +5,7 @@ use yii\db\Migration;
 /**
  * Handles the creation of table `catalog_sections`.
  */
-class m180321_071215_create_catalog_sections_table extends Migration
+class m180326_073525_create_catalog_sections_table extends Migration
 {
     /**
      * @inheritdoc
@@ -19,7 +19,9 @@ class m180321_071215_create_catalog_sections_table extends Migration
             'parent_xml_id' => $this->string(),
             'depth_level' => $this->integer(),
             'last_update' => $this->integer(),
-            'parent_id' => $this->integer()
+            'parent_id' => $this->integer(),
+            'active' => $this->boolean(),
+            'global_active' => $this->boolean()
         ]);
     }
 

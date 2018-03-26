@@ -2,10 +2,9 @@
 
 namespace app\contrllers\admin;
 
-use yii\web\Controller;
 use app\models\sale\PriceYType;
 
-class PriceTypeController extends Controller
+class PriceTypeController extends AdminController
 {
     public function actionIndex()
     {

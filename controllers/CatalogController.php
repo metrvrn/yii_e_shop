@@ -18,7 +18,11 @@ class CatalogController extends Controller
         $sections = Sections::find()->where(['parent_id' => $section])->all();
         $childrenSections = Sections::getChildrenId($section);
         $productsQuery = Product::find()
-            ->where(['section_id' => $childrenSections]);
+            ->where(['section_id' => $childrenSections])
+            ->innerJoin('quantity')
+            ->onCondition('quantity.product_id = products.id')
+            ->andWhere(['<>', 'quantity.value',  0])
+            ->with(['quantity', 'image', 'price']);
         
         $pagination = new Pagination([
             'totalCount' => $productsQuery->count(),

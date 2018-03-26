@@ -2,10 +2,9 @@
 
 namespace app\controllers\admin;
 
-use yii\web\Controller;
 use app\models\Files;
 
-class SystemController extends Controller
+class SystemController extends AdminController
 {
     public $layout = 'admin';
 

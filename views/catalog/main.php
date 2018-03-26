@@ -20,7 +20,7 @@ use yii\widgets\LinkPager;
             <?php foreach($products as $product): ?>
                 <div class="col-lg-4 col-sm-6 col-xs-12">
                     <div class="product-cart">
-                        <a href="<?=Url::toRoute(['catalog/detail', 'id' => $product['product_id']])?>" class="product-cart__link">
+                        <a href="<?=Url::toRoute(['catalog/detail', 'id' => $product['id']])?>" class="product-cart__link">
                             <div class="product-cart__image-container">
                                 <img src="<?=$product->image['url'];?>" alt="Картинка товара" class="product-cart_image img-responsive">
                             </div>
@@ -34,7 +34,14 @@ use yii\widgets\LinkPager;
                             <div class="product-cart__bottom-info clearfix">
                                 <div class="product-cart__price-wrap">
                                     <span class="product-cart__price">
-                                        <?=$product->price->value;?>
+                                        <?php
+                                        if(isset($product->price)){
+                                            echo "Есть";
+                                        }else{
+                                            echo "Нет";
+                                        }
+                                        
+                                        ?>
                                     </span>
                                     <span class="product-cart__price-ruble">&#8381;</span>
                                 </div>
@@ -46,7 +53,7 @@ use yii\widgets\LinkPager;
                                 </div>
                             </div>
                             <div class="product-cart__controls-wrap">
-                                <div class="product-cart__controls clearfix" id="<?=$product['product_id']?>">
+                                <div class="product-cart__controls clearfix" id="<?=$product['id']?>">
                                     <button data-action="minus_btn"  class="product-cart__quantity-btn product-cart__btn--minus">
                                         <i class="fas fa-minus"></i>
                                     </button>

@@ -16,9 +16,8 @@ use app\utils\upload\SectionsUploader;
 use app\utils\upload\ImagesUploader;
 
 
-class UploadController extends Controller
+class UploadController extends AdminController
 {
-    public $layout = 'admin';
     
     public function actionIndex()
     {

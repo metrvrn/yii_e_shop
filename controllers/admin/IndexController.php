@@ -2,11 +2,8 @@
 
 namespace app\controllers\admin;
 
-use yii\web\Controller;
-
-class IndexController extends Controller
+class IndexController extends AdminController
 {
-    public $layout = 'admin';
 
     public function actionIndex()
     {

@@ -2,9 +2,7 @@
 
 namespace app\controllers\admin;
 
-use yii\web\Controller;
-
-class StatisticsController extends Controller
+class StatisticsController extends AdminController
 {
     public $layout = 'admin';
 

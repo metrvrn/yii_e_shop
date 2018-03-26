@@ -2,11 +2,10 @@
 
 namespace app\controllers\admin;
 
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use app\utils\metrCatalogUpdate\MetrCatalogUpdater;
 
-class CatalogController extends Controller
+class CatalogController extends AdminController
 {
     public $layout = 'admin';
 

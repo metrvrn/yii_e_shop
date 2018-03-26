@@ -2,9 +2,7 @@
 
 namespace app\controllers\admin;
 
-use yii\web\Controller;
-
-class OrderController extends Controller
+class OrderController extends AdminController
 {
     public $layout = 'admin';
 

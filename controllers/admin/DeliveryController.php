@@ -3,11 +3,10 @@
 namespace app\controllers\admin;
 
 use Yii;
-use yii\web\Controller;
 use app\models\sale\Delivery;
 
 
-class DeliveryController extends Controller
+class DeliveryController extends AdminController
 {
     public $layout = "admin";
 
