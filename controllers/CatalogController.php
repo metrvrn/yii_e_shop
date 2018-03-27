@@ -17,13 +17,8 @@ class CatalogController extends Controller
         }
         $sections = Sections::find()->where(['parent_id' => $section])->all();
         $childrenSections = Sections::getChildrenId($section);
-        $productsQuery = Product::find()
-            ->where(['section_id' => $childrenSections])
-            ->innerJoin('quantity')
-            ->onCondition('quantity.product_id = products.id')
-            ->andWhere(['<>', 'quantity.value',  0])
-            ->with(['quantity', 'image', 'price']);
-        
+        $productsQuery = Product::getAvailableQuery($childrenSections, 6);
+
         $pagination = new Pagination([
             'totalCount' => $productsQuery->count(),
             'pageSize' => 30,
@@ -48,12 +43,10 @@ class CatalogController extends Controller
 
     public function actionDetail($id)
     {
-        $product = Catalog::find()
-        ->where(['product_id' => $id])
-        ->with('price', 'quantity', 'properties', 'properties.type', 'image')
-        ->limit(1)
+        $product = Product::find()
+        ->where(['id' => $id])
+        ->with('price', 'quantity', 'properties.type', 'image')
         ->one();
-
         return $this->render('detail', ['product' => $product]);
     }
 

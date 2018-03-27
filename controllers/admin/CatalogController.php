@@ -7,40 +7,15 @@ use app\utils\metrCatalogUpdate\MetrCatalogUpdater;
 
 class CatalogController extends AdminController
 {
-    public $layout = 'admin';
-
-    public function actionIndex()
+    public function actionProducts()
     {
-        return $this->render('index');
+        
+        return $this->render('products');
     }
 
-    public function actionUpload()
+    public function actionProductsProperties()
     {
-        return $this->render('upload', ['catalogMsg' => '']);
-    }
-
-    public function actionUploadCatalog()
-    {
-        $catalogUpdater = new MetrCatalogUpdater();
-        $catalogUpdater->updateCatalog();
-    }
-
-    public function actionUploadPrices()
-    {
-        $catalogUploader = new MetrCatalogUpdater();
-        $catalogUploader->updatePrices();
-    }
-
-    public function actionUploadQuantity()
-    {
-        $catalogUploader = new MetrCatalogUpdater();
-        $catalogUploader->updateQuantity();
-    }
-
-    public function actionUploadImages()
-    {
-        $catalogUploader = new MetrCatalogUpdater();
-        $catalogUploader->uploadFiles();
+        return $this->render('properties-types');
     }
 }
 

@@ -1,1 +1,0 @@
-<h1>Index Catalog controller</h1>

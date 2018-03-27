@@ -34,14 +34,7 @@ use yii\widgets\LinkPager;
                             <div class="product-cart__bottom-info clearfix">
                                 <div class="product-cart__price-wrap">
                                     <span class="product-cart__price">
-                                        <?php
-                                        if(isset($product->price)){
-                                            echo "Есть";
-                                        }else{
-                                            echo "Нет";
-                                        }
-                                        
-                                        ?>
+                                        <?=$product->price->value?>
                                     </span>
                                     <span class="product-cart__price-ruble">&#8381;</span>
                                 </div>

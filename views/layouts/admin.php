@@ -21,7 +21,7 @@ use yii\helpers\Url;
         <div class="container-fluid">
             <div class="row">
                 <div class="col-xs-2 nopadding">
-                    <a href="?r=admin/catalog/" class="main-header__link"><b>Администрирование</b></a>
+                    <a href="<?=Url::toRoute('admin/index');?>" class="main-header__link"><b>Администрирование</b></a>
                 </div>
                 <div class="col-xs-1 col-xs-offset-8">
                     <a class="main-header__to-site-link" href="">На сайт</a>
@@ -61,6 +61,17 @@ use yii\helpers\Url;
                     </div>
                     <div class="admin-sidebar__list-item">
                         <a href="<?=Url::toRoute(['admin/catalog/upload'])?>" class="admin-sidebar__list-link">Каталог</a>
+                        <ul class="admin-sidebar-dropdown">
+                            <li class="admin-sidebar-dropdow__element">
+                                <a href="<?=Url::toRoute('admin/catalog/products');?>" class="admin-sidebar-dropdown__link">Товары</a>
+                            </li>
+                            <li class="admin-sidebar-dropdow__element">
+                                <a href="<?=Url::toRoute('admin/catalog/products-properties');?>" class="admin-sidebar-dropdown__link">Свойства товаров</a>
+                            </li>
+                            <li class="admin-sidebar-dropdow__element">
+                                <a href="<?=Url::toRoute('admin/catalog/properties-types');?>" class="admin-sidebar-dropdown__link">Типы свойств</a>
+                            </li>
+                        </ul>
                     </div>
                     <div class="admin-sidebar__list-item">
                         <a href="?r=admin/system/index" class="admin-sidebar__list-link">Система</a>
