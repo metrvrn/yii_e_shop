@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use Yii;
 use yii\web\Controller;
 use app\models\catalog\Sections;
 use app\models\catalog\Product;
@@ -50,13 +51,11 @@ class CatalogController extends Controller
         return $this->render('detail', ['product' => $product]);
     }
 
-    public function actionBasketAddAjax()
+    public function actionSearchAjax()
     {
-        $userId = Yii::$app->user->getId();
-        $request = Yii::$app->request;
-        $productId = $request->post('productId');
-        $quantity = $request->post('quantity');
-        return $this->asJson(['result' => 'success']);
+        $pattern = Yii::$app->request->get('pattern');
+        $productsArr = Product::search($pattern, 15, 0);
+        return $this->asJson($productsArr);
     }
 
 

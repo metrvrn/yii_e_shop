@@ -77,8 +77,16 @@ $basketSum = Basket::getSum();
                         </div>
                         <div class="header-middle__search">
                             <form action="" class="header-middle__search-form">
-                                <input type="text" class="header-middle__search-input">
+                                <input id="mainSearchInput" data-url="<?=Url::toRoute(['catalog/search-ajax', 'pattern' => 'rPattern']);?>" type="text" class="header-middle__search-input" autocomplete="off">
                             </form>
+                            <div class="header-middle__search-response-container">
+                                <div id="searchResponseWrap" data-detail-url="<?=Url::toRoute(['catalog/detail', 'id' => 'rID']);?>" class="header-middle__search-response-wrap">
+                                    <button id="searchResponseCloseBtn" class="header-middle__search-close-btn">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                    <ul id="searchResponseList"  class="header-middle__search-response-list"></ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="col-xs-3">

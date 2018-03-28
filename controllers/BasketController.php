@@ -7,7 +7,7 @@ use yii\web\Controller;
 use yii\base\Security;
 use app\models\sale\Basket;
 use app\models\sale\BasketUser;
-use app\models\catalog\Catalog;
+use app\models\catalog\Product;
 use yii\data\Pagination;
 
 
@@ -55,7 +55,7 @@ class BasketController extends Controller
             ]);
         }
 
-        $product = Catalog::findOne(['product_id' => $productID]);
+        $product = Product::findOne(['id' => $productID]);
 
         $basket = new Basket();
         $basket->b_user_id = $basketKey;

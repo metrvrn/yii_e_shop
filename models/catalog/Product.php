@@ -35,7 +35,7 @@ class Product extends ActiveRecord
 
     public static function getAvailableQuery($sections, $priceType)
     {
-        return Product::find()
+        return static::find()
         ->with(['image', 'properties.type', 'quantity', 'price'])
         ->innerJoin('quantity')
         ->onCondition('quantity.product_id = products.id')
@@ -45,5 +45,25 @@ class Product extends ActiveRecord
         ->andWhere('quantity.value != 0')
         ->andWhere('price.value != 0')
         ->andWhere(['price.type_id' => $priceType]);
+    }
+
+    public function search($pattern, $limit = 15, $offset = 0)
+    {
+        return static::find()
+        ->select('products.name, products.id, products.picture_id')
+        ->with('image')
+        ->innerJoin('quantity')
+        ->onCondition('quantity.product_id = products.id')
+        ->innerJoin('price')
+        ->andOnCondition('price.product_id = products.id')
+        ->where(['like', 'products.name', $pattern])
+        ->andWhere('quantity.value != 0')
+        ->andWhere('price.value != 0')
+        ->andWhere('price.type_id = 6')
+        ->andWhere('quantity.warehouse_id = 1')
+        ->limit($limit)
+        ->offset($offset)
+        ->asArray()
+        ->all();
     }
 }

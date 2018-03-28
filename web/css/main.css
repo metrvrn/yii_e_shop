@@ -77,6 +77,9 @@ a:focus{
 .header-middle__contacts-address{
     float: right;
 }
+.header-middle__search{
+
+}
 .header-middle__search-form{
     display: block;
     width: 100%;
@@ -87,6 +90,75 @@ a:focus{
     border: 2px solid #ddd;
     border-radius: 2px;
     padding: 8px;
+}
+.header-middle__search-response-container{
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+}
+.header-middle__search-response-wrap{
+    display: none;
+    position: absolute;
+    width: 100%;
+    max-width: 100%;
+    background-color: #fafafa;
+    z-index: 700;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+.header-middle__search-response-wrap--open{
+    display: block;
+}
+.header-middle__search-response-close-btn-wrap{
+    background: transparent;
+}
+.header-middle__search-close-btn{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 32px;
+    height: 32px;
+    background-color: #ddd;
+    border: none;
+    transition: all 0.2s ease;
+}
+.header-middle__search-close-btn:hover{
+    background-color: #ccc;
+    transition: all 0.2s ease;
+}
+.header-middle__search-response-list{
+    height: 500px;
+    max-height: 500px;
+    width: 100%;
+    max-width: 100%;
+    overflow-y: scroll;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.header-middle__search-response-elem{
+    margin: 0;
+    padding: 0;
+}
+.header-middle__search-response-elem-link{
+    display: block;
+    padding: 4px;
+    border-bottom: 1px solid #aaa;
+    color: #000;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+.header-middle__search-response-elem-link:hover{
+    text-decoration: none;
+    color: #000;
+    background-color: #ddd;
+    transition: all 0.2s ease;
+}
+.header-middle__search-response-image{
+    width: 40px;
+    height: 40px;
+}
+.header-middle__search-response-elem-name{
+
 }
 .header-middle__basket-link{
     display: block;
