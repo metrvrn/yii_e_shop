@@ -81,4 +81,22 @@ class BasketController extends Controller
         Basket::deleteAll(['b_user_id' => $basketKey]);
         return $this->redirect('index');
     }
+
+    public function actionUpdate()
+    {
+        $request = Yii::$app->request;
+        $productID = $request->get('id');
+        $quantity = $request->get('quantity');
+        if($uQuantity = Basket::updateQuantity($productID, $quantity)){
+            $response = [
+                'totalQuantity' => Basket::getQuantity(),
+                'totalSum' => Basket::getSum(),
+                'quantity' => $uQuantity,
+                'productID' => $productID
+            ];
+            return $this->asJson($response);
+        }
+        return false;
+    }
+
 }

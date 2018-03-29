@@ -45,6 +45,11 @@ class BasketUser extends ActiveRecord
         }
     }
 
+    public static function hasBasketKey()
+    {
+        return (boolean) Yii::$app->request->cookies->has('b_key');
+    }
+
     public static function attachUserToBasket()
     {
         $basketKey = static::getBasketKey();

@@ -2,21 +2,13 @@
 
 namespace app\models\sale;
 
-use yii\db\ActiveRecord;
 use Yii;
+use yii\db\ActiveRecord;
 use app\models\sale\BasketUser;
+use app\models\catalog\Quantity;
 
 class Basket extends ActiveRecord
 {
-
-    // public $id;
-    // public $b_user_id;
-    // public $order_id;
-    // public $product_id;
-    // public $price;
-    // public $quantity;
-    // public $date_insert;
-    // public $date_update;
 
     public static function tableName()
     {
@@ -52,5 +44,27 @@ class Basket extends ActiveRecord
         return number_format($sum, 2);
     }
 
-    
+    public static function updateQuantity($productID, $quantity)
+    {
+        if(!BasketUser::hasBasketKey()){
+            return false;
+        }
+        $availableQuantity = Quantity::find()
+            ->where(['product_id' => $quantity])
+            ->andWhere(['warehouse_id' => 1])
+            ->one();
+        if($quantity > $availableQuantity){
+            $quantity = $availableQuantity;
+        }
+        $basketKey = BasketUser::getBasketKey();
+        $basketRow = static::find()
+            ->where(['b_user_id' => $basketKey])
+            ->andWhere(['product_id' => $productID])
+            ->one();
+        $basketRow->quantity = $quantity;
+        if($basketRow->update() !== false){
+            return $quantity;
+        }
+        return false;
+    }
 }

@@ -5,7 +5,7 @@ use yii\widgets\LinkPager;
 
 <?php if(!empty($basketItems)) : ?>
     <div class="col-xs-9">
-        <table class="table-bordered table-hover basket-table">
+        <table id="basketTable" data-url="<?=Url::toRoute(['basket/update', 'id' => 'rID', 'quantity' => 'rQuantity']);?>" class="table-bordered table-hover basket-table">
             <thead>
                 <tr>
                     <th>Товар</th>
@@ -21,9 +21,9 @@ use yii\widgets\LinkPager;
                         <td><?=$item['price']?></td>
                         <td>
                         <div class="input-group basket-table__quantity-control">
-                            <input type="text" class="form-control" value="<?=$item['quantity']?>">
+                            <input id="basketQuantityInput<?=$item->product_id;?>" type="text" class="form-control" value="<?=$item['quantity']?>">
                             <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
+                                <button id="basketQuantityBtn" data-id="<?=$item->product_id;?>" class="btn btn-default" type="button">
                                     <i class="fas fa-sync-alt"></i>
                                 </button>
                             </span>
@@ -42,11 +42,16 @@ use yii\widgets\LinkPager;
             <table class="table-bordered basket-sidepanel__table">
                 <tr>
                     <td>Наименований</td>
-                    <td><?=$basketItemsCount?></td>
+                    <td>
+                        <span id="basketSidepanelQuantity"><?=$basketItemsCount?></span>
+                    </td>
                 </tr>
                 <tr>
                     <td>Сумма</td>
-                    <td><?=$basketSum?>&#8381;</td>
+                    <td >
+                        <span id="basketSidepanelSum"><?=$basketSum?></span>
+                        <span>&#8381;</span>
+                    </td>
                 </tr>
             </table>
             <a href="<?=Url::toRoute(['order/checkout']);?>" class="basket-sidepanel__order-link">
