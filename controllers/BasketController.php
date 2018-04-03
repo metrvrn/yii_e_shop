@@ -9,6 +9,7 @@ use app\models\sale\Basket;
 use app\models\sale\BasketUser;
 use app\models\catalog\Product;
 use yii\data\Pagination;
+use yii\helpers\Url;
 
 
 class BasketController extends Controller
@@ -77,8 +78,7 @@ class BasketController extends Controller
 
     public function actionRemove()
     {
-        $basketKey = BasketUser::getBasketKey();
-        Basket::deleteAll(['b_user_id' => $basketKey]);
+        Basket::removeAll();
         return $this->redirect('index');
     }
 
@@ -92,11 +92,21 @@ class BasketController extends Controller
                 'totalQuantity' => Basket::getQuantity(),
                 'totalSum' => Basket::getSum(),
                 'quantity' => $uQuantity,
-                'productID' => $productID
+                'productSum' => Basket::getSumByProductId($productID)
             ];
             return $this->asJson($response);
         }
         return false;
+    }
+
+    public function actionRemoveItem($id)
+    {
+        $bUser = BasketUser::getBasketKey();
+        $item = Basket::findOne(['id' => $id]);
+        if($item){
+            $item->delete();
+        }
+        return $this->redirect(Url::toRoute('basket/index'));
     }
 
 }

@@ -1,14 +1,18 @@
 *{
     box-sizing: border-box;
 }
-html,
+html{
+    min-height: 100%;
+}
 body{
-    height: 100%;
+    min-height: 100%;
+    position: relative;
 }
 body{
     margin: 0;
     padding: 0;
     font-family: 'Open Sans', sans-serif;
+    padding-bottom: 125px;
 }
 .main{
     padding-top: 24px;
@@ -17,6 +21,14 @@ body{
 a:focus{
     outline: none;
     text-decoration: none;
+}
+.main-footer{
+    max-height: 125px;
+    height: 125px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 /* HELPERS */
 .clearfix:after{
@@ -524,6 +536,32 @@ a:focus{
     width: 120px;
     margin: 0 auto;
 }
+.basket-table__quantity-icon-animation{
+    animation-name: basketQuantityIcon;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+.basket-table__remove-btn{
+    display: block;
+    width: 40px;
+    height: 40px;
+    margin: 0 auto;
+    padding-top: 9px;
+    border-radius: 50%;
+    border: 1px solid transparent;
+    text-align: center;
+    transition: all 0.2s ease;
+}
+.basket-table__remove-btn:hover{
+    background-color: #e6e6e6;
+    border: 1px solid #666;
+    color: #f00;
+    transition: all 0.2s ease;
+}
+.basket-table__remove-btn-icon{
+    font-size: 2rem;
+    color: #ff6e6e;
+}
 .basket-sidepanel{
     position: relative;
     background-color: #f5f5f5;
@@ -542,7 +580,26 @@ a:focus{
 .basket-sidepanel__table td{
     padding: 4px 12px;
 }
-.basket-sidepanel__order-link{
+.basket-sidepanel__checkout-btn{
+    display: block;
+    margin-bottom: 18px;
+    line-height: 2.2rem;
+    padding: 14px 17px;
+    font-size: 1.8rem;
+    text-decoration: none;
+    color: #000;
+    text-align: center;
+    border: 1px solid #bbbbbb;
+    border-radius: 5px;
+    transition: all 0.2s ease;
+}
+.basket-sidepanel__checkout-btn:hover{
+    text-decoration: none;
+    background: #30bbef;
+    color: #fff;
+    transition: all 0.2s ease;
+}
+.basket-sidepanel__clear-btn{
     display: block;
     line-height: 2.2rem;
     padding: 14px 17px;
@@ -554,11 +611,17 @@ a:focus{
     border-radius: 5px;
     transition: all 0.2s ease;
 }
-.basket-sidepanel__order-link:hover{
+.basket-sidepanel__clear-btn:hover{
     text-decoration: none;
-    background: #30bbef;
+    background-color: #ff5c5c;
     color: #fff;
     transition: all 0.2s ease;
+}
+.basket__empty-msg{
+    padding: 18px;
+    font-size: 1.8rem;
+    text-align: center;
+    border-radius: 5px;
 }
 .registration__title-wrapper{
     padding-bottom: 12px;
@@ -662,4 +725,56 @@ a:focus{
 .detail-product__basket-btn:hover{
     background-color: #2f3034;
     transition: 0.2s ease all;
+}
+/* ORDER */
+.order-checkout__sidepanel-wrap{
+    padding-top: 24px;
+}
+.order-checkout__sidepanel{
+    background-color: #f5f5f5;
+    padding: 8px 24px 24px 24px;
+}
+.order-checkout__sidepanel-title-wrap{
+
+}
+.order-checkout__sidepanel-title{
+
+}
+.order-checkout__sidepanel-info-wrap{
+
+}
+.basket-sidepanel__table{
+    width: 100%;
+}
+.basket-sidepanel__table td{
+    padding: 8px;
+}
+.order-checkout__submit-wrap{
+
+}
+.order-checkout__submit{
+    display: block;
+    width: 80%;
+    margin-left: 10%;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    color: #000;
+    font-size: 1.8rem;
+    font-weight: 700;
+    transition: all 0.2s ease;
+}
+.order-checkout__submit:hover{
+    background-color: #30bbef;
+    color: #fff;
+    transition: all 0.2s ease;
+}
+/* ANIMATIONS */
+@keyframes basketQuantityIcon{
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
 }

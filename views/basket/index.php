@@ -12,6 +12,7 @@ use yii\widgets\LinkPager;
                     <th>Цена</th>
                     <th>Колличество</th>
                     <th>Сумма</th>
+                    <th>Удалить</th>
                 </tr>
             </thead>
             <tbody>
@@ -21,15 +22,18 @@ use yii\widgets\LinkPager;
                         <td><?=$item['price']?></td>
                         <td>
                         <div class="input-group basket-table__quantity-control">
-                            <input id="basketQuantityInput<?=$item->product_id;?>" type="text" class="form-control" value="<?=$item['quantity']?>">
+                            <input id="basketQuantityInput<?=$item->product_id;?>" type="text" class="form-control" data-old-value="<?=$item['quantity']?>" value="<?=$item['quantity']?>">
                             <span class="input-group-btn">
                                 <button id="basketQuantityBtn" data-id="<?=$item->product_id;?>" class="btn btn-default" type="button">
-                                    <i class="fas fa-sync-alt"></i>
+                                    <i class="basket-table__quantity-btn-icon fas fa-sync-alt"></i>
                                 </button>
                             </span>
                         </div>
                         </td>
                         <td><?=number_format($item['price']*$item['quantity'], 2);?></td>
+                        <td><a class="basket-table__remove-btn" href="<?=Url::toRoute(['basket/remove-item', 'id' => $item->id]);?>">
+                            <i class="basket-table__remove-btn-icon far fa-trash-alt"></i>
+                        </a></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
@@ -54,10 +58,10 @@ use yii\widgets\LinkPager;
                     </td>
                 </tr>
             </table>
-            <a href="<?=Url::toRoute(['order/checkout']);?>" class="basket-sidepanel__order-link">
+            <a class="basket-sidepanel__checkout-btn" href="<?=Url::toRoute(['order/checkout']);?>">
                 Оформить заказ
             </a>
-            <a href="<?=Url::toRoute(['basket/remove']);?>" class="basket-sidepanel__order-link">
+            <a class="basket-sidepanel__clear-btn" href="<?=Url::toRoute(['basket/remove']);?>" >
                 Очистить корзину
             </a>
         </div>
@@ -68,6 +72,6 @@ use yii\widgets\LinkPager;
         ?>
     </div>
 <?php else : ?>
-    
+    <p class="bg-danger basket__empty-msg">Ваша корзина пуста</p>
 <?php endif; ?>
 <?php $this->registerJsFile('@web/js/basket/main.js');?>

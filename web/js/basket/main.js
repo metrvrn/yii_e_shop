@@ -10,19 +10,30 @@
 
     var basketQuantityBtns = document.querySelectorAll('basketQuantityBtn');
 
-    basketTable.addEventListener('click', function(e){
+    basketTable.addEventListener('click', updateBasketQuantity);
+
+    function updateBasketQuantity(e)
+    {
         var target = e.target;
-        while(target.id !== 'basketQuantityBtn'){
-            target = target.parentElement;
+        try{
+            while(target.id !== 'basketQuantityBtn'){
+                target = target.parentElement;
+            }
+        }catch(e){
+            return;
         }
         var productID = target.dataset.id;
+        var icon = target.querySelector('i');
         var input = document.getElementById('basketQuantityInput'+productID);
+        var oldValue = Number(input.dataset.oldValue);;
         var quantity = Number(input.value);
-        updateBasketQuantity(productID, quantity);
-    });
 
-    function updateBasketQuantity(productID, quantity)
-    {
+        if(isNaN(quantity) || (quantity <= 0)){
+            input.value = oldValue;
+            return;
+        }
+        icon.classList.add('basket-table__quantity-icon-animation');
+
         var url = urlTemplate
             .replace('rID', productID)
             .replace('rQuantity', quantity)
@@ -35,7 +46,10 @@
                 return;
             }
             var response = JSON.parse(xhr.response);
-            console.log(response);
+            basketSidepanelSum.innerText = response.totalSum;
+            basketSidepanelQuantity.onnerText = response.totalQuantity;
+            input.value = response.quantity;
+            icon.classList.remove('basket-table__quantity-icon-animation');
         }
         xhr.send();
     }

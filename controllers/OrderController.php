@@ -12,15 +12,8 @@ use app\models\Order;
 class OrderController extends Controller
 {
 
-    public function rules()
-    {
-        return [
-            
-        ]
-    }
     public function actionCheckout()
     {
-            print_r(Yii::$app->request->post());
             $user = Yii::$app->user->identity;
             $basketSum = Basket::getSum();
             $basketQuantity = Basket::getQuantity();

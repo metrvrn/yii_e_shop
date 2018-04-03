@@ -50,9 +50,9 @@ class Basket extends ActiveRecord
             return false;
         }
         $availableQuantity = Quantity::find()
-            ->where(['product_id' => $quantity])
+            ->where(['product_id' => $productID])
             ->andWhere(['warehouse_id' => 1])
-            ->one();
+            ->one()->value;
         if($quantity > $availableQuantity){
             $quantity = $availableQuantity;
         }
@@ -66,5 +66,23 @@ class Basket extends ActiveRecord
             return $quantity;
         }
         return false;
+    }
+
+    public static function getSumByProductId($id)
+    {
+        $item = static::find()
+            ->where([
+                'product_id' => $id,
+                'b_user_id' => BasketUser::getBasketKey()
+            ])->one();
+        $sum = $item->quantity * $item->price;
+        return number_format($sum, 2);
+    }
+
+    public function removeAll()
+    {
+        return static::deleteAll([
+            'b_user_id' => BasketUser::getBasketKey()
+        ]);
     }
 }
