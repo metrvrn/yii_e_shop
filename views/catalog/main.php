@@ -55,7 +55,8 @@ use yii\widgets\LinkPager;
                                         <i class="fas fa-plus"></i>
                                     </button>
                                     <button data-action="add_btn" class="product-cart__basket-btn">
-                                        <i class="fas fa-cart-plus"></i>
+                                        <i class="product-cart__basket-btn-add-icon fas fa-cart-plus"></i>
+                                        <i class="product-cart__basket-btn-sync-icon product-cart__basket-btn-sync-icon--invisible fas fa-sync-alt"></i>
                                     </button>
                                 </div>
                             </div>

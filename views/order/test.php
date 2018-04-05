@@ -1,9 +1,1 @@
-<?php
-
-?>
-
-<pre>
-
-    <?php print_r($post) ?>
-
-</pre>
+<?php var_dump($data); ?>

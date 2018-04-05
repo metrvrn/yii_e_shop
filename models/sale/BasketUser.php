@@ -25,21 +25,7 @@ class BasketUser extends ActiveRecord
     public static function getBasketKey()
     {
         if(!Yii::$app->request->cookies->has('b_key')){
-            $basketKey = (new Security)->generateRandomString(10);
-            Yii::$app->response->cookies->add(new Cookie([
-                'name' => 'b_key',
-                'value' => $basketKey,
-                'expire' => time()+60*60*24*30
-            ]));
-            $basketUser = new self();
-            $basketUser->basket_key = $basketKey;
-            if(!Yii::$app->user->isGuest){
-                $basketUser->user_id = Yii::$app->user->getId();
-            }
-            if(!$basketUser->save()){
-                return $basketUser->getErrors();
-            }
-            return $basketKey;
+           return static::initUser(); 
         }else{
             return Yii::$app->request->cookies->get('b_key')->value;
         }
@@ -58,8 +44,28 @@ class BasketUser extends ActiveRecord
         $basketUser->save();
     }
 
-    public static function unsetBasketId()
+    public static function reset()
     {
+        return static::initUser();
+    }
 
+
+    private static function initUser()
+    {
+        $basketKey = (new Security)->generateRandomString(10);
+        Yii::$app->response->cookies->add(new Cookie([
+            'name' => 'b_key',
+            'value' => $basketKey,
+            'expire' => time()+60*60*24*30
+        ]));
+        $basketUser = new self();
+        $basketUser->basket_key = $basketKey;
+        if(!Yii::$app->user->isGuest){
+            $basketUser->user_id = Yii::$app->user->getId();
+        }
+        if(!$basketUser->save()){
+            return $basketUser->getErrors();
+        }
+        return $basketKey;
     }
 }

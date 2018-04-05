@@ -522,6 +522,18 @@ a:focus{
 }
 .product-cart__basket-btn:disabled{
     background-color: #eee;
+    color: #000;
+}
+.product-cart__basket-btn-add-icon--invisible{
+    display: none;
+}
+.product-cart__basket-btn-sync-icon{
+    animation-name: sync;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+.product-cart__basket-btn-sync-icon--invisible{
+    display: none;
 }
 /* BASKET */
 .basket-table td{
@@ -566,6 +578,7 @@ a:focus{
     position: relative;
     background-color: #f5f5f5;
     padding: 8px 24px 24px 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
 .basket-sidepanel__separator{
     height: 1px;
@@ -729,10 +742,12 @@ a:focus{
 /* ORDER */
 .order-checkout__sidepanel-wrap{
     padding-top: 24px;
+
 }
 .order-checkout__sidepanel{
     background-color: #f5f5f5;
     padding: 8px 24px 24px 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
 .order-checkout__sidepanel-title-wrap{
 
@@ -770,7 +785,7 @@ a:focus{
     transition: all 0.2s ease;
 }
 /* ANIMATIONS */
-@keyframes basketQuantityIcon{
+@keyframes sync{
     from{
         transform: rotate(0deg);
     }

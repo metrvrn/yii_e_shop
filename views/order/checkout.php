@@ -10,19 +10,19 @@ use yii\helpers\Url;
                 <span class="order-panel-title">Контактные данные</span>
             </div>
             <div class="form-group">
-                <input name="user_name" type="text" class="form-control" placeholder="Имя" value="<?= $user['name'] ? $user['name'] : ''; ?>">
+                <input required name="user_name" type="text" class="form-control" placeholder="Имя" value="<?= $user['name'] ? $user['name'] : ''; ?>">
             </div>
             <div class="form-group">
                 <input name="user_surname" type="text" class="form-control" placeholder="Фамилия" value="<?= $user['surname'] ? $user['surname'] : ''; ?>">
             </div>
             <div class="form-group">
-                <input name="patronymic" type="text" class="form-control" placeholder="Отчество" value="<?= $user['patronymic'] ? $user['patronymic'] : ''; ?>">
+                <input name="user_patronymic" type="text" class="form-control" placeholder="Отчество" value="<?= $user['patronymic'] ? $user['patronymic'] : ''; ?>">
             </div>
             <div class="form-group">
-                <input name="user_company" type="text" class="form-control" placeholder="Организация" value="<?= $user['company'] ? $user['company'] : ''; ?>"">
+                <input name="user_company" type="text" class="form-control" placeholder="Организация" value="<?= $user['company'] ? $user['company'] : ''; ?>">
             </div>
             <div class="form-group">
-                <input name="user_phone" type="text" class="form-control" placeholder="Телефон" value="<?= $user['phone'] ? $user['phone'] : ''; ?>">
+                <input required name="user_phone" type="text" class="form-control" placeholder="Телефон" value="<?= $user['phone'] ? $user['phone'] : ''; ?>">
             </div>
             <div class="form-group">
                 <input name="user_workphone" type="text" class="form-control" placeholder="Рабочий телефон" value="<?= $user['work_phone'] ? $user['work_phone'] : ''; ?>">
@@ -40,7 +40,7 @@ use yii\helpers\Url;
                     <span class="order-panel__title">Доставка</span>
                 </div>
                 <div class="form-group">
-                    <select name="delivery" class="form-control">
+                    <select required name="delivery" class="form-control">
                         <?php foreach ($deliveries as $delivery) : ?>
                             <option value="<?= $delivery->id ?>">
                                 <b><?= $delivery->name; ?></b>
@@ -72,7 +72,7 @@ use yii\helpers\Url;
                     <span class="order-panel__title">Оплата</span>
                 </div>
                 <div class="form-group">
-                    <select name="payment" class="form-control">
+                    <select required name="payment" class="form-control">
                     <?php foreach ($payments as $payment) : ?>
                         <option value="<?= $payment->id ?>">
                             <b><?= $payment->name ?></b>

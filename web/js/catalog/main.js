@@ -76,6 +76,10 @@
     function addBtn(btnElem)
     {
         btnElem.setAttribute('disabled', true);
+        var addIcon = btnElem.querySelector('.product-cart__basket-btn-add-icon');
+        var syncIcon = btnElem.querySelector('.product-cart__basket-btn-sync-icon');
+        addIcon.classList.add('product-cart__basket-btn-add-icon--invisible');
+        syncIcon.classList.remove('product-cart__basket-btn-sync-icon--invisible');
         var productID = btnElem.parentElement.id;
         var quantity = btnElem.parentElement.querySelector('input[data-action="quantity_input"]').value;
         var requestParams = "?productId="+productID+"&quantity="+quantity;
@@ -90,10 +94,13 @@
                 var responseData = JSON.parse(response.responseText);
                 headerBasketQuantity.innerText = responseData.basketQuantity;
                 headerBasketSum.innerText = responseData.basketSum;
-                console.dir(responseData);
+                syncIcon.classList.add('product-cart__basket-btn-sync-icon--invisible');
+                addIcon.classList.remove('product-cart__basket-btn-add-icon--invisible');
             }else{
                 throw new Exception('Error');
                 btnElem.removeAttribute('disabled');
+                syncIcon.classList.add('product-cart__basket-btn-sync-icon--invisible');
+                addIcon.classList.remove('product-cart__basket-btn-add-icon--invisible');
             }
         }
         xhr.send();

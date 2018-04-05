@@ -37,7 +37,12 @@ use yii\helpers\Url;
             <div class="col-xs-2 admin-sidebar nopadding">
                 <aside class="admin-sidebar__list">
                     <div class="admin-sidebar__list-item admin-sidebar__list-item--active">
-                        <a href="<?=Url::toRoute('admin/statistics/index')?>" class="admin-sidebar__list-link">Сводка</a>
+                        <a href="<?=Url::toRoute('admin/statistics/index')?>" class="admin-sidebar__list-link">Сайт</a>
+                        <ul class="admin-sidebar-dropdown">
+                            <li class="admin-sidebar-dropdow__element">
+                                <a href="<?=Url::toRoute('admin/index/properties');?>" class="admin-sidebar-dropdown__link">Настройки</a>
+                            </li>
+                        </ul>
                     </div>
                     <div class="admin-sidebar__list-item">
                         <a href="<?=Url::toRoute('admin/sale/index')?>" class="admin-sidebar__list-link">Магазин</a>

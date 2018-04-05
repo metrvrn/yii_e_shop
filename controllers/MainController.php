@@ -1,7 +1,7 @@
 <?php
 
 namespace app\controllers;
-
+use Yii;
 use yii\web\controller;
 use yii\helpers\Url;
 use app\models\catalog\Product;
@@ -29,26 +29,15 @@ class MainController extends Controller
 
     public function actionTest()
     {   
-        $section = 98;
-
-        if($section === null and !is_numeric($section)){
-            $this->redirect('catalog/index');
-        }
-        $sections = Sections::find()->where(['parent_id' => $section])->all();
-        $childrenSections = Sections::getChildrenId($section);
-        $productsQuery = Product::getAvailableQuery($childrenSections, 6);
-        
-        $pagination = new Pagination([
-            'totalCount' => $productsQuery->count(),
-            'pageSize' => 30,
-        ]);
-
-        $products = $productsQuery->offset($pagination->offset)
-            ->limit($pagination->limit)
-            ->all();
+        $message = Yii::$app->mailer->compose();
+        $message->setFrom('yiishop@mail.ru')
+        ->setTo('mr0094@gmail.com')
+        ->setSubject('Новый заказ')
+        ->setTextBody('test')
+        ->send();
         
         return $this->render('test', [
-            'data' => $products
+            'data' => 'mail'
         ]);
     }
 
