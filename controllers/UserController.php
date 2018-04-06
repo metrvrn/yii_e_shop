@@ -47,10 +47,25 @@ class UserController extends Controller
 
     public function actionProfile()
     {
-        if(Yii::$app->user->isGuest){
-            return $this->redirect('user/login');
+        if(Yii::$app->user->getIsGuest()){
+            return $this->redirect(Url::toRoute('user/login'));
         }
         $user = Yii::$app->user->identity;
         return $this->render('profile', ['user' => $user]);
+    }
+
+    public function actionEditPrifile()
+    {
+        if(Yii::$app->user->getIsGuest()){
+            return $this->redirect(Url::toRoute('user/login'));
+        }
+        $request = Yii::$app->request;
+        if($request->getIsPost()){
+            
+        }
+        $user = Yii::$app->user->getIdentity();
+        return $this->render('edit-profile', [
+            'user' => $user
+        ]);
     }
 }
