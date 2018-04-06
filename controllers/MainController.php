@@ -8,6 +8,7 @@ use app\models\catalog\Product;
 use yii\db\ActiveQuery;
 use app\models\catalog\Sections;
 use yii\data\Pagination;
+use app\models\sale\Order;
 
 class MainController extends Controller
 {
@@ -29,15 +30,10 @@ class MainController extends Controller
 
     public function actionTest()
     {   
-        $message = Yii::$app->mailer->compose();
-        $message->setFrom('yiishop@mail.ru')
-        ->setTo('mr0094@gmail.com')
-        ->setSubject('Новый заказ')
-        ->setTextBody('test')
-        ->send();
+        $data = Yii::$app->params;
         
         return $this->render('test', [
-            'data' => 'mail'
+            'data' => $data
         ]);
     }
 

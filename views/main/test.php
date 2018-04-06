@@ -2,5 +2,5 @@
 <?php ?>
 
 <pre>
-    <?php print_r($data); ?>
+    <?php var_dump($data);?>
 </pre>

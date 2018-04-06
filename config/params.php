@@ -20,5 +20,8 @@ return [
     'catalogUploader' => [
         'downloadUrl' => '/catalog_unload/',
         'tmpFolder' => '../runtime/catalogFiles/'
+    ],
+    'mailingList' => [
+        'mr0094@gmail.com'
     ]
 ];

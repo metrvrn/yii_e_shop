@@ -31,17 +31,20 @@ class OrderController extends Controller
             $delivery = Delivery::findOne(['id' => $deliveryId]);
             $order->delivery_name = $delivery->name;
             $order->delivery_description = $delivery->description;
+            $order->products_number = Basket::getQuantity();
+            $order->sum = Basket::getSum();
             if($order->load($request->post(), '') and $order->save()){
                 $basketUser = BasketUser::getBasketKey();
                 Basket::updateAll(['order_id' => $order->id], "b_user_id = :basketUser", [':basketUser' => $basketUser]);
                 BasketUser::reset();
+                $message = Yii::$app->mailer->compose('new_order', ['order' => $order]);
+                $message->setFrom('yiishop@mail.ru')
+                ->setTo(Yii::$app->params['mailingList'])
+                ->setSubject('Новый заказ')
+                ->send();
                 return $this->redirect(Url::toRoute(['order/success', 'id' => $order->id]));
             }
         }
-
-        // if(Yii::$app->request->getIsPost()){
-        //     return $this->render('test', ['data' => Yii::$app->request->post()]);
-        // }
 
         $user = Yii::$app->user->identity;
         $basketSum = Basket::getSum();

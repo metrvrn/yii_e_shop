@@ -31,5 +31,31 @@ class Order extends ActiveRecord
             [['user_email'], 'email']
         ];
     }
+
+    public function attributeLabels()
+    {
+        return [
+            'user_name' => 'Имя',
+            'user_surname' => 'Фамилия',
+            'user_patronymic' => 'Отчество',
+            'user_company' => 'Компания',
+            'user_phone' => 'Телфон',
+            'user_workphone' => 'Рабочий телефон',
+            'delivery_name' => 'Тип доставки',
+            'delivery_description' => 'Описание доставки',
+            'delivery_city' => 'Город',
+            'delivery_street' => 'Улица',
+            'delivery_house_number' => 'Номер дома',
+            'delivery_office_number' => 'Номер квартиры/оффиса',
+            'payment_name' => 'Тип оплаты',
+            'payment_description' => 'Описание оплаты',
+            'user_email' => 'Email'
+        ];
+    }
+
+    public static function getSumById()
+    {
+        
+    }
 }
 
