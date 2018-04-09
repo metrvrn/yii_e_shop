@@ -61,6 +61,7 @@ class BasketController extends Controller
         $basket = new Basket();
         $basket->b_user_id = $basketKey;
         $basket->product_id = $productID;
+        
         $basket->price = 148.50;
         $basket->name = $product['name'];
         $basket->quantity = $quantity;

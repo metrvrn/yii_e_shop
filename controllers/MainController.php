@@ -14,8 +14,11 @@ class MainController extends Controller
 {
 
     public function actionIndex()
-    {
-        return $this->render('index');
+    {   
+        $products = Product::getRandom();
+        return $this->render('index', [
+            'products' => $products
+        ]);
     }
 
     public function actionDelivery()

@@ -7,7 +7,7 @@ body{
     clear: both;
 }
 .nopadding{
-    padding: 0;
+    padding: 0 !important;
 }
 .main-header{
     min-height: 50px;
@@ -149,4 +149,61 @@ body{
 .upload-status-panel{
     padding: 12px;
     margin-top: 12px;
+}
+/* ORDERS INDEX */
+.order-index__table{
+
+}
+.order-index__table th{
+    text-align: center;
+}
+.order-index__table tr{
+    transition: all 0.2s ease;
+}
+.order-index__table tr:hover{
+    cursor: pointer;
+    background-color: #eee;
+    transition: all 0.2s ease;
+}
+.order-index__table td{
+    padding-left: 8px;
+    padding-right: 8px;
+    text-align: center;
+}
+.order-index__address-wrap{
+    border-bottom: 1px solid #eee;
+    min-width: 160px;
+}
+.order-index__date-cell{
+    min-width: 100px
+}
+/* ORDER DETAIL */
+.order-detail__table{
+    width: 100%;
+}
+.order-detail__table th{
+    padding: 12px;  
+}
+.order-detail__table td{
+    padding: 4px 8px;
+}
+.order-detail__items-table{
+    width: 100%;
+}
+.order-detail__quantity-control{
+    width: 120px;
+    margin: 0 auto;
+}
+/* USER INDEX */
+.user-index-table{
+    width: 100%;
+}
+.user-index-table th{
+    padding: 8px;
+}
+.user-index-table td{
+    padding: 4px 8px;
+}
+.user-index-table td:hover{
+    cursor: pointer;
 }

@@ -54,7 +54,7 @@ class UserController extends Controller
         return $this->render('profile', ['user' => $user]);
     }
 
-    public function actionEditPrifile()
+    public function actionEditProfile()
     {
         if(Yii::$app->user->getIsGuest()){
             return $this->redirect(Url::toRoute('user/login'));

@@ -61,8 +61,16 @@ class User extends ActiveRecord implements IdentityInterface
             if ($this->isNewRecord) {
                 $this->auth_key = Yii::$app->security->generateRandomString();
                 $this->password = Yii::$app->getSecurity()->generatePasswordHash($this->password);
+                $this->price_id = Yii::$app->params->defaultPriceTypeId;
             }
             return true;
         }
     }
+
+    public function getPriceType()
+    {
+        return $this->hasOne(PricesTypes::className(), ['id' => 'price_id']);
+    }
+
+
 }

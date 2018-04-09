@@ -4,6 +4,7 @@ namespace app\models\catalog;
 
 use yii\db\ActiveRecord;
 use yii\db\ActiveQuery;
+use yii\db\Expression;
 
 class Product extends ActiveRecord
 {
@@ -45,6 +46,21 @@ class Product extends ActiveRecord
         ->andWhere('quantity.value != 0')
         ->andWhere('price.value != 0')
         ->andWhere(['price.type_id' => $priceType]);
+    }
+
+    public function getRandom($priceType = 6, $limit = 30)
+    {
+        return static::find()
+        ->with(['image', 'properties.type', 'quantity', 'price'])
+        ->innerJoin('quantity')
+        ->onCondition('quantity.product_id = products.id')
+        ->innerJoin('price')
+        ->andOnCondition('price.product_id = products.id')
+        ->andWhere('quantity.value != 0')
+        ->andWhere('price.value != 0')
+        ->andWhere(['price.type_id' => $priceType])
+        ->limit($limit)
+        ->all();
     }
 
     public function search($pattern, $limit = 15, $offset = 0)

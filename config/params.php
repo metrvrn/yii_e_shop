@@ -23,5 +23,6 @@ return [
     ],
     'mailingList' => [
         'mr0094@gmail.com'
-    ]
+    ],
+    'defaultPriceTypeId' => 6
 ];
