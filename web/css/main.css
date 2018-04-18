@@ -6,7 +6,6 @@ html{
 }
 body{
     min-height: 100%;
-    position: relative;
 }
 body{
     margin: 0;
@@ -783,6 +782,49 @@ a:focus{
     background-color: #30bbef;
     color: #fff;
     transition: all 0.2s ease;
+}
+/* USER LOGIN */
+.user-login__align{
+    padding-top: 48px;
+}
+.user-login__wrap{
+    padding: 32px 56px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+.user-login__title{
+    margin: 0;
+    margin-bottom: 24px;
+}
+.user-login__form{
+    width: 100%;
+}
+.user-login__text-input{
+    display: block;
+    width: 100%;
+    margin-bottom: 18px;
+    padding: 4px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    font-size: 1.6rem;
+}
+.user-login__text-input:last-child{
+    margin-bottom: 24px;
+}
+.user-login__text-input:focus{
+    outline: 0;
+}
+.user-login__submit{
+    background-color: #eee;
+    padding: 8px 24px;
+    border: 0;
+    border-radius: 2px;
+    font-size: 1.8rem;
+    transition: all 0.2s ease; 
+}
+.user-login__submit:hover{
+    background-color: #30bbef;
+    color: #fff;
 }
 /* USER PROFILE */
 .user-profile-table{

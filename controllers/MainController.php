@@ -2,7 +2,7 @@
 
 namespace app\controllers;
 use Yii;
-use yii\web\controller;
+use yii\web\Controller;
 use yii\helpers\Url;
 use app\models\catalog\Product;
 use yii\db\ActiveQuery;

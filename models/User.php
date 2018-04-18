@@ -21,8 +21,9 @@ class User extends ActiveRecord implements IdentityInterface
     public function rules()
     {
         return[
-            [['email', 'password', 'name', 'phone'], 'required', 'on' => self::SCENARIO_REGISTRATION],
-            [['email'], 'email', 'on' => self::SCENARIO_REGISTRATION],
+            // [['email', 'password', 'name', 'phone'], 'required', 'on' => self::SCENARIO_REGISTRATION],
+            [['email'], 'email', 'on' => self::SCENARIO_REGISTRATION, 'message' => "Неправильный email адрес"],
+            [['name'], 'string', 'min' => 3, 'max' => 12, 'on' => self::SCENARIO_REGISTRATION],
             [['email', 'password', 'surname', 'patronymic', 'company', 'phone', 'work_phone', 'city', 'street', 'house_number', 'office_number'], 'string', 'on' => self::SCENARIO_REGISTRATION]
         ];
     }
