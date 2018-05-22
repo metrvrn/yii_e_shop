@@ -48,7 +48,7 @@ class Product extends ActiveRecord
         ->andWhere(['price.type_id' => $priceType]);
     }
 
-    public function getRandom($priceType = 6, $limit = 30)
+    public static function getRandom($priceType = 6, $limit = 30)
     {
         return static::find()
         ->with(['image', 'properties.type', 'quantity', 'price'])
