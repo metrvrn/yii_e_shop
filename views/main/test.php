@@ -2,5 +2,5 @@
 <?php ?>
 
 <pre>
-    <?php var_dump($data);?>
+    <?php var_dump(Yii::$app->user->identity->name);?>
 </pre>

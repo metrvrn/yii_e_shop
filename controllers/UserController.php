@@ -7,6 +7,7 @@ use app\models\User;
 use Yii;
 use yii\web\Controller;
 use app\models\RegistrationForm;
+use yii\helpers\Url;
 
 class UserController extends Controller
 {
@@ -14,8 +15,16 @@ class UserController extends Controller
     public function actionRegistration()
     {
         $regForm = new RegistrationForm();
-        if($regForm->load(Yii::$app->request->post()) && $refForm->validate()){
-            return $this->redirect(Url::toRoute(['main/index']));
+        $regForm->setScenario(RegistrationForm::SCENARIO_REGISTRATION);
+        $post = Yii::$app->request->post();
+        if($regForm->load(Yii::$app->request->post()) && $regForm->validate()){
+            $params = $regForm->attributes;
+            unset($params['confirm_password']);
+            $user = new User();        
+            if($user->load($params, '') and $user->save()){
+                Yii::$app->user->login($user);
+                return $this->redirect(Url::toRoute(['main/index']));
+            }
         }
         return $this->render('registration', [
             'user' => $regForm

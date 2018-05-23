@@ -3,6 +3,7 @@
 namespace app\models;
 
 use yii\base\Model;
+use app\models\User;
 
 class RegistrationForm extends Model
 {
@@ -29,7 +30,7 @@ class RegistrationForm extends Model
         return [[['email'], 'email', 'on' => self::SCENARIO_REGISTRATION, 'message' => "Неправильный email адрес"],
             [['name'], 'string', 'min' => 3, 'max' => 12, 'on' => self::SCENARIO_REGISTRATION],
             [['password'], 'required', 'on' => self::SCENARIO_REGISTRATION],
-            [['compare_password'], 'compare', 'compareAttribute' => 'password', 'on' => self::SCENARIO_REGISTRATION],
+            [['confirm_password'], 'compare', 'compareAttribute' => 'password', 'message' => 'Пароли не совпадают',  'on' => self::SCENARIO_REGISTRATION],
             [['phone'], 'number', 'min' => 5, 'on' => self::SCENARIO_REGISTRATION],
             [['email', 'password', 'surname', 'patronymic', 'company', 'phone', 'work_phone', 'city', 'street', 'house_number', 'office_number'], 'string', 'on' => self::SCENARIO_REGISTRATION]
         ];

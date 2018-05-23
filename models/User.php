@@ -21,10 +21,7 @@ class User extends ActiveRecord implements IdentityInterface
     public function rules()
     {
         return[
-            // [['email', 'password', 'name', 'phone'], 'required', 'on' => self::SCENARIO_REGISTRATION],
-            [['email'], 'email', 'on' => self::SCENARIO_REGISTRATION, 'message' => "Неправильный email адрес"],
-            [['name'], 'string', 'min' => 3, 'max' => 12, 'on' => self::SCENARIO_REGISTRATION],
-            [['email', 'password', 'surname', 'patronymic', 'company', 'phone', 'work_phone', 'city', 'street', 'house_number', 'office_number'], 'string', 'on' => self::SCENARIO_REGISTRATION]
+            [['email', 'password', 'confirm_password', 'name', 'surname', 'patronymic', 'phone', 'work_phone', 'city', 'street', 'house_number', 'office_number', 'company'], 'safe']
         ];
     }
 
@@ -62,7 +59,7 @@ class User extends ActiveRecord implements IdentityInterface
             if ($this->isNewRecord) {
                 $this->auth_key = Yii::$app->security->generateRandomString();
                 $this->password = Yii::$app->getSecurity()->generatePasswordHash($this->password);
-                $this->price_id = Yii::$app->params->defaultPriceTypeId;
+                $this->price_id = Yii::$app->params['defaultPriceTypeId'];
             }
             return true;
         }
