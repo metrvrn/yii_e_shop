@@ -13,6 +13,6 @@ class CatalogImage extends ActiveRecord
 
     public function getUrl()
     {
-        return "/images/catalog/".$this->path;
+        return $this->path;
     }
 }

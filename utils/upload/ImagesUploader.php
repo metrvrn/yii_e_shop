@@ -22,9 +22,6 @@ class ImagesUploader extends BaseUploader
     public function upload($offset)
     {
         $images = $this->getData($offset);
-        foreach($images as &$image){
-            $image[1] = substr($image[1], 0, 3) . "/" . $image[1];
-        }
         $this->saveData($images);
     }
 }
