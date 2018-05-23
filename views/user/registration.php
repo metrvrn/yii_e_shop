@@ -11,8 +11,8 @@ use yii\helpers\Html;
         <?php $form = ActiveForm::begin(); ?>
         <?php $form->fieldConfig = ['inputOptions' => ['autocomplete' => 'off', 'class' => 'form-control']]; ?>
             <?= $form->field($user, 'email')->label('Email'); ?>
-            <?= $form->field($user, 'password')->label('Пароль'); ?>
-            <?= $form->field($user, 'confirm_password')->label('Подтверждение пароля'); ?>
+            <?= $form->field($user, 'password')->passwordInput()->label('Пароль'); ?>
+            <?= $form->field($user, 'confirm_password')->passwordInput()->label('Подтверждение пароля'); ?>
             <?= $form->field($user, 'name')->label('Имя'); ?>
             <?= $form->field($user, 'surname')->label('Фамилия'); ?>
             <?= $form->field($user, 'phone')->label('Телефон'); ?>
