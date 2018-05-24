@@ -16,9 +16,9 @@ class CatalogController extends Controller
         if($section === null and !is_numeric($section)){
             $this->redirect('catalog/index');
         }
-        $sections = Sections::find()->where(['parent_id' => $section])->all();
-        $childrenSections = Sections::getChildrenId($section);
-        $productsQuery = Product::getAvailableQuery($childrenSections, 6);
+
+        $sections = Sections::getChildrenArray($section);
+        $productsQuery = Product::getAvailableQuery($sections, 6);
 
         $pagination = new Pagination([
             'totalCount' => $productsQuery->count(),

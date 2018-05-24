@@ -4,22 +4,13 @@ namespace app\models\catalog;
 
 use yii\db\ActiveRecord;
 use yii\web\NotFoundHttpException;
+use yii\helpers\ArrayHelper;
 
 class Sections extends ActiveRecord
 {
     public static function tableName()
     {
         return 'catalog_sections';
-    }
-
-    public static function getTree()
-    {
-        $sectionList = static::find()->indexBy('id')->asArray()->orderBy('name')->all();
-        $rootElements = static::getRootElements($sectionList);
-        foreach($rootElements as &$rootElement){
-            $rootElement['children'] = static::getChildren($rootElement['id'], $sectionList);
-        }
-        return $rootElements;
     }
 
     private static function getRootElements($sectionList)
@@ -33,21 +24,6 @@ class Sections extends ActiveRecord
         return $rootElements;
     }
 
-    private static function getChildren($parentId, $sections){
-        $children = [];
-        foreach($sections as $section){
-            if($section['parent_id'] == $parentId){
-                $children[] = $section;
-            }
-        }
-        if(!empty($children)){
-            foreach($children as &$child){
-                $child['children'] = static::getChildren($child['id'], $sections);
-            }
-        }
-        return $children;
-    }
-
     public static function getChildrenId($id)
     {
         $childrenId = [];
@@ -57,5 +33,35 @@ class Sections extends ActiveRecord
             $childrenId[] = $child['id'];
         }
         return $childrenId;
+    }
+
+    public static function getChildrenArray($rootID, $sections = null)
+    {
+        if(is_null($sections)){
+            $sections = static::find()->all();
+        }
+        $children = [];
+        foreach($sections as $section){
+            if($section->parent_id == $rootID){
+                $children[] = $section;
+                $children += static::getChildrenArray($section->id, $sections);
+            }
+        }
+        return $children;
+    }
+
+    public static function getChildrenAsTree($rootID = null, $sections = null)
+    {
+        if(is_null($sections)){
+            $sections = static::find()->asArray()->all();
+        }
+        $children = [];
+        foreach($sections as $section){
+            if((int)$section['parent_id'] ===  (int)$rootID){
+                $section['children'] = static::getChildrenAsTree($section['id'], $sections);
+                $children[] = $section;
+            }
+        }
+        return $children;
     }
 }
