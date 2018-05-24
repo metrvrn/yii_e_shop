@@ -1,4 +1,4 @@
-vendor
-config/db.php
-web/images/catalog/*
-.htaccess
+/vendor
+/config/db.php
+/web/images/catalog/*
+/.htaccess
