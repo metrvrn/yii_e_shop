@@ -4,22 +4,13 @@ namespace app\models\catalog;
 
 use yii\db\ActiveRecord;
 use yii\web\NotFoundHttpException;
+use yii\helpers\ArrayHelper;
 
 class Sections extends ActiveRecord
 {
     public static function tableName()
     {
         return 'catalog_sections';
-    }
-
-    public static function getTree()
-    {
-        $sectionList = static::find()->indexBy('id')->asArray()->orderBy('name')->all();
-        $rootElements = static::getRootElements($sectionList);
-        foreach($rootElements as &$rootElement){
-            $rootElement['children'] = static::getChildren($rootElement['id'], $sectionList);
-        }
-        return $rootElements;
     }
 
     private static function getRootElements($sectionList)
@@ -33,29 +24,80 @@ class Sections extends ActiveRecord
         return $rootElements;
     }
 
-    private static function getChildren($parentId, $sections){
+    /**
+     * Return all chldren of given section id as one-dimensional array
+     * 
+     * @param integer $rootID
+     * @param array $section 
+     * 
+     * @return array $children
+     */
+
+    public static function getChildrenAsList($rootID, $sections = null)
+    {
+        if(is_null($sections)){
+            $sections = static::find()->asArray()->all();
+        }
         $children = [];
         foreach($sections as $section){
-            if($section['parent_id'] == $parentId){
+            if($section['parent_id'] == $rootID){
                 $children[] = $section;
-            }
-        }
-        if(!empty($children)){
-            foreach($children as &$child){
-                $child['children'] = static::getChildren($child['id'], $sections);
+                $children += static::getChildrenAsList($section['id'], $sections);
             }
         }
         return $children;
     }
 
-    public static function getChildrenId($id)
+    /**
+     * Return multi-dimesional children array of a given section id
+     * By default return all sections tree
+     * 
+     * @param integer $rootID
+     * @param array $sections
+     * 
+     * @return array $children
+     */
+
+    public static function getChildrenAsTree($rootID = null, $sections = null)
     {
-        $childrenId = [];
-        $sectionList = static::find()->indexBy('id')->asArray()->orderBy('name')->all();
-        $children = static::getChildren($id, $sectionList);
-        foreach($children as $child){
-            $childrenId[] = $child['id'];
+        if(is_null($sections)){
+            $sections = static::find()->asArray()->all();
         }
-        return $childrenId;
+        $children = [];
+        foreach($sections as $section){
+            if((int)$section['parent_id'] ===  (int)$rootID){
+                $section['children'] = static::getChildrenAsTree($section['id'], $sections);
+                $children[] = $section;
+            }
+        }
+        return $children;
+    }
+
+    public function getDirectDescendant($rootID)
+    {
+        return static::find()->where(['parent_id' => $rootID])->asArray()->all();
+    }
+
+    /**
+     * Return all children ID of given section id
+     * 
+     * @param integer $rootID
+     * 
+     * @return array $children
+     */
+
+    public function getChildrenID($rootID, $sections = null)
+    {
+        if(is_null($sections)){
+            $sections = static::find()->asArray()->all();
+        }
+        $children = [];
+        foreach($sections as $section){
+            if($section['parent_id'] == $rootID){
+                $children[] = $section['id'];
+                $children += static::getChildrenID($section['id'], $sections);
+            }
+        }
+        return $children;
     }
 }
