@@ -41,7 +41,7 @@ class CatalogController extends Controller
 
     public function actionIndex($section = null)
     {
-        $sections  = CatalogSections::find()->where(['depth_level' => 1])->orderBy('name')->all();
+        $sections  = Sections::getRootElements();
         return $this->render('index', ['sections' => $sections]);
     }
 
@@ -60,6 +60,4 @@ class CatalogController extends Controller
         $productsArr = Product::search($pattern, 15, 0);
         return $this->asJson($productsArr);
     }
-
-
 }
