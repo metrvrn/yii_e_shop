@@ -73,7 +73,7 @@ class Sections extends ActiveRecord
         return $children;
     }
 
-    public function getDirectDescendant($rootID)
+    public static function getDirectDescendant($rootID)
     {
         return static::find()->where(['parent_id' => $rootID])->asArray()->all();
     }
@@ -86,7 +86,7 @@ class Sections extends ActiveRecord
      * @return array $children
      */
 
-    public function getChildrenID($rootID, $sections = null)
+    public static function getChildrenID($rootID, $sections = null)
     {
         if(is_null($sections)){
             $sections = static::find()->asArray()->all();
