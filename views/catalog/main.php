@@ -3,26 +3,26 @@ use yii\helpers\Url;
 use yii\widgets\LinkPager;
 ?>
 
-<div class="col-xs-3 no-padding">
-    <?php if(!empty($sections)): ?>
-        <ul class="catalog-sections-list">
-            <?php foreach($sections as $section): ?>
-                <li class="catalog-sections-list__elem">
-                    <a href="<?=Url::toRoute(['catalog/main', 'section' => $section['id']]);?>" class="catalog-sections-list__link"><?=$section['name'];?></a>
-                </li>
-            <?php endforeach; ?>
-        </ul>
-    <?php endif; ?>
+<?php if(!empty($sections)): ?>
+<div class="col-xs-3 no-padding">    
+    <ul class="catalog-sections-list">
+        <?php foreach($sections as $section): ?>
+            <li class="catalog-sections-list__elem">
+                <a href="<?=Url::toRoute(['catalog/main', 'section' => $section['id']]);?>" class="catalog-sections-list__link"><?=$section['name'];?></a>
+            </li>
+        <?php endforeach; ?>
+    </ul>
 </div>
-<div class="col-xs-9">
+<?php endif; ?>
+<div class="<?=empty($sections) ? 'col-xs-12' : 'col-xs-9';?>">
     <div class="row">
         <?php if(!empty($products)): ?>
             <?php foreach($products as $product): ?>
-                <div class="col-lg-4 col-sm-6 col-xs-12">
+                <div class="<?=empty($sections) ? 'col-lg-3' : 'col-lg-4'?> col-sm-6 col-xs-12">
                     <div class="product-cart">
                         <a href="<?=Url::toRoute(['catalog/detail', 'id' => $product['id']])?>" class="product-cart__link">
                             <div class="product-cart__image-container">
-                                <img src="<?=$product->image['url'];?>" alt="Картинка товара" class="product-cart_image img-responsive">
+                                <img src="<?= $product->image['url'] ? $product->image['url'] : '/images/empty.png'?>" alt="Картинка товара" class="product-cart_image img-responsive">
                             </div>
                             <div class="product-cart__info-wrap">
                                 <span class="poduct-cart__info">

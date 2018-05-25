@@ -8,7 +8,7 @@ $homePagePaths = ['/', '/main/index'];
 $curPath = Yii::$app->getRequest()->getUrl();
 $isHomepage =  (bool) array_intersect([$curPath], $homePagePaths);
 
-$catalogSections = Sections::getTree();
+$catalogSections = Sections::getChildrenAsTree();
 
 $basketQuantity = Basket::getQuantity();
 $basketSum = Basket::getSum();
