@@ -104,7 +104,7 @@ class Sections extends ActiveRecord
      * @return array $rootElements
      */
 
-    public function getRootElements()
+    public static function getRootElements()
     {
         return static::find()->where(['parent_id' => null])
             ->orderBy('name')
