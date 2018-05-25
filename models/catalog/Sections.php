@@ -13,17 +13,6 @@ class Sections extends ActiveRecord
         return 'catalog_sections';
     }
 
-    private static function getRootElements($sectionList)
-    {
-        $rootElements = [];
-        foreach($sectionList as $section){
-            if($section['parent_id'] === null and $section['depth_level'] == 1){
-                $rootElements[$section['id']] = $section;
-            }
-        }
-        return $rootElements;
-    }
-
     /**
      * Return all chldren of given section id as one-dimensional array
      * 
@@ -73,6 +62,14 @@ class Sections extends ActiveRecord
         return $children;
     }
 
+    /**
+     * Return direct descendant of section as array
+     * 
+     * @param integer $rootID
+     * 
+     * @return array $children
+     */
+
     public static function getDirectDescendant($rootID)
     {
         return static::find()->where(['parent_id' => $rootID])->asArray()->all();
@@ -99,5 +96,19 @@ class Sections extends ActiveRecord
             }
         }
         return $children;
+    }
+
+    /**
+     * Retrun root element where parent_id = null as array
+     * 
+     * @return array $rootElements
+     */
+
+    public function getRootElements()
+    {
+        return static::find()->where(['parent_id' => null])
+            ->orderBy('name')
+            ->asArray()
+            ->all();
     }
 }
