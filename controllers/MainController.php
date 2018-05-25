@@ -32,15 +32,6 @@ class MainController extends Controller
         return $this->render('about');
     }
 
-    public function actionTest($sectionID)
-    {   
-        if(empty($sectionID) and !is_numeric($sectionID)){
-            throw new NotFoundHttpException();
-        }
-        $sectionsArr = Sections::getChildrenAsTree();
-        return var_dump($sectionsArr);
-    }
-
     public function actionAdmin()
     {
         return $this->redirect(Url::toRoute('admin/index'));
@@ -49,6 +40,24 @@ class MainController extends Controller
     public function actionError()
     {
         return $this->render('error');
+    }
+
+    public function actionTree()
+    {
+        $tree = Sections::getChildrenAsTree();
+        return $this->asJson($tree);
+    }
+
+    public function actionList()
+    {
+        $list = Sections::getChildrenAsList(1);
+        return print_r($list);
+    }
+
+    public function actionChildrenId($section)
+    {
+        $ids = Sections::getChildrenID($section);
+        return var_dump($ids);
     }
 
 }

@@ -17,7 +17,8 @@ class CatalogController extends Controller
             $this->redirect('catalog/index');
         }
 
-        $sections = Sections::getChildrenArray($section);
+        $sections = Sections::getChildrenID($section);
+        if(empty($sections)) $sections = $section;
         $productsQuery = Product::getAvailableQuery($sections, 6);
 
         $pagination = new Pagination([
@@ -29,8 +30,10 @@ class CatalogController extends Controller
             ->limit($pagination->limit)
             ->all();
         
+        $sidebarSections = Sections::getDirectDescendant($section);
+
         return $this->render('main', [
-            'sections' => $sections,
+            'sections' => $sidebarSections,
             'products' => $products,
             'pagination' => $pagination
             ]);
